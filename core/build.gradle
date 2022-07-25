@@ -15,4 +15,6 @@ dependencies {
 
   implementation 'com.github.stephanenicolas.toothpick:ktp:3.1.0'
   kapt 'com.github.stephanenicolas.toothpick:toothpick-compiler:3.1.0'
+
+  implementation 'androidx.annotation:annotation:1.4.0'
 }

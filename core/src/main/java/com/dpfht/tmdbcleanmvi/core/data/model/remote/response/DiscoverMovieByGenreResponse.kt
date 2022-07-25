@@ -1,10 +1,12 @@
 package com.dpfht.tmdbcleanmvi.core.data.model.remote.response
 
+import androidx.annotation.Keep
 import com.dpfht.tmdbcleanmvi.core.data.model.remote.Movie
 import com.dpfht.tmdbcleanmvi.core.domain.model.GetMovieByGenreResult
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
+@Keep
 @Suppress("unused")
 data class DiscoverMovieByGenreResponse(
   val page: Int = 0,
