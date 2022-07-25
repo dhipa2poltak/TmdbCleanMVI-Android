@@ -8,7 +8,6 @@
   <fragment
       android:id="@+id/genreFragment"
       android:name="com.dpfht.tmdbcleanmvi.feature.genre.GenreFragment"
-      android:label="@string/app_name"
       tools:layout="@layout/fragment_genre">
     <action
         android:id="@+id/action_genre_fragment_to_movies_by_genre_fragment"
@@ -21,7 +20,6 @@
   <fragment
       android:id="@+id/moviesByGenreFragment"
       android:name="com.dpfht.tmdbcleanmvi.feature.moviesbygenre.MoviesByGenreFragment"
-      android:label="@string/app_name"
       tools:layout="@layout/fragment_movies_by_genre">
     <argument
         android:name="genreId"
@@ -42,7 +40,6 @@
   <fragment
       android:id="@+id/movieDetailsFragment"
       android:name="com.dpfht.tmdbcleanmvi.feature.moviedetails.MovieDetailsFragment"
-      android:label="@string/app_name"
       tools:layout="@layout/fragment_movie_details">
     <argument
         android:name="movieId"
@@ -59,7 +56,6 @@
   <fragment
       android:id="@+id/movieReviewsFragment"
       android:name="com.dpfht.tmdbcleanmvi.feature.moviereviews.MovieReviewsFragment"
-      android:label="@string/app_name"
       tools:layout="@layout/fragment_movie_reviews">
     <argument
         android:name="movieId"
