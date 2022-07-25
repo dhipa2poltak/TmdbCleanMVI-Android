@@ -11,25 +11,25 @@ import retrofit2.http.Query
 
 interface RestService {
 
-  @GET("genre/movie/list")
+  @GET("3/genre/movie/list")
   suspend fun getMovieGenre(): GenreResponse
 
-  @GET("discover/movie")
+  @GET("3/discover/movie")
   suspend fun getMoviesByGenre(
     @Query("with_genres") genreId: String,
     @Query("page") page: Int): DiscoverMovieByGenreResponse
 
-  @GET("movie/{movie_id}")
+  @GET("3/movie/{movie_id}")
   suspend fun getMovieDetail(
     @Path("movie_id") movieId: Int): MovieDetailsResponse
 
-  @GET("movie/{movie_id}/reviews")
+  @GET("3/movie/{movie_id}/reviews")
   suspend fun getMovieReviews(
     @Path("movie_id") movieId: Int,
     @Query("page") page: Int,
     @Query("language") language: String = "en-US"): ReviewResponse
 
-  @GET("movie/{movie_id}/videos")
+  @GET("3/movie/{movie_id}/videos")
   suspend fun getMovieTrailers(
     @Path("movie_id") movieId: Int,
     @Query("language") language: String = "en-US"): TrailerResponse

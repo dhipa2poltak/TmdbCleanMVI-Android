@@ -25,6 +25,10 @@ android {
       minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
+    debug {
+      applicationIdSuffix ".debug"
+      versionNameSuffix "-debug"
+    }
   }
   buildFeatures {
     viewBinding true
@@ -35,6 +39,32 @@ android {
   }
   kotlinOptions {
     jvmTarget = '1.8'
+  }
+
+  flavorDimensions "default"
+
+  productFlavors {
+    staging {
+      applicationId "com.dpfht.tmdbcleanmvi.staging"
+
+      resValue "string", "app_name", "TMDB Clean MVI-Staging"
+      buildConfigField 'String', 'BASE_URL', STAGING_BASE_URL
+      buildConfigField 'String', 'IMAGE_URL_BASE_PATH', STAGING_IMAGE_URL_BASE_PATH
+    }
+    verify {
+      applicationId "com.dpfht.tmdbcleanmvi.verify"
+
+      resValue "string", "app_name", "TMDB Clean MVI-Verify"
+      buildConfigField 'String', 'BASE_URL', VERIFY_BASE_URL
+      buildConfigField 'String', 'IMAGE_URL_BASE_PATH', VERIFY_IMAGE_URL_BASE_PATH
+    }
+    prod {
+      applicationId "com.dpfht.tmdbcleanmvi"
+
+      resValue "string", "app_name", "TMDB Clean MVI"
+      buildConfigField 'String', 'BASE_URL', PROD_BASE_URL
+      buildConfigField 'String', 'IMAGE_URL_BASE_PATH', PROD_IMAGE_URL_BASE_PATH
+    }
   }
 }
 

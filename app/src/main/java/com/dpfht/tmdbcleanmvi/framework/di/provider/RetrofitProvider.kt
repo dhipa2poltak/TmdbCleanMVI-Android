@@ -1,6 +1,6 @@
 package com.dpfht.tmdbcleanmvi.framework.di.provider
 
-import com.dpfht.tmdbcleanmvi.Config
+import com.dpfht.tmdbcleanmvi.BuildConfig
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -12,7 +12,7 @@ class RetrofitProvider @Inject constructor(
 ): Provider<Retrofit> {
   override fun get(): Retrofit {
     return Retrofit.Builder()
-      .baseUrl(Config.API_BASE_URL)
+      .baseUrl(BuildConfig.BASE_URL)
       .addConverterFactory(GsonConverterFactory.create())
       .client(okHttpClient)
       .build()
