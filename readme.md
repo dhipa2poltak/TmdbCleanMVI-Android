@@ -5,6 +5,7 @@
 - MVI Architecture Pattern
 - ViewModel
 - Coroutine
+- Flow
 - Navigation Graph
 - Toothpick Dependency Injection
 - ViewBinding
