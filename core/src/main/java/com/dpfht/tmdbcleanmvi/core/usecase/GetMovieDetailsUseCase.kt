@@ -1,4 +1,4 @@
-package com.dpfht.tmdbcleanmvi.core.domain.usecase
+package com.dpfht.tmdbcleanmvi.core.usecase
 
 import com.dpfht.tmdbcleanmvi.core.domain.model.GetMovieDetailsResult
 

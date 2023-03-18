@@ -1,8 +1,8 @@
 package com.dpfht.tmdbcleanmvi.feature.movietrailer.di
 
 import android.content.Context
-import com.dpfht.tmdbcleanmvi.core.domain.usecase.GetMovieTrailerUseCase
-import com.dpfht.tmdbcleanmvi.core.domain.usecase.GetMovieTrailerUseCaseImpl
+import com.dpfht.tmdbcleanmvi.core.usecase.GetMovieTrailerUseCase
+import com.dpfht.tmdbcleanmvi.core.usecase.GetMovieTrailerUseCaseImpl
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import toothpick.config.Module

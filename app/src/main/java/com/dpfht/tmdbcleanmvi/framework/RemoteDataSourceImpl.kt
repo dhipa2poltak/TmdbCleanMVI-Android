@@ -7,8 +7,8 @@ import com.dpfht.tmdbcleanmvi.core.domain.model.GetMovieDetailsResult
 import com.dpfht.tmdbcleanmvi.core.domain.model.GetMovieGenreResult
 import com.dpfht.tmdbcleanmvi.core.domain.model.GetMovieReviewResult
 import com.dpfht.tmdbcleanmvi.core.domain.model.GetMovieTrailerResult
-import com.dpfht.tmdbcleanmvi.core.domain.usecase.UseCaseResultWrapper
-import com.dpfht.tmdbcleanmvi.core.domain.usecase.UseCaseResultWrapper.ErrorResult
+import com.dpfht.tmdbcleanmvi.core.usecase.UseCaseResultWrapper
+import com.dpfht.tmdbcleanmvi.core.usecase.UseCaseResultWrapper.ErrorResult
 import com.dpfht.tmdbcleanmvi.framework.rest.RestService
 import com.dpfht.tmdbcleanmvi.framework.rest.ResultWrapper.GenericError
 import com.dpfht.tmdbcleanmvi.framework.rest.ResultWrapper.NetworkError

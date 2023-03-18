@@ -3,8 +3,8 @@ package com.dpfht.tmdbcleanmvi.feature.moviereviews.di
 import android.content.Context
 import androidx.appcompat.app.AlertDialog
 import com.dpfht.tmdbcleanmvi.core.data.model.remote.Review
-import com.dpfht.tmdbcleanmvi.core.domain.usecase.GetMovieReviewUseCase
-import com.dpfht.tmdbcleanmvi.core.domain.usecase.GetMovieReviewUseCaseImpl
+import com.dpfht.tmdbcleanmvi.core.usecase.GetMovieReviewUseCase
+import com.dpfht.tmdbcleanmvi.core.usecase.GetMovieReviewUseCaseImpl
 import com.dpfht.tmdbcleanmvi.feature.common.LoadingDialogProvider
 import com.dpfht.tmdbcleanmvi.feature.moviereviews.adapter.MovieReviewsAdapter
 import toothpick.config.Module

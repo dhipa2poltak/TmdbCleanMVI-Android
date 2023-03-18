@@ -3,9 +3,9 @@ package com.dpfht.tmdbcleanmvi.feature.moviesbygenre
 import androidx.lifecycle.viewModelScope
 import com.dpfht.tmdbcleanmvi.feature.base.BaseViewModel
 import com.dpfht.tmdbcleanmvi.core.data.model.remote.Movie
-import com.dpfht.tmdbcleanmvi.core.domain.usecase.GetMovieByGenreUseCase
-import com.dpfht.tmdbcleanmvi.core.domain.usecase.UseCaseResultWrapper.ErrorResult
-import com.dpfht.tmdbcleanmvi.core.domain.usecase.UseCaseResultWrapper.Success
+import com.dpfht.tmdbcleanmvi.core.usecase.GetMovieByGenreUseCase
+import com.dpfht.tmdbcleanmvi.core.usecase.UseCaseResultWrapper.ErrorResult
+import com.dpfht.tmdbcleanmvi.core.usecase.UseCaseResultWrapper.Success
 import com.dpfht.tmdbcleanmvi.feature.moviesbygenre.MoviesByGenreIntent.EnterIdleState
 import com.dpfht.tmdbcleanmvi.feature.moviesbygenre.MoviesByGenreIntent.FetchMovie
 import com.dpfht.tmdbcleanmvi.feature.moviesbygenre.MoviesByGenreIntent.FetchNextMovie
