@@ -3,9 +3,9 @@ package com.dpfht.tmdbcleanmvi.feature.moviedetails
 import androidx.lifecycle.viewModelScope
 import com.dpfht.tmdbcleanmvi.BuildConfig
 import com.dpfht.tmdbcleanmvi.core.domain.model.GetMovieDetailsResult
-import com.dpfht.tmdbcleanmvi.core.usecase.GetMovieDetailsUseCase
-import com.dpfht.tmdbcleanmvi.core.usecase.UseCaseResultWrapper.ErrorResult
-import com.dpfht.tmdbcleanmvi.core.usecase.UseCaseResultWrapper.Success
+import com.dpfht.tmdbcleanmvi.core.domain.usecase.GetMovieDetailsUseCase
+import com.dpfht.tmdbcleanmvi.core.domain.usecase.UseCaseResultWrapper.ErrorResult
+import com.dpfht.tmdbcleanmvi.core.domain.usecase.UseCaseResultWrapper.Success
 import com.dpfht.tmdbcleanmvi.feature.base.BaseViewModel
 import com.dpfht.tmdbcleanmvi.feature.moviedetails.MovieDetailsIntent.EnterIdleState
 import com.dpfht.tmdbcleanmvi.feature.moviedetails.MovieDetailsIntent.FetchDetails

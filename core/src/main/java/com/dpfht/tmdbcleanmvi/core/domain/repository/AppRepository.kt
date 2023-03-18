@@ -1,11 +1,11 @@
-package com.dpfht.tmdbcleanmvi.core.data.repository
+package com.dpfht.tmdbcleanmvi.core.domain.repository
 
 import com.dpfht.tmdbcleanmvi.core.domain.model.GetMovieByGenreResult
 import com.dpfht.tmdbcleanmvi.core.domain.model.GetMovieDetailsResult
 import com.dpfht.tmdbcleanmvi.core.domain.model.GetMovieGenreResult
 import com.dpfht.tmdbcleanmvi.core.domain.model.GetMovieReviewResult
 import com.dpfht.tmdbcleanmvi.core.domain.model.GetMovieTrailerResult
-import com.dpfht.tmdbcleanmvi.core.usecase.UseCaseResultWrapper
+import com.dpfht.tmdbcleanmvi.core.domain.usecase.UseCaseResultWrapper
 
 interface AppRepository {
 

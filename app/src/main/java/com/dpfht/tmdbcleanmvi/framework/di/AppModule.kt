@@ -1,9 +1,9 @@
 package com.dpfht.tmdbcleanmvi.framework.di
 
 import com.dpfht.tmdbcleanmvi.core.data.repository.AppDataSource
-import com.dpfht.tmdbcleanmvi.core.data.repository.AppRepository
-import com.dpfht.tmdbcleanmvi.framework.rest.api.AppRepositoryImpl
-import com.dpfht.tmdbcleanmvi.framework.rest.api.RemoteDataSourceImpl
+import com.dpfht.tmdbcleanmvi.core.domain.repository.AppRepository
+import com.dpfht.tmdbcleanmvi.core.data.repository.AppRepositoryImpl
+import com.dpfht.tmdbcleanmvi.framework.RemoteDataSourceImpl
 import toothpick.config.Module
 import toothpick.ktp.binding.bind
 

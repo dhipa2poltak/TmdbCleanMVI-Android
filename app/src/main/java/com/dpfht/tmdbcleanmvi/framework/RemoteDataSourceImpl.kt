@@ -1,4 +1,4 @@
-package com.dpfht.tmdbcleanmvi.framework.rest.api
+package com.dpfht.tmdbcleanmvi.framework
 
 import com.dpfht.tmdbcleanmvi.core.data.model.remote.response.toDomain
 import com.dpfht.tmdbcleanmvi.core.data.repository.AppDataSource
@@ -7,11 +7,13 @@ import com.dpfht.tmdbcleanmvi.core.domain.model.GetMovieDetailsResult
 import com.dpfht.tmdbcleanmvi.core.domain.model.GetMovieGenreResult
 import com.dpfht.tmdbcleanmvi.core.domain.model.GetMovieReviewResult
 import com.dpfht.tmdbcleanmvi.core.domain.model.GetMovieTrailerResult
-import com.dpfht.tmdbcleanmvi.core.usecase.UseCaseResultWrapper
-import com.dpfht.tmdbcleanmvi.core.usecase.UseCaseResultWrapper.ErrorResult
-import com.dpfht.tmdbcleanmvi.framework.rest.api.ResultWrapper.GenericError
-import com.dpfht.tmdbcleanmvi.framework.rest.api.ResultWrapper.NetworkError
-import com.dpfht.tmdbcleanmvi.framework.rest.api.ResultWrapper.Success
+import com.dpfht.tmdbcleanmvi.core.domain.usecase.UseCaseResultWrapper
+import com.dpfht.tmdbcleanmvi.core.domain.usecase.UseCaseResultWrapper.ErrorResult
+import com.dpfht.tmdbcleanmvi.framework.rest.RestService
+import com.dpfht.tmdbcleanmvi.framework.rest.ResultWrapper.GenericError
+import com.dpfht.tmdbcleanmvi.framework.rest.ResultWrapper.NetworkError
+import com.dpfht.tmdbcleanmvi.framework.rest.ResultWrapper.Success
+import com.dpfht.tmdbcleanmvi.framework.rest.api.safeApiCall
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 
