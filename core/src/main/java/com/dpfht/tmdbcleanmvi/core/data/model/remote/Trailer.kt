@@ -7,19 +7,19 @@ import com.google.gson.annotations.SerializedName
 @Keep
 @Suppress("unused")
 data class Trailer(
-    val id: String? = null,
+    val id: String? = "",
 
     @SerializedName("iso_639_1")
     @Expose
-    val iso6391: String? = null,
+    val iso6391: String? = "",
 
     @SerializedName("iso_3166_1")
     @Expose
-    val iso31661: String? = null,
+    val iso31661: String? = "",
 
-    val key: String? = null,
-    val name: String? = null,
-    val site: String? = null,
-    val size: Int = 0,
-    val type: String? = null
+    val key: String? = "",
+    val name: String? = "",
+    val site: String? = "",
+    val size: Int? = -1,
+    val type: String? = ""
 )

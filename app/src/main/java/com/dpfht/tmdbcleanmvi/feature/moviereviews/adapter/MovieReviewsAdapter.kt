@@ -3,13 +3,13 @@ package com.dpfht.tmdbcleanmvi.feature.moviereviews.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.dpfht.tmdbcleanmvi.core.data.model.remote.Review
+import com.dpfht.tmdbcleanmvi.core.domain.entity.ReviewEntity
 import com.dpfht.tmdbcleanmvi.databinding.RowReviewBinding
 import com.squareup.picasso.Picasso
 import javax.inject.Inject
 
 class MovieReviewsAdapter @Inject constructor(
-  private val reviews: ArrayList<Review>
+  private val reviews: ArrayList<ReviewEntity>
 ): RecyclerView.Adapter<MovieReviewsAdapter.ReviewHolder>() {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReviewHolder {
@@ -28,7 +28,7 @@ class MovieReviewsAdapter @Inject constructor(
 
   class ReviewHolder(private val binding: RowReviewBinding): RecyclerView.ViewHolder(binding.root) {
 
-    fun bindData(review: Review) {
+    fun bindData(review: ReviewEntity) {
       binding.tvAuthor.text = review.author
       binding.tvContent.text = review.content
 

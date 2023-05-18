@@ -1,6 +1,6 @@
 package com.dpfht.tmdbcleanmvi.framework.di
 
-import com.dpfht.tmdbcleanmvi.framework.rest.RestService
+import com.dpfht.tmdbcleanmvi.framework.data.core.api.rest.RestService
 import com.dpfht.tmdbcleanmvi.framework.di.provider.CertificatePinnerProvider
 import com.dpfht.tmdbcleanmvi.framework.di.provider.HttpLoggingInterceptorProvider
 import com.dpfht.tmdbcleanmvi.framework.di.provider.OkHttpClientProvider

@@ -10,7 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import com.dpfht.tmdbcleanmvi.R
-import com.dpfht.tmdbcleanmvi.feature.base.BaseFragment
+import com.dpfht.tmdbcleanmvi.framework.base.BaseFragment
 import com.dpfht.tmdbcleanmvi.databinding.FragmentMovieDetailsBinding
 import com.dpfht.tmdbcleanmvi.feature.moviedetails.MovieDetailsState.ErrorMessage
 import com.dpfht.tmdbcleanmvi.feature.moviedetails.MovieDetailsState.Idle

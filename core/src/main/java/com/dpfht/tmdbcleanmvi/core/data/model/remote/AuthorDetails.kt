@@ -1,18 +1,18 @@
 package com.dpfht.tmdbcleanmvi.core.data.model.remote
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import androidx.annotation.Keep
 
 @Keep
 @Suppress("unused")
 data class AuthorDetails(
-    val name: String? = null,
-    val username: String? = null,
+    val name: String? = "",
+    val username: String? = "",
 
     @SerializedName("avatar_path")
     @Expose
-    val avatarPath: String? = null,
+    val avatarPath: String? = "",
 
-    val rating: Float = 0.0f
+    val rating: Float? = 0.0f
 )

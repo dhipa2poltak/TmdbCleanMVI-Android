@@ -2,7 +2,6 @@ package com.dpfht.tmdbcleanmvi.feature.movietrailer
 
 import android.os.Bundle
 import android.widget.Toast
-import com.dpfht.tmdbcleanmvi.PlayerConfig
 import com.dpfht.tmdbcleanmvi.databinding.ActivityMovieTrailerBinding
 import com.dpfht.tmdbcleanmvi.feature.movietrailer.MovieTrailerState.ErrorMessage
 import com.dpfht.tmdbcleanmvi.feature.movietrailer.MovieTrailerState.Idle

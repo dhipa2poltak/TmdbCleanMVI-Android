@@ -9,7 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.dpfht.tmdbcleanmvi.feature.base.BaseFragment
+import com.dpfht.tmdbcleanmvi.framework.base.BaseFragment
 import com.dpfht.tmdbcleanmvi.databinding.FragmentMovieReviewsBinding
 import com.dpfht.tmdbcleanmvi.feature.moviereviews.MovieReviewsState.ErrorMessage
 import com.dpfht.tmdbcleanmvi.feature.moviereviews.MovieReviewsState.Idle

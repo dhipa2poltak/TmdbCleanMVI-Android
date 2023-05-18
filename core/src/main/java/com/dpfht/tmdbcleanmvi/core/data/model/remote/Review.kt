@@ -8,23 +8,23 @@ import java.util.Date
 @Keep
 @Suppress("unused")
 data class Review(
-    val author: String? = null,
+    val author: String? = "",
 
     @SerializedName("author_details")
     @Expose
     val authorDetails: AuthorDetails? = null,
 
-    val content: String? = null,
+    val content: String? = "",
 
     @SerializedName("created_at")
     @Expose
     val createdAt: Date? = null,
 
-    val id: String? = null,
+    val id: String? = "",
 
     @SerializedName("updated_at")
     @Expose
     val updatedAt: Date? = null,
 
-    val url: String? = null
+    val url: String? = ""
 )

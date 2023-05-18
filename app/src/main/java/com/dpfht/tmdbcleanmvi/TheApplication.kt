@@ -2,9 +2,6 @@ package com.dpfht.tmdbcleanmvi
 
 import android.app.Application
 import android.content.Context
-import android.os.StrictMode
-import android.os.StrictMode.ThreadPolicy.Builder
-import android.os.StrictMode.VmPolicy
 import androidx.multidex.MultiDex
 import com.dpfht.tmdbcleanmvi.framework.di.AppModule
 import com.dpfht.tmdbcleanmvi.framework.di.NetworkModule
@@ -19,19 +16,6 @@ class TheApplication: Application() {
   override fun onCreate() {
     super.onCreate()
     instance = this
-
-    if (BuildConfig.DEBUG) {
-      StrictMode.setThreadPolicy(
-        Builder().detectAll()
-          .penaltyLog()
-          .build()
-      )
-      StrictMode.setVmPolicy(
-        VmPolicy.Builder().detectAll()
-          .penaltyLog()
-          .build()
-      )
-    }
 
     KTP.openRootScope()
       .openSubScope("APPSCOPE")

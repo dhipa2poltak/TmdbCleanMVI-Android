@@ -9,17 +9,17 @@ import com.google.gson.annotations.SerializedName
 data class ProductionCompany(
     @SerializedName("name")
     @Expose
-    val name: String? = null,
+    val name: String? = "",
 
     @SerializedName("origin_country")
     @Expose
-    val originCountry: String? = null,
+    val originCountry: String? = "",
 
     @SerializedName("logo_path")
     @Expose
-    val logoPath: String? = null,
+    val logoPath: String? = "",
 
     @SerializedName("id")
     @Expose
-    val id: Int = 0,
+    val id: Int? = -1,
 )

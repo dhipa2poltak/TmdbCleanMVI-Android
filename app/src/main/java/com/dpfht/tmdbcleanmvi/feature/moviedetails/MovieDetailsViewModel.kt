@@ -1,12 +1,11 @@
 package com.dpfht.tmdbcleanmvi.feature.moviedetails
 
 import androidx.lifecycle.viewModelScope
-import com.dpfht.tmdbcleanmvi.BuildConfig
-import com.dpfht.tmdbcleanmvi.core.domain.model.GetMovieDetailsResult
-import com.dpfht.tmdbcleanmvi.core.usecase.GetMovieDetailsUseCase
-import com.dpfht.tmdbcleanmvi.core.usecase.UseCaseResultWrapper.ErrorResult
-import com.dpfht.tmdbcleanmvi.core.usecase.UseCaseResultWrapper.Success
-import com.dpfht.tmdbcleanmvi.feature.base.BaseViewModel
+import com.dpfht.tmdbcleanmvi.core.domain.entity.MovieDetailsDomain
+import com.dpfht.tmdbcleanmvi.core.domain.entity.Result.ErrorResult
+import com.dpfht.tmdbcleanmvi.core.domain.entity.Result.Success
+import com.dpfht.tmdbcleanmvi.core.domain.usecase.GetMovieDetailsUseCase
+import com.dpfht.tmdbcleanmvi.framework.base.BaseViewModel
 import com.dpfht.tmdbcleanmvi.feature.moviedetails.MovieDetailsIntent.EnterIdleState
 import com.dpfht.tmdbcleanmvi.feature.moviedetails.MovieDetailsIntent.FetchDetails
 import com.dpfht.tmdbcleanmvi.feature.moviedetails.MovieDetailsIntent.NavigateToReviewScreen
@@ -79,13 +78,13 @@ class MovieDetailsViewModel @Inject constructor(
     }
   }
 
-  private fun onSuccess(result: GetMovieDetailsResult) {
+  private fun onSuccess(result: MovieDetailsDomain) {
     imageUrl = ""
-    if (result.posterPath.isNotEmpty()) {
-      imageUrl = BuildConfig.IMAGE_URL_BASE_PATH + result.posterPath
+    if (result.imageUrl.isNotEmpty()) {
+      imageUrl = result.imageUrl
     }
 
-    _movieId = result.movieId
+    _movieId = result.id
     title = result.title
     overview = result.overview
 

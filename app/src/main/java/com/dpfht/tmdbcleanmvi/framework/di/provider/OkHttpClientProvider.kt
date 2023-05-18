@@ -1,8 +1,8 @@
 package com.dpfht.tmdbcleanmvi.framework.di.provider
 
 import com.dpfht.tmdbcleanmvi.BuildConfig
-import com.dpfht.tmdbcleanmvi.framework.rest.AuthInterceptor
-import com.dpfht.tmdbcleanmvi.framework.rest.UnsafeOkHttpClient
+import com.dpfht.tmdbcleanmvi.framework.data.core.api.rest.AuthInterceptor
+import com.dpfht.tmdbcleanmvi.framework.data.core.api.rest.UnsafeOkHttpClient
 import okhttp3.CertificatePinner
 import okhttp3.OkHttpClient
 import javax.inject.Inject

@@ -10,7 +10,7 @@ import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.dpfht.tmdbcleanmvi.feature.base.BaseFragment
+import com.dpfht.tmdbcleanmvi.framework.base.BaseFragment
 import com.dpfht.tmdbcleanmvi.databinding.FragmentMoviesByGenreBinding
 import com.dpfht.tmdbcleanmvi.feature.moviesbygenre.MoviesByGenreState.ErrorMessage
 import com.dpfht.tmdbcleanmvi.feature.moviesbygenre.MoviesByGenreState.Idle

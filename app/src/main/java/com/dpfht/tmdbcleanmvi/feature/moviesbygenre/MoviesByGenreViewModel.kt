@@ -1,11 +1,11 @@
 package com.dpfht.tmdbcleanmvi.feature.moviesbygenre
 
 import androidx.lifecycle.viewModelScope
-import com.dpfht.tmdbcleanmvi.feature.base.BaseViewModel
-import com.dpfht.tmdbcleanmvi.core.data.model.remote.Movie
-import com.dpfht.tmdbcleanmvi.core.usecase.GetMovieByGenreUseCase
-import com.dpfht.tmdbcleanmvi.core.usecase.UseCaseResultWrapper.ErrorResult
-import com.dpfht.tmdbcleanmvi.core.usecase.UseCaseResultWrapper.Success
+import com.dpfht.tmdbcleanmvi.framework.base.BaseViewModel
+import com.dpfht.tmdbcleanmvi.core.domain.entity.MovieEntity
+import com.dpfht.tmdbcleanmvi.core.domain.entity.Result.ErrorResult
+import com.dpfht.tmdbcleanmvi.core.domain.entity.Result.Success
+import com.dpfht.tmdbcleanmvi.core.domain.usecase.GetMovieByGenreUseCase
 import com.dpfht.tmdbcleanmvi.feature.moviesbygenre.MoviesByGenreIntent.EnterIdleState
 import com.dpfht.tmdbcleanmvi.feature.moviesbygenre.MoviesByGenreIntent.FetchMovie
 import com.dpfht.tmdbcleanmvi.feature.moviesbygenre.MoviesByGenreIntent.FetchNextMovie
@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 class MoviesByGenreViewModel @Inject constructor(
   private val getMovieByGenreUseCase: GetMovieByGenreUseCase,
-  private val movies: ArrayList<Movie>
+  private val movies: ArrayList<MovieEntity>
 ): BaseViewModel<MoviesByGenreIntent, MoviesByGenreState>() {
 
   override val mState = MutableStateFlow<MoviesByGenreState>(MoviesByGenreState.Idle)
@@ -71,7 +71,7 @@ class MoviesByGenreViewModel @Inject constructor(
 
       when (val result = getMovieByGenreUseCase(_genreId, page + 1)) {
         is Success -> {
-          onSuccess(result.value.movies, result.value.page)
+          onSuccess(result.value.results, result.value.page)
         }
         is ErrorResult -> {
           onError(result.message)
@@ -80,7 +80,7 @@ class MoviesByGenreViewModel @Inject constructor(
     }
   }
 
-  private fun onSuccess(movies: List<Movie>, page: Int) {
+  private fun onSuccess(movies: List<MovieEntity>, page: Int) {
     if (movies.isNotEmpty()) {
       this.page = page
 

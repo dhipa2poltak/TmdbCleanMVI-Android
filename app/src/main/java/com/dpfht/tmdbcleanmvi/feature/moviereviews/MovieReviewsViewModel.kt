@@ -1,11 +1,11 @@
 package com.dpfht.tmdbcleanmvi.feature.moviereviews
 
 import androidx.lifecycle.viewModelScope
-import com.dpfht.tmdbcleanmvi.feature.base.BaseViewModel
-import com.dpfht.tmdbcleanmvi.core.data.model.remote.Review
-import com.dpfht.tmdbcleanmvi.core.usecase.GetMovieReviewUseCase
-import com.dpfht.tmdbcleanmvi.core.usecase.UseCaseResultWrapper.ErrorResult
-import com.dpfht.tmdbcleanmvi.core.usecase.UseCaseResultWrapper.Success
+import com.dpfht.tmdbcleanmvi.framework.base.BaseViewModel
+import com.dpfht.tmdbcleanmvi.core.domain.entity.Result.ErrorResult
+import com.dpfht.tmdbcleanmvi.core.domain.entity.Result.Success
+import com.dpfht.tmdbcleanmvi.core.domain.entity.ReviewEntity
+import com.dpfht.tmdbcleanmvi.core.domain.usecase.GetMovieReviewUseCase
 import com.dpfht.tmdbcleanmvi.feature.moviereviews.MovieReviewsIntent.EnterIdleState
 import com.dpfht.tmdbcleanmvi.feature.moviereviews.MovieReviewsIntent.FetchNextReview
 import com.dpfht.tmdbcleanmvi.feature.moviereviews.MovieReviewsIntent.FetchReview
@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 class MovieReviewsViewModel @Inject constructor(
   private val getMovieReviewUseCase: GetMovieReviewUseCase,
-  private val reviews: ArrayList<Review>
+  private val reviews: ArrayList<ReviewEntity>
 ): BaseViewModel<MovieReviewsIntent, MovieReviewsState>() {
 
   override val mState = MutableStateFlow<MovieReviewsState>(MovieReviewsState.Idle)
@@ -67,7 +67,7 @@ class MovieReviewsViewModel @Inject constructor(
 
       when (val result = getMovieReviewUseCase(_movieId, page + 1)) {
         is Success -> {
-          onSuccess(result.value.reviews, result.value.page)
+          onSuccess(result.value.results, result.value.page)
         }
         is ErrorResult -> {
           onError(result.message)
@@ -76,7 +76,7 @@ class MovieReviewsViewModel @Inject constructor(
     }
   }
 
-  private fun onSuccess(reviews: List<Review>, page: Int) {
+  private fun onSuccess(reviews: List<ReviewEntity>, page: Int) {
     if (reviews.isNotEmpty()) {
       this.page = page
 

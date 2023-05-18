@@ -2,9 +2,9 @@ package com.dpfht.tmdbcleanmvi.feature.moviedetails.di
 
 import android.content.Context
 import androidx.appcompat.app.AlertDialog
-import com.dpfht.tmdbcleanmvi.core.usecase.GetMovieDetailsUseCase
-import com.dpfht.tmdbcleanmvi.core.usecase.GetMovieDetailsUseCaseImpl
-import com.dpfht.tmdbcleanmvi.feature.common.LoadingDialogProvider
+import com.dpfht.tmdbcleanmvi.core.domain.usecase.GetMovieDetailsUseCase
+import com.dpfht.tmdbcleanmvi.core.domain.usecase.GetMovieDetailsUseCaseImpl
+import com.dpfht.tmdbcleanmvi.framework.common.LoadingDialogProvider
 import toothpick.config.Module
 import toothpick.ktp.binding.bind
 

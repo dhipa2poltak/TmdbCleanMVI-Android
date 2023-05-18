@@ -9,7 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dpfht.tmdbcleanmvi.feature.base.BaseFragment
+import com.dpfht.tmdbcleanmvi.framework.base.BaseFragment
 import com.dpfht.tmdbcleanmvi.databinding.FragmentGenreBinding
 import com.dpfht.tmdbcleanmvi.feature.genre.GenreState.ErrorMessage
 import com.dpfht.tmdbcleanmvi.feature.genre.GenreState.Idle
