@@ -1,11 +1,11 @@
 package com.dpfht.tmdbcleanmvi.feature.genre
 
 import androidx.lifecycle.viewModelScope
+import com.dpfht.tmdbcleanmvi.domain.entity.GenreEntity
+import com.dpfht.tmdbcleanmvi.domain.entity.Result.ErrorResult
+import com.dpfht.tmdbcleanmvi.domain.entity.Result.Success
+import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieGenreUseCase
 import com.dpfht.tmdbcleanmvi.framework.base.BaseViewModel
-import com.dpfht.tmdbcleanmvi.core.domain.entity.GenreEntity
-import com.dpfht.tmdbcleanmvi.core.domain.entity.Result.ErrorResult
-import com.dpfht.tmdbcleanmvi.core.domain.entity.Result.Success
-import com.dpfht.tmdbcleanmvi.core.domain.usecase.GetMovieGenreUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch

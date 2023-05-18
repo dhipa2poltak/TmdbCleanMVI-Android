@@ -1,10 +1,10 @@
 package com.dpfht.tmdbcleanmvi.feature.moviedetails
 
 import androidx.lifecycle.viewModelScope
-import com.dpfht.tmdbcleanmvi.core.domain.entity.MovieDetailsDomain
-import com.dpfht.tmdbcleanmvi.core.domain.entity.Result.ErrorResult
-import com.dpfht.tmdbcleanmvi.core.domain.entity.Result.Success
-import com.dpfht.tmdbcleanmvi.core.domain.usecase.GetMovieDetailsUseCase
+import com.dpfht.tmdbcleanmvi.domain.entity.MovieDetailsDomain
+import com.dpfht.tmdbcleanmvi.domain.entity.Result.ErrorResult
+import com.dpfht.tmdbcleanmvi.domain.entity.Result.Success
+import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieDetailsUseCase
 import com.dpfht.tmdbcleanmvi.framework.base.BaseViewModel
 import com.dpfht.tmdbcleanmvi.feature.moviedetails.MovieDetailsIntent.EnterIdleState
 import com.dpfht.tmdbcleanmvi.feature.moviedetails.MovieDetailsIntent.FetchDetails

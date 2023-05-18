@@ -1,6 +1,7 @@
 plugins {
   id 'java-library'
   id 'org.jetbrains.kotlin.jvm'
+  id 'kotlin-kapt'
 }
 
 java {
@@ -10,4 +11,7 @@ java {
 
 dependencies {
   implementation 'javax.inject:javax.inject:1@jar'
+
+  implementation 'com.github.stephanenicolas.toothpick:ktp:3.1.0'
+  kapt 'com.github.stephanenicolas.toothpick:toothpick-compiler:3.1.0'
 }

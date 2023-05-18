@@ -3,8 +3,8 @@ package com.dpfht.tmdbcleanmvi.feature.moviereviews.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.dpfht.tmdbcleanmvi.core.domain.entity.ReviewEntity
 import com.dpfht.tmdbcleanmvi.databinding.RowReviewBinding
+import com.dpfht.tmdbcleanmvi.domain.entity.ReviewEntity
 import com.squareup.picasso.Picasso
 import javax.inject.Inject
 

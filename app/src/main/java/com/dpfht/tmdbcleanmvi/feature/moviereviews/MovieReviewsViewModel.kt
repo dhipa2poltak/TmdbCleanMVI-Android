@@ -1,11 +1,11 @@
 package com.dpfht.tmdbcleanmvi.feature.moviereviews
 
 import androidx.lifecycle.viewModelScope
+import com.dpfht.tmdbcleanmvi.domain.entity.Result.ErrorResult
+import com.dpfht.tmdbcleanmvi.domain.entity.Result.Success
+import com.dpfht.tmdbcleanmvi.domain.entity.ReviewEntity
+import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieReviewUseCase
 import com.dpfht.tmdbcleanmvi.framework.base.BaseViewModel
-import com.dpfht.tmdbcleanmvi.core.domain.entity.Result.ErrorResult
-import com.dpfht.tmdbcleanmvi.core.domain.entity.Result.Success
-import com.dpfht.tmdbcleanmvi.core.domain.entity.ReviewEntity
-import com.dpfht.tmdbcleanmvi.core.domain.usecase.GetMovieReviewUseCase
 import com.dpfht.tmdbcleanmvi.feature.moviereviews.MovieReviewsIntent.EnterIdleState
 import com.dpfht.tmdbcleanmvi.feature.moviereviews.MovieReviewsIntent.FetchNextReview
 import com.dpfht.tmdbcleanmvi.feature.moviereviews.MovieReviewsIntent.FetchReview

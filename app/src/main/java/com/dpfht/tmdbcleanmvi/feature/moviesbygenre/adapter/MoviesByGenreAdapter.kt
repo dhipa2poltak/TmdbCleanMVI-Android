@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dpfht.tmdbcleanmvi.databinding.RowMovieBinding
-import com.dpfht.tmdbcleanmvi.core.domain.entity.MovieEntity
+import com.dpfht.tmdbcleanmvi.domain.entity.MovieEntity
 import javax.inject.Inject
 
 class MoviesByGenreAdapter @Inject constructor(

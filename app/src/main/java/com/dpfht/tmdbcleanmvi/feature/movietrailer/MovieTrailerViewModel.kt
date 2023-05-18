@@ -1,9 +1,9 @@
 package com.dpfht.tmdbcleanmvi.feature.movietrailer
 
-import com.dpfht.tmdbcleanmvi.core.domain.entity.Result.ErrorResult
-import com.dpfht.tmdbcleanmvi.core.domain.entity.Result.Success
-import com.dpfht.tmdbcleanmvi.core.domain.entity.TrailerEntity
-import com.dpfht.tmdbcleanmvi.core.domain.usecase.GetMovieTrailerUseCase
+import com.dpfht.tmdbcleanmvi.domain.entity.Result.ErrorResult
+import com.dpfht.tmdbcleanmvi.domain.entity.Result.Success
+import com.dpfht.tmdbcleanmvi.domain.entity.TrailerEntity
+import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieTrailerUseCase
 import com.dpfht.tmdbcleanmvi.feature.movietrailer.MovieTrailerIntent.EnterIdleState
 import com.dpfht.tmdbcleanmvi.feature.movietrailer.MovieTrailerIntent.FetchTrailer
 import kotlinx.coroutines.CoroutineScope

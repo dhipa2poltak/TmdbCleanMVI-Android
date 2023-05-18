@@ -2,9 +2,9 @@ package com.dpfht.tmdbcleanmvi.feature.genre.di
 
 import android.content.Context
 import androidx.appcompat.app.AlertDialog
-import com.dpfht.tmdbcleanmvi.core.data.model.remote.Genre
-import com.dpfht.tmdbcleanmvi.core.domain.usecase.GetMovieGenreUseCase
-import com.dpfht.tmdbcleanmvi.core.domain.usecase.GetMovieGenreUseCaseImpl
+import com.dpfht.tmdbcleanmvi.domain.entity.GenreEntity
+import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieGenreUseCase
+import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieGenreUseCaseImpl
 import com.dpfht.tmdbcleanmvi.framework.common.LoadingDialogProvider
 import com.dpfht.tmdbcleanmvi.feature.genre.adapter.GenreAdapter
 import toothpick.config.Module
@@ -15,7 +15,7 @@ class GenreModule(context: Context): Module() {
   init {
     bind<Context>().toInstance(context)
     bind<GetMovieGenreUseCase>().toClass<GetMovieGenreUseCaseImpl>()
-    bind<ArrayList<Genre>>().toInstance(arrayListOf())
+    bind<ArrayList<GenreEntity>>().toInstance(arrayListOf())
     bind<GenreAdapter>().toClass<GenreAdapter>()
     bind<AlertDialog>().toProvider(LoadingDialogProvider::class)
   }

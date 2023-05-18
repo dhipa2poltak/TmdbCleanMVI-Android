@@ -3,6 +3,7 @@ package com.dpfht.tmdbcleanmvi.domain.repository
 import com.dpfht.tmdbcleanmvi.domain.entity.DiscoverMovieByGenreDomain
 import com.dpfht.tmdbcleanmvi.domain.entity.GenreDomain
 import com.dpfht.tmdbcleanmvi.domain.entity.MovieDetailsDomain
+import com.dpfht.tmdbcleanmvi.domain.entity.Result
 import com.dpfht.tmdbcleanmvi.domain.entity.ReviewDomain
 import com.dpfht.tmdbcleanmvi.domain.entity.TrailerDomain
 

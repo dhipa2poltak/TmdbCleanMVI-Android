@@ -1,5 +1,6 @@
 package com.dpfht.tmdbcleanmvi.data.datasource
 
+import com.dpfht.tmdbcleanmvi.domain.entity.Result
 import com.dpfht.tmdbcleanmvi.domain.entity.DiscoverMovieByGenreDomain
 import com.dpfht.tmdbcleanmvi.domain.entity.GenreDomain
 import com.dpfht.tmdbcleanmvi.domain.entity.MovieDetailsDomain
