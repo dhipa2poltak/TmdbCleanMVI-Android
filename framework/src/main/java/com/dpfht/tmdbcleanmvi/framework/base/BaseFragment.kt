@@ -12,6 +12,7 @@ abstract class BaseFragment<VS>: Fragment() {
 
     KTP.openRootScope()
       .openSubScope("APPSCOPE")
+      .openSubScope("ActivityScope")
       .openSubScope(this)
       .installModules(*getModules().toTypedArray())
       .inject(this)

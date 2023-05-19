@@ -10,6 +10,7 @@ import com.dpfht.tmdbcleanmvi.feature.moviedetails.MovieDetailsIntent.EnterIdleS
 import com.dpfht.tmdbcleanmvi.feature.moviedetails.MovieDetailsIntent.FetchDetails
 import com.dpfht.tmdbcleanmvi.feature.moviedetails.MovieDetailsIntent.NavigateToReviewScreen
 import com.dpfht.tmdbcleanmvi.feature.moviedetails.MovieDetailsIntent.NavigateToTrailerScreen
+import com.dpfht.tmdbcleanmvi.framework.navigation.NavigationService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.consumeAsFlow
@@ -17,7 +18,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MovieDetailsViewModel @Inject constructor(
-  private val getMovieDetailsUseCase: GetMovieDetailsUseCase
+  private val getMovieDetailsUseCase: GetMovieDetailsUseCase,
+  private val navigationService: NavigationService
 ): BaseViewModel<MovieDetailsIntent, MovieDetailsState>() {
 
   override val mState = MutableStateFlow<MovieDetailsState>(MovieDetailsState.Idle)
@@ -43,10 +45,10 @@ class MovieDetailsViewModel @Inject constructor(
             start()
           }
           NavigateToReviewScreen -> {
-            navigateToReviewScreen(_movieId, title)
+            navigateToMovieReviews(_movieId, title)
           }
           NavigateToTrailerScreen -> {
-            navigateToTrailerScreen(_movieId)
+            navigateToMovieTrailer(_movieId)
           }
           EnterIdleState -> {
             enterIdleState()
@@ -94,21 +96,18 @@ class MovieDetailsViewModel @Inject constructor(
 
   private fun onError(message: String) {
     mState.value = MovieDetailsState.IsLoading(false)
-    mState.value = MovieDetailsState.ErrorMessage(message)
-  }
 
-  private fun navigateToReviewScreen(movieId: Int, title: String) {
-    viewModelScope.launch {
-      mState.value = MovieDetailsState.NavigateToReviewScreen(
-        MovieDetailsFragmentDirections.actionMovieDetailsToMovieReviews(movieId, title)
-      )
+    if (message.isNotEmpty()) {
+      navigationService.navigateToErrorMessage(message)
     }
   }
 
-  private fun navigateToTrailerScreen(movieId: Int) {
-    viewModelScope.launch {
-      mState.value = MovieDetailsState.NavigateToTrailerScreen(movieId)
-    }
+  private fun navigateToMovieReviews(movieId: Int, title: String) {
+    navigationService.navigateToMovieReviews(movieId, title)
+  }
+
+  private fun navigateToMovieTrailer(movieId: Int) {
+    navigationService.navigateToMovieTrailer(movieId)
   }
 
   private fun enterIdleState() {

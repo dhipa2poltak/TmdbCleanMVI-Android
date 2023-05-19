@@ -9,18 +9,17 @@
       android:id="@+id/genreFragment"
       android:name="com.dpfht.tmdbcleanmvi.feature.genre.GenreFragment"
       tools:layout="@layout/fragment_genre">
-    <action
-        android:id="@+id/action_genre_fragment_to_movies_by_genre_fragment"
-        app:destination="@+id/moviesByGenreFragment" />
-    <action
-        android:id="@+id/action_genre_fragment_to_error_dialog"
-        app:destination="@+id/errorMessageDialogFragment"/>
+
   </fragment>
 
   <fragment
       android:id="@+id/moviesByGenreFragment"
       android:name="com.dpfht.tmdbcleanmvi.feature.moviesbygenre.MoviesByGenreFragment"
       tools:layout="@layout/fragment_movies_by_genre">
+
+    <deepLink
+        app:uri="android-app://tmdbcleanmvi.dpfht.com/movies_by_genre_fragment?genreId={genreId}&amp;genreName={genreName}" />
+
     <argument
         android:name="genreId"
         android:defaultValue="0"
@@ -29,34 +28,30 @@
         android:name="genreName"
         android:defaultValue="genre"
         app:argType="string" />
-    <action
-        android:id="@+id/action_movie_by_genre_to_movie_details"
-        app:destination="@+id/movieDetailsFragment" />
-    <action
-        android:id="@+id/action_movie_by_genre_to_error_dialog"
-        app:destination="@+id/errorMessageDialogFragment"/>
   </fragment>
 
   <fragment
       android:id="@+id/movieDetailsFragment"
       android:name="com.dpfht.tmdbcleanmvi.feature.moviedetails.MovieDetailsFragment"
       tools:layout="@layout/fragment_movie_details">
+
+    <deepLink
+        app:uri="android-app://tmdbcleanmvi.dpfht.com/movie_details_fragment?movieId={movieId}" />
+
     <argument
         android:name="movieId"
         android:defaultValue="-1"
         app:argType="integer" />
-    <action
-        android:id="@+id/action_movie_details_to_movie_reviews"
-        app:destination="@+id/movieReviewsFragment"  />
-    <action
-        android:id="@+id/action_movie_details_to_error_dialog"
-        app:destination="@+id/errorMessageDialogFragment"/>
   </fragment>
 
   <fragment
       android:id="@+id/movieReviewsFragment"
       android:name="com.dpfht.tmdbcleanmvi.feature.moviereviews.MovieReviewsFragment"
       tools:layout="@layout/fragment_movie_reviews">
+
+    <deepLink
+        app:uri="android-app://tmdbcleanmvi.dpfht.com/movie_reviews_fragment?movieId={movieId}&amp;movieTitle={movieTitle}" />
+
     <argument
         android:name="movieId"
         android:defaultValue="-1"
@@ -65,9 +60,6 @@
         android:name="movieTitle"
         android:defaultValue="title"
         app:argType="string"  />
-    <action
-        android:id="@+id/action_movie_reviews_to_error_dialog"
-        app:destination="@+id/errorMessageDialogFragment"/>
   </fragment>
 
   <dialog
@@ -75,6 +67,10 @@
       android:name="com.dpfht.tmdbcleanmvi.feature.ErrorMessageDialogFragment"
       android:label="fragment_error_message_dialog"
       tools:layout="@layout/fragment_error_message_dialog">
+
+    <deepLink
+        app:uri="android-app://tmdbcleanmvi.dpfht.com/error_message_dialog_fragment?message={message}" />
+
     <argument
         android:name="message"
         android:defaultValue="no message"

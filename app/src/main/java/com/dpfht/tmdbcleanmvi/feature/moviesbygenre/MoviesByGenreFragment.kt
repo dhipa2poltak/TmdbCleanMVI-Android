@@ -6,20 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavDirections
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.dpfht.tmdbcleanmvi.framework.base.BaseFragment
 import com.dpfht.tmdbcleanmvi.databinding.FragmentMoviesByGenreBinding
-import com.dpfht.tmdbcleanmvi.feature.moviesbygenre.MoviesByGenreState.ErrorMessage
 import com.dpfht.tmdbcleanmvi.feature.moviesbygenre.MoviesByGenreState.Idle
 import com.dpfht.tmdbcleanmvi.feature.moviesbygenre.MoviesByGenreState.IsLoading
-import com.dpfht.tmdbcleanmvi.feature.moviesbygenre.MoviesByGenreState.NavigateToNextScreen
 import com.dpfht.tmdbcleanmvi.feature.moviesbygenre.MoviesByGenreState.NotifyItemInserted
 import com.dpfht.tmdbcleanmvi.feature.moviesbygenre.adapter.MoviesByGenreAdapter
 import com.dpfht.tmdbcleanmvi.feature.moviesbygenre.adapter.MoviesByGenreAdapter.OnClickMovieListener
 import com.dpfht.tmdbcleanmvi.feature.moviesbygenre.di.MoviesByGenreModule
+import com.dpfht.tmdbcleanmvi.framework.base.BaseFragment
 import kotlinx.coroutines.launch
 import toothpick.config.Module
 import toothpick.ktp.delegate.inject
@@ -108,12 +104,6 @@ class MoviesByGenreFragment: BaseFragment<MoviesByGenreState>() {
       is IsLoading -> {
         showLoading(state.value)
       }
-      is ErrorMessage -> {
-        showErrorMessage(state.message)
-      }
-      is NavigateToNextScreen -> {
-        doNavigateToNextScreen(state.directions)
-      }
       is Idle -> {
       }
     }
@@ -130,21 +120,6 @@ class MoviesByGenreFragment: BaseFragment<MoviesByGenreState>() {
       loadingDialog.show()
     } else {
       loadingDialog.dismiss()
-    }
-  }
-
-  private fun showErrorMessage(message: String) {
-    if (message.isNotEmpty()) {
-      val navDirections = MoviesByGenreFragmentDirections.actionMovieByGenreToErrorDialog(message)
-      Navigation.findNavController(requireView()).navigate(navDirections)
-    }
-  }
-
-  private fun doNavigateToNextScreen(directions: NavDirections) {
-    try {
-      Navigation.findNavController(requireView()).navigate(directions)
-    } catch (e: Exception) {
-      e.printStackTrace()
     }
   }
 

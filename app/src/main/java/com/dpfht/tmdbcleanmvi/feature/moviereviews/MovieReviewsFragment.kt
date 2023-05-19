@@ -6,17 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.dpfht.tmdbcleanmvi.framework.base.BaseFragment
 import com.dpfht.tmdbcleanmvi.databinding.FragmentMovieReviewsBinding
-import com.dpfht.tmdbcleanmvi.feature.moviereviews.MovieReviewsState.ErrorMessage
 import com.dpfht.tmdbcleanmvi.feature.moviereviews.MovieReviewsState.Idle
 import com.dpfht.tmdbcleanmvi.feature.moviereviews.MovieReviewsState.IsLoading
 import com.dpfht.tmdbcleanmvi.feature.moviereviews.MovieReviewsState.NotifyItemInserted
 import com.dpfht.tmdbcleanmvi.feature.moviereviews.adapter.MovieReviewsAdapter
 import com.dpfht.tmdbcleanmvi.feature.moviereviews.di.MovieReviewsModule
+import com.dpfht.tmdbcleanmvi.framework.base.BaseFragment
 import kotlinx.coroutines.launch
 import toothpick.config.Module
 import toothpick.ktp.delegate.inject
@@ -97,9 +95,6 @@ class MovieReviewsFragment: BaseFragment<MovieReviewsState>() {
       is IsLoading -> {
         showLoading(state.value)
       }
-      is ErrorMessage -> {
-        showErrorMessage(state.message)
-      }
       Idle -> {
 
       }
@@ -117,13 +112,6 @@ class MovieReviewsFragment: BaseFragment<MovieReviewsState>() {
       loadingDialog.show()
     } else {
       loadingDialog.dismiss()
-    }
-  }
-
-  private fun showErrorMessage(message: String) {
-    if (message.isNotEmpty()) {
-      val navDirections = MovieReviewsFragmentDirections.actionMovieReviewsToErrorDialog(message)
-      Navigation.findNavController(requireView()).navigate(navDirections)
     }
   }
 

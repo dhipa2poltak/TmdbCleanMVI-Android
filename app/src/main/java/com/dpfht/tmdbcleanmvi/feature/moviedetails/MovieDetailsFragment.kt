@@ -1,25 +1,18 @@
 package com.dpfht.tmdbcleanmvi.feature.moviedetails
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavDirections
-import androidx.navigation.Navigation
 import com.dpfht.tmdbcleanmvi.R
-import com.dpfht.tmdbcleanmvi.framework.base.BaseFragment
 import com.dpfht.tmdbcleanmvi.databinding.FragmentMovieDetailsBinding
-import com.dpfht.tmdbcleanmvi.feature.moviedetails.MovieDetailsState.ErrorMessage
 import com.dpfht.tmdbcleanmvi.feature.moviedetails.MovieDetailsState.Idle
 import com.dpfht.tmdbcleanmvi.feature.moviedetails.MovieDetailsState.IsLoading
-import com.dpfht.tmdbcleanmvi.feature.moviedetails.MovieDetailsState.NavigateToReviewScreen
-import com.dpfht.tmdbcleanmvi.feature.moviedetails.MovieDetailsState.NavigateToTrailerScreen
 import com.dpfht.tmdbcleanmvi.feature.moviedetails.MovieDetailsState.ViewDetails
 import com.dpfht.tmdbcleanmvi.feature.moviedetails.di.MovieDetailsModule
-import com.dpfht.tmdbcleanmvi.feature.movietrailer.MovieTrailerActivity
+import com.dpfht.tmdbcleanmvi.framework.base.BaseFragment
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.launch
 import toothpick.config.Module
@@ -79,17 +72,8 @@ class MovieDetailsFragment: BaseFragment<MovieDetailsState>() {
       is IsLoading -> {
         showLoading(state.value)
       }
-      is ErrorMessage -> {
-        showErrorMessage(state.message)
-      }
       is ViewDetails -> {
         showDetails(state.title, state.overview, state.imageUrl)
-      }
-      is NavigateToReviewScreen -> {
-        navigateToReviewScreen(state.directions)
-      }
-      is NavigateToTrailerScreen -> {
-        navigateToTrailerScreen(state.movieId)
       }
       Idle -> {
 
@@ -103,11 +87,6 @@ class MovieDetailsFragment: BaseFragment<MovieDetailsState>() {
     } else {
       loadingDialog.dismiss()
     }
-  }
-
-  private fun showErrorMessage(message: String) {
-    val navDirections = MovieDetailsFragmentDirections.actionMovieDetailsToErrorDialog(message)
-    Navigation.findNavController(requireView()).navigate(navDirections)
   }
 
   private fun showDetails(title: String, overview: String, imageUrl: String) {
@@ -130,20 +109,6 @@ class MovieDetailsFragment: BaseFragment<MovieDetailsState>() {
     lifecycleScope.launch {
       viewModel.intents.send(MovieDetailsIntent.NavigateToTrailerScreen)
     }
-  }
-
-  private fun navigateToReviewScreen(directions: NavDirections) {
-    try {
-      Navigation.findNavController(requireView()).navigate(directions)
-    } catch (e: Exception) {
-      e.printStackTrace()
-    }
-  }
-
-  private fun navigateToTrailerScreen(movieId: Int) {
-    val itn = Intent(requireContext(), MovieTrailerActivity::class.java)
-    itn.putExtra("movie_id", movieId)
-    requireActivity().startActivity(itn)
   }
 
   override fun onPause() {

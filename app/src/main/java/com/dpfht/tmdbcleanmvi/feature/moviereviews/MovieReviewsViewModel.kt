@@ -9,6 +9,7 @@ import com.dpfht.tmdbcleanmvi.framework.base.BaseViewModel
 import com.dpfht.tmdbcleanmvi.feature.moviereviews.MovieReviewsIntent.EnterIdleState
 import com.dpfht.tmdbcleanmvi.feature.moviereviews.MovieReviewsIntent.FetchNextReview
 import com.dpfht.tmdbcleanmvi.feature.moviereviews.MovieReviewsIntent.FetchReview
+import com.dpfht.tmdbcleanmvi.framework.navigation.NavigationService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.consumeAsFlow
@@ -17,7 +18,8 @@ import javax.inject.Inject
 
 class MovieReviewsViewModel @Inject constructor(
   private val getMovieReviewUseCase: GetMovieReviewUseCase,
-  private val reviews: ArrayList<ReviewEntity>
+  private val reviews: ArrayList<ReviewEntity>,
+  private val navigationService: NavigationService
 ): BaseViewModel<MovieReviewsIntent, MovieReviewsState>() {
 
   override val mState = MutableStateFlow<MovieReviewsState>(MovieReviewsState.Idle)
@@ -95,7 +97,10 @@ class MovieReviewsViewModel @Inject constructor(
   private fun onError(message: String) {
     mState.value = MovieReviewsState.IsLoading(false)
     mIsLoadingData = false
-    mState.value = MovieReviewsState.ErrorMessage(message)
+
+    if (message.isNotEmpty()) {
+      navigationService.navigateToErrorMessage(message)
+    }
   }
 
   private fun enterIdleState() {

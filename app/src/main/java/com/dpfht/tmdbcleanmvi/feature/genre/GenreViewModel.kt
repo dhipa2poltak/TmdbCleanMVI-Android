@@ -6,6 +6,7 @@ import com.dpfht.tmdbcleanmvi.domain.entity.Result.ErrorResult
 import com.dpfht.tmdbcleanmvi.domain.entity.Result.Success
 import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieGenreUseCase
 import com.dpfht.tmdbcleanmvi.framework.base.BaseViewModel
+import com.dpfht.tmdbcleanmvi.framework.navigation.NavigationService
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
@@ -13,7 +14,8 @@ import javax.inject.Inject
 
 class GenreViewModel @Inject constructor(
   private val getMovieGenreUseCase: GetMovieGenreUseCase,
-  private val genres: ArrayList<GenreEntity>
+  private val genres: ArrayList<GenreEntity>,
+  private val navigationService: NavigationService
 ): BaseViewModel<GenreIntent, GenreState>() {
 
   override val mState = MutableStateFlow<GenreState>(GenreState.Idle)
@@ -30,7 +32,7 @@ class GenreViewModel @Inject constructor(
             start()
           }
           is GenreIntent.NavigateToNextScreen -> {
-            navigateToNextScreen(genres[genreIntent.position].id, genres[genreIntent.position].name)
+            navigateToMoviesByGenre(genres[genreIntent.position].id, genres[genreIntent.position].name)
           }
           GenreIntent.EnterIdleState -> {
             enterIdleState()
@@ -72,15 +74,14 @@ class GenreViewModel @Inject constructor(
 
   private fun onError(message: String) {
     mState.value = GenreState.IsLoading(false)
-    mState.value = GenreState.ErrorMessage(message)
+
+    if (message.isNotEmpty()) {
+      navigationService.navigateToErrorMessage(message)
+    }
   }
 
-  private fun navigateToNextScreen(genreId: Int, genreName: String) {
-    viewModelScope.launch {
-      mState.value = GenreState.NavigateToNextScreen(
-        GenreFragmentDirections.actionGenreFragmentToMoviesByGenreFragment(genreId, genreName)
-      )
-    }
+  private fun navigateToMoviesByGenre(genreId: Int, genreName: String) {
+    navigationService.navigateToMoviesByGender(genreId, genreName)
   }
 
   private fun enterIdleState() {

@@ -10,6 +10,7 @@ import com.dpfht.tmdbcleanmvi.feature.moviesbygenre.MoviesByGenreIntent.EnterIdl
 import com.dpfht.tmdbcleanmvi.feature.moviesbygenre.MoviesByGenreIntent.FetchMovie
 import com.dpfht.tmdbcleanmvi.feature.moviesbygenre.MoviesByGenreIntent.FetchNextMovie
 import com.dpfht.tmdbcleanmvi.feature.moviesbygenre.MoviesByGenreIntent.NavigateToNextScreen
+import com.dpfht.tmdbcleanmvi.framework.navigation.NavigationService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.consumeAsFlow
@@ -18,7 +19,8 @@ import javax.inject.Inject
 
 class MoviesByGenreViewModel @Inject constructor(
   private val getMovieByGenreUseCase: GetMovieByGenreUseCase,
-  private val movies: ArrayList<MovieEntity>
+  private val movies: ArrayList<MovieEntity>,
+  private val navigationService: NavigationService
 ): BaseViewModel<MoviesByGenreIntent, MoviesByGenreState>() {
 
   override val mState = MutableStateFlow<MoviesByGenreState>(MoviesByGenreState.Idle)
@@ -42,7 +44,7 @@ class MoviesByGenreViewModel @Inject constructor(
             getMoviesByGenre()
           }
           is NavigateToNextScreen -> {
-            navigateToNextScreen(movies[intent.position].id)
+            navigateToMovieDetails(movies[intent.position].id)
           }
           EnterIdleState -> {
             enterIdleState()
@@ -96,17 +98,16 @@ class MoviesByGenreViewModel @Inject constructor(
     mIsLoadingData = false
   }
 
+  private fun navigateToMovieDetails(movieId: Int) {
+    navigationService.navigateToMovieDetails(movieId)
+  }
+
   private fun onError(message: String) {
     mState.value = MoviesByGenreState.IsLoading(false)
     mIsLoadingData = false
-    mState.value = MoviesByGenreState.ErrorMessage(message)
-  }
 
-  private fun navigateToNextScreen(movieId: Int) {
-    viewModelScope.launch {
-      mState.value = MoviesByGenreState.NavigateToNextScreen(
-        MoviesByGenreFragmentDirections.actionMovieByGenreToMovieDetails(movieId)
-      )
+    if (message.isNotEmpty()) {
+      navigationService.navigateToErrorMessage(message)
     }
   }
 
