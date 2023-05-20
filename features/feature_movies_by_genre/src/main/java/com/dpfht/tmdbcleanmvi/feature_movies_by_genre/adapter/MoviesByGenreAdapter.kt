@@ -1,10 +1,10 @@
-package com.dpfht.tmdbcleanmvi.feature.moviesbygenre.adapter
+package com.dpfht.tmdbcleanmvi.feature_movies_by_genre.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.dpfht.tmdbcleanmvi.databinding.RowMovieBinding
 import com.dpfht.tmdbcleanmvi.domain.entity.MovieEntity
+import com.dpfht.tmdbcleanmvi.feature_movies_by_genre.databinding.RowMovieBinding
 import javax.inject.Inject
 
 class MoviesByGenreAdapter @Inject constructor(

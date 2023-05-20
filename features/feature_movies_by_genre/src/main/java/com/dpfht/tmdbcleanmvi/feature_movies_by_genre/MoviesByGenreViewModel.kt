@@ -1,15 +1,15 @@
-package com.dpfht.tmdbcleanmvi.feature.moviesbygenre
+package com.dpfht.tmdbcleanmvi.feature_movies_by_genre
 
 import androidx.lifecycle.viewModelScope
 import com.dpfht.tmdbcleanmvi.domain.entity.MovieEntity
 import com.dpfht.tmdbcleanmvi.domain.entity.Result.ErrorResult
 import com.dpfht.tmdbcleanmvi.domain.entity.Result.Success
 import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieByGenreUseCase
+import com.dpfht.tmdbcleanmvi.feature_movies_by_genre.MoviesByGenreIntent.EnterIdleState
+import com.dpfht.tmdbcleanmvi.feature_movies_by_genre.MoviesByGenreIntent.FetchMovie
+import com.dpfht.tmdbcleanmvi.feature_movies_by_genre.MoviesByGenreIntent.FetchNextMovie
+import com.dpfht.tmdbcleanmvi.feature_movies_by_genre.MoviesByGenreIntent.NavigateToNextScreen
 import com.dpfht.tmdbcleanmvi.framework.base.BaseViewModel
-import com.dpfht.tmdbcleanmvi.feature.moviesbygenre.MoviesByGenreIntent.EnterIdleState
-import com.dpfht.tmdbcleanmvi.feature.moviesbygenre.MoviesByGenreIntent.FetchMovie
-import com.dpfht.tmdbcleanmvi.feature.moviesbygenre.MoviesByGenreIntent.FetchNextMovie
-import com.dpfht.tmdbcleanmvi.feature.moviesbygenre.MoviesByGenreIntent.NavigateToNextScreen
 import com.dpfht.tmdbcleanmvi.framework.navigation.NavigationService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -117,3 +117,4 @@ class MoviesByGenreViewModel @Inject constructor(
     }
   }
 }
+

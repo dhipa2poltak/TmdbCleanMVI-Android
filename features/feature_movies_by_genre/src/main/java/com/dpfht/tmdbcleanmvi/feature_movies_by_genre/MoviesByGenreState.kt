@@ -1,4 +1,4 @@
-package com.dpfht.tmdbcleanmvi.feature.moviesbygenre
+package com.dpfht.tmdbcleanmvi.feature_movies_by_genre
 
 sealed class MoviesByGenreState {
 

@@ -1,4 +1,4 @@
-package com.dpfht.tmdbcleanmvi.feature.moviesbygenre
+package com.dpfht.tmdbcleanmvi.feature_movies_by_genre
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,13 +8,13 @@ import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.dpfht.tmdbcleanmvi.databinding.FragmentMoviesByGenreBinding
-import com.dpfht.tmdbcleanmvi.feature.moviesbygenre.MoviesByGenreState.Idle
-import com.dpfht.tmdbcleanmvi.feature.moviesbygenre.MoviesByGenreState.IsLoading
-import com.dpfht.tmdbcleanmvi.feature.moviesbygenre.MoviesByGenreState.NotifyItemInserted
-import com.dpfht.tmdbcleanmvi.feature.moviesbygenre.adapter.MoviesByGenreAdapter
-import com.dpfht.tmdbcleanmvi.feature.moviesbygenre.adapter.MoviesByGenreAdapter.OnClickMovieListener
-import com.dpfht.tmdbcleanmvi.feature.moviesbygenre.di.MoviesByGenreModule
+import com.dpfht.tmdbcleanmvi.feature_movies_by_genre.MoviesByGenreState.Idle
+import com.dpfht.tmdbcleanmvi.feature_movies_by_genre.MoviesByGenreState.IsLoading
+import com.dpfht.tmdbcleanmvi.feature_movies_by_genre.MoviesByGenreState.NotifyItemInserted
+import com.dpfht.tmdbcleanmvi.feature_movies_by_genre.adapter.MoviesByGenreAdapter
+import com.dpfht.tmdbcleanmvi.feature_movies_by_genre.adapter.MoviesByGenreAdapter.OnClickMovieListener
+import com.dpfht.tmdbcleanmvi.feature_movies_by_genre.databinding.FragmentMoviesByGenreBinding
+import com.dpfht.tmdbcleanmvi.feature_movies_by_genre.di.MoviesByGenreModule
 import com.dpfht.tmdbcleanmvi.framework.base.BaseFragment
 import kotlinx.coroutines.launch
 import toothpick.config.Module
@@ -83,16 +83,17 @@ class MoviesByGenreFragment: BaseFragment<MoviesByGenreState>() {
       }
     }
 
-    val args = MoviesByGenreFragmentArgs.fromBundle(requireArguments())
-    val genreId = args.genreId
-    val genreName = args.genreName
+    arguments?.let {
+      val genreId = it.getInt("genreId")
+      val genreName = it.getString("genreName")
 
-    val title = "$genreName movies"
-    binding.tvTitle.text = title
+      val title = "$genreName movies"
+      binding.tvTitle.text = title
 
-    viewModel.setGenreId(genreId)
-    lifecycleScope.launch {
-      viewModel.intents.send(MoviesByGenreIntent.FetchMovie)
+      viewModel.setGenreId(genreId)
+      lifecycleScope.launch {
+        viewModel.intents.send(MoviesByGenreIntent.FetchMovie)
+      }
     }
   }
 
