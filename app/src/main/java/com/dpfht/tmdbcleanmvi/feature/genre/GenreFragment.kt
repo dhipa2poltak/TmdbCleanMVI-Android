@@ -1,11 +1,11 @@
 package com.dpfht.tmdbcleanmvi.feature.genre
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dpfht.tmdbcleanmvi.databinding.FragmentGenreBinding
@@ -14,13 +14,14 @@ import com.dpfht.tmdbcleanmvi.feature.genre.GenreState.IsLoading
 import com.dpfht.tmdbcleanmvi.feature.genre.GenreState.NotifyItemInserted
 import com.dpfht.tmdbcleanmvi.feature.genre.adapter.GenreAdapter
 import com.dpfht.tmdbcleanmvi.feature.genre.di.GenreModule
+import com.dpfht.tmdbcleanmvi.framework.base.BaseFragment
 import kotlinx.coroutines.launch
 import toothpick.config.Module
 import toothpick.ktp.KTP
 import toothpick.ktp.delegate.inject
 import javax.inject.Inject
 
-class GenreFragment: Fragment() {
+class GenreFragment: BaseFragment<GenreState>() {
 
   private lateinit var binding: FragmentGenreBinding
   private val viewModel by inject<GenreViewModel>()
@@ -31,12 +32,12 @@ class GenreFragment: Fragment() {
   @Inject
   lateinit var loadingDialog: AlertDialog
 
-  fun getModules(): ArrayList<Module> {
+  override fun getModules(): ArrayList<Module> {
     return arrayListOf(GenreModule(requireContext()))
   }
 
-  override fun onActivityCreated(savedInstanceState: Bundle?) {
-    super.onActivityCreated(savedInstanceState)
+  override fun onAttach(context: Context) {
+    super.onAttach(context)
 
     KTP.openRootScope()
       .openSubScope("APPSCOPE")
@@ -44,26 +45,6 @@ class GenreFragment: Fragment() {
       .openSubScope(this)
       .installModules(*getModules().toTypedArray())
       .inject(this)
-
-    binding.rvGenre.adapter = adapter
-
-    adapter.onClickGenreListener = object : GenreAdapter.OnClickGenreListener {
-      override fun onClickGenre(position: Int) {
-        lifecycleScope.launch {
-          viewModel.intents.send(GenreIntent.NavigateToNextScreen(position))
-        }
-      }
-    }
-
-    lifecycleScope.launch {
-      viewModel.state.collect {
-        render(it)
-      }
-    }
-
-    lifecycleScope.launch {
-      viewModel.intents.send(GenreIntent.FetchGenre)
-    }
   }
 
   override fun onCreateView(
@@ -83,7 +64,6 @@ class GenreFragment: Fragment() {
 
     binding.rvGenre.layoutManager = layoutManager
 
-    /*
     binding.rvGenre.adapter = adapter
 
     adapter.onClickGenreListener = object : GenreAdapter.OnClickGenreListener {
@@ -93,9 +73,7 @@ class GenreFragment: Fragment() {
         }
       }
     }
-    */
 
-    /*
     lifecycleScope.launch {
       viewModel.state.collect {
         render(it)
@@ -105,10 +83,9 @@ class GenreFragment: Fragment() {
     lifecycleScope.launch {
       viewModel.intents.send(GenreIntent.FetchGenre)
     }
-    */
   }
 
-  fun render(state: GenreState) {
+  override fun render(state: GenreState) {
     when (state) {
       is NotifyItemInserted -> {
         doNotifyItemInserted(state.value)
