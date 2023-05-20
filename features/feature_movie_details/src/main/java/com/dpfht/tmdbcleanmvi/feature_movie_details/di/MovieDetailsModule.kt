@@ -1,4 +1,4 @@
-package com.dpfht.tmdbcleanmvi.feature.moviedetails.di
+package com.dpfht.tmdbcleanmvi.feature_movie_details.di
 
 import android.content.Context
 import androidx.appcompat.app.AlertDialog

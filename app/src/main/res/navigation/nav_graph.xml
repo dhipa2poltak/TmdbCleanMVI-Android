@@ -39,7 +39,7 @@
 
   <fragment
       android:id="@+id/movieDetailsFragment"
-      android:name="com.dpfht.tmdbcleanmvi.feature.moviedetails.MovieDetailsFragment"
+      android:name="com.dpfht.tmdbcleanmvi.feature_movie_details.MovieDetailsFragment"
       tools:layout="@layout/fragment_movie_details">
 
     <deepLink

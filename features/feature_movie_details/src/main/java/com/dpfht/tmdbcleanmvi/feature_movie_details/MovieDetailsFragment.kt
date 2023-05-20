@@ -1,4 +1,4 @@
-package com.dpfht.tmdbcleanmvi.feature.moviedetails
+package com.dpfht.tmdbcleanmvi.feature_movie_details
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,13 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
-import com.dpfht.tmdbcleanmvi.R
-import com.dpfht.tmdbcleanmvi.databinding.FragmentMovieDetailsBinding
-import com.dpfht.tmdbcleanmvi.feature.moviedetails.MovieDetailsState.Idle
-import com.dpfht.tmdbcleanmvi.feature.moviedetails.MovieDetailsState.IsLoading
-import com.dpfht.tmdbcleanmvi.feature.moviedetails.MovieDetailsState.ViewDetails
-import com.dpfht.tmdbcleanmvi.feature.moviedetails.di.MovieDetailsModule
+import com.dpfht.tmdbcleanmvi.feature_movie_details.MovieDetailsState.Idle
+import com.dpfht.tmdbcleanmvi.feature_movie_details.MovieDetailsState.IsLoading
+import com.dpfht.tmdbcleanmvi.feature_movie_details.MovieDetailsState.ViewDetails
+import com.dpfht.tmdbcleanmvi.feature_movie_details.databinding.FragmentMovieDetailsBinding
+import com.dpfht.tmdbcleanmvi.feature_movie_details.di.MovieDetailsModule
 import com.dpfht.tmdbcleanmvi.framework.base.BaseFragment
+import com.dpfht.tmdbcleanmvi.framework.R as frameworkR
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.launch
 import toothpick.config.Module
@@ -57,13 +57,13 @@ class MovieDetailsFragment: BaseFragment<MovieDetailsState>() {
       }
     }
 
-    val args = MovieDetailsFragmentArgs.fromBundle(requireArguments())
-    val movieId = args.movieId
+    arguments?.let {
+      val movieId = it.getInt("movieId")
 
-    viewModel.setMovieId(movieId)
-
-    lifecycleScope.launch {
-      viewModel.intents.send(MovieDetailsIntent.FetchDetails)
+      viewModel.setMovieId(movieId)
+      lifecycleScope.launch {
+        viewModel.intents.send(MovieDetailsIntent.FetchDetails)
+      }
     }
   }
 
@@ -95,7 +95,7 @@ class MovieDetailsFragment: BaseFragment<MovieDetailsState>() {
 
     Picasso.get().load(imageUrl)
       .error(android.R.drawable.ic_menu_close_clear_cancel)
-      .placeholder(R.drawable.loading)
+      .placeholder(frameworkR.drawable.loading)
       .into(binding.ivImageMovie)
   }
 

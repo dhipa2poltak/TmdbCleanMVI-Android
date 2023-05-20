@@ -1,15 +1,15 @@
-package com.dpfht.tmdbcleanmvi.feature.moviedetails
+package com.dpfht.tmdbcleanmvi.feature_movie_details
 
 import androidx.lifecycle.viewModelScope
 import com.dpfht.tmdbcleanmvi.domain.entity.MovieDetailsDomain
 import com.dpfht.tmdbcleanmvi.domain.entity.Result.ErrorResult
 import com.dpfht.tmdbcleanmvi.domain.entity.Result.Success
 import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieDetailsUseCase
+import com.dpfht.tmdbcleanmvi.feature_movie_details.MovieDetailsIntent.EnterIdleState
+import com.dpfht.tmdbcleanmvi.feature_movie_details.MovieDetailsIntent.FetchDetails
+import com.dpfht.tmdbcleanmvi.feature_movie_details.MovieDetailsIntent.NavigateToReviewScreen
+import com.dpfht.tmdbcleanmvi.feature_movie_details.MovieDetailsIntent.NavigateToTrailerScreen
 import com.dpfht.tmdbcleanmvi.framework.base.BaseViewModel
-import com.dpfht.tmdbcleanmvi.feature.moviedetails.MovieDetailsIntent.EnterIdleState
-import com.dpfht.tmdbcleanmvi.feature.moviedetails.MovieDetailsIntent.FetchDetails
-import com.dpfht.tmdbcleanmvi.feature.moviedetails.MovieDetailsIntent.NavigateToReviewScreen
-import com.dpfht.tmdbcleanmvi.feature.moviedetails.MovieDetailsIntent.NavigateToTrailerScreen
 import com.dpfht.tmdbcleanmvi.framework.navigation.NavigationService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -1,4 +1,4 @@
-package com.dpfht.tmdbcleanmvi.feature.moviedetails
+package com.dpfht.tmdbcleanmvi.feature_movie_details
 
 sealed class MovieDetailsState {
 
