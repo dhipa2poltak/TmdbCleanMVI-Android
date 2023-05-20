@@ -1,12 +1,12 @@
-package com.dpfht.tmdbcleanmvi.feature.movietrailer
+package com.dpfht.tmdbcleanmvi.feature_movie_trailer
 
 import android.os.Bundle
 import android.widget.Toast
-import com.dpfht.tmdbcleanmvi.databinding.ActivityMovieTrailerBinding
-import com.dpfht.tmdbcleanmvi.feature.movietrailer.MovieTrailerState.ErrorMessage
-import com.dpfht.tmdbcleanmvi.feature.movietrailer.MovieTrailerState.Idle
-import com.dpfht.tmdbcleanmvi.feature.movietrailer.MovieTrailerState.ViewTrailer
-import com.dpfht.tmdbcleanmvi.feature.movietrailer.di.MovieTrailerModule
+import com.dpfht.tmdbcleanmvi.feature_movie_trailer.MovieTrailerState.ErrorMessage
+import com.dpfht.tmdbcleanmvi.feature_movie_trailer.MovieTrailerState.Idle
+import com.dpfht.tmdbcleanmvi.feature_movie_trailer.MovieTrailerState.ViewTrailer
+import com.dpfht.tmdbcleanmvi.feature_movie_trailer.databinding.ActivityMovieTrailerBinding
+import com.dpfht.tmdbcleanmvi.feature_movie_trailer.di.MovieTrailerModule
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
@@ -118,3 +118,4 @@ class MovieTrailerActivity: YouTubeBaseActivity() {
     super.onDestroy()
   }
 }
+

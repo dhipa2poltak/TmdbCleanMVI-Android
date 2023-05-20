@@ -1,4 +1,4 @@
-package com.dpfht.tmdbcleanmvi.feature.movietrailer.di
+package com.dpfht.tmdbcleanmvi.feature_movie_trailer.di
 
 import android.content.Context
 import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieTrailerUseCase

@@ -1,4 +1,4 @@
-package com.dpfht.tmdbcleanmvi.feature.movietrailer.di
+package com.dpfht.tmdbcleanmvi.feature_movie_trailer.di
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job

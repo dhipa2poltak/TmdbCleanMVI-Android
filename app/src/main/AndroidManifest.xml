@@ -26,7 +26,7 @@
       </intent-filter>
     </activity>
     <activity
-        android:name="com.dpfht.tmdbcleanmvi.feature.movietrailer.MovieTrailerActivity"
+        android:name="com.dpfht.tmdbcleanmvi.feature_movie_trailer.MovieTrailerActivity"
         android:exported="false"
         android:launchMode="singleInstance"/>
   </application>

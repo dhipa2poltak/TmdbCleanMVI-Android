@@ -1,4 +1,4 @@
-package com.dpfht.tmdbcleanmvi.feature.movietrailer
+package com.dpfht.tmdbcleanmvi.feature_movie_trailer
 
 sealed class MovieTrailerState {
 
