@@ -9,8 +9,7 @@
     android:paddingStart="@dimen/list_item_spacing_half"
     android:paddingLeft="@dimen/list_item_spacing_half"
     android:paddingEnd="@dimen/list_item_spacing_half"
-    android:paddingRight="@dimen/list_item_spacing_half"
-    tools:context=".feature.ErrorMessageDialogFragment">
+    android:paddingRight="@dimen/list_item_spacing_half">
 
   <TextView
       android:id="@+id/tv_title"

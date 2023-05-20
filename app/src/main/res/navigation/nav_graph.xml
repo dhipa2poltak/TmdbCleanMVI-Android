@@ -71,7 +71,7 @@
 
   <dialog
       android:id="@+id/errorMessageDialogFragment"
-      android:name="com.dpfht.tmdbcleanmvi.feature.ErrorMessageDialogFragment"
+      android:name="com.dpfht.tmdbcleanmvi.feature_error_message.ErrorMessageDialogFragment"
       android:label="fragment_error_message_dialog"
       tools:layout="@layout/fragment_error_message_dialog">
 

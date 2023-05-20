@@ -1,10 +1,10 @@
-package com.dpfht.tmdbcleanmvi.feature
+package com.dpfht.tmdbcleanmvi.feature_error_message
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.dpfht.tmdbcleanmvi.databinding.FragmentErrorMessageDialogBinding
+import com.dpfht.tmdbcleanmvi.feature_error_message.databinding.FragmentErrorMessageDialogBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class ErrorMessageDialogFragment: BottomSheetDialogFragment() {
@@ -25,13 +25,14 @@ class ErrorMessageDialogFragment: BottomSheetDialogFragment() {
 
     isCancelable = false
 
-    val args = ErrorMessageDialogFragmentArgs.fromBundle(requireArguments())
-    val message = args.message
-
-    binding.tvMessage.text = message
-
     binding.btnOk.setOnClickListener {
       dismiss()
+    }
+
+    arguments?.let {
+      val message = it.getString("message")
+
+      binding.tvMessage.text = message
     }
   }
 }
