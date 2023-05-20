@@ -14,7 +14,7 @@
 
   <fragment
       android:id="@+id/genreFragment"
-      android:name="com.dpfht.tmdbcleanmvi.feature.genre.GenreFragment"
+      android:name="com.dpfht.tmdbcleanmvi.feature_genre.GenreFragment"
       tools:layout="@layout/fragment_genre">
 
   </fragment>

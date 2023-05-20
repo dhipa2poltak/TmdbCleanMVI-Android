@@ -1,4 +1,4 @@
-package com.dpfht.tmdbcleanmvi.feature.genre
+package com.dpfht.tmdbcleanmvi.feature_genre
 
 import androidx.lifecycle.viewModelScope
 import com.dpfht.tmdbcleanmvi.domain.entity.GenreEntity

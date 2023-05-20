@@ -1,4 +1,4 @@
-package com.dpfht.tmdbcleanmvi.feature.genre
+package com.dpfht.tmdbcleanmvi.feature_genre
 
 import android.content.Context
 import android.os.Bundle
@@ -8,12 +8,12 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dpfht.tmdbcleanmvi.databinding.FragmentGenreBinding
-import com.dpfht.tmdbcleanmvi.feature.genre.GenreState.Idle
-import com.dpfht.tmdbcleanmvi.feature.genre.GenreState.IsLoading
-import com.dpfht.tmdbcleanmvi.feature.genre.GenreState.NotifyItemInserted
-import com.dpfht.tmdbcleanmvi.feature.genre.adapter.GenreAdapter
-import com.dpfht.tmdbcleanmvi.feature.genre.di.GenreModule
+import com.dpfht.tmdbcleanmvi.feature_genre.GenreState.Idle
+import com.dpfht.tmdbcleanmvi.feature_genre.GenreState.IsLoading
+import com.dpfht.tmdbcleanmvi.feature_genre.GenreState.NotifyItemInserted
+import com.dpfht.tmdbcleanmvi.feature_genre.adapter.GenreAdapter
+import com.dpfht.tmdbcleanmvi.feature_genre.databinding.FragmentGenreBinding
+import com.dpfht.tmdbcleanmvi.feature_genre.di.GenreModule
 import com.dpfht.tmdbcleanmvi.framework.base.BaseFragment
 import kotlinx.coroutines.launch
 import toothpick.config.Module
