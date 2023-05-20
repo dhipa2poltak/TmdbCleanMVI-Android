@@ -92,6 +92,7 @@ dependencies {
   implementation project(":features:feature_genre")
   implementation project(":features:feature_movies_by_genre")
   implementation project(":features:feature_movie_details")
+  implementation project(":features:feature_movie_reviews")
 
   implementation 'androidx.core:core-ktx:1.9.0'
   implementation 'androidx.appcompat:appcompat:1.6.1'

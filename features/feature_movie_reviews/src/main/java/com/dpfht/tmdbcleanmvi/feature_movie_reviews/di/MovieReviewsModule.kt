@@ -1,12 +1,12 @@
-package com.dpfht.tmdbcleanmvi.feature.moviereviews.di
+package com.dpfht.tmdbcleanmvi.feature_movie_reviews.di
 
 import android.content.Context
 import androidx.appcompat.app.AlertDialog
 import com.dpfht.tmdbcleanmvi.domain.entity.ReviewEntity
 import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieReviewUseCase
 import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieReviewUseCaseImpl
+import com.dpfht.tmdbcleanmvi.feature_movie_reviews.adapter.MovieReviewsAdapter
 import com.dpfht.tmdbcleanmvi.framework.common.LoadingDialogProvider
-import com.dpfht.tmdbcleanmvi.feature.moviereviews.adapter.MovieReviewsAdapter
 import toothpick.config.Module
 import toothpick.ktp.binding.bind
 

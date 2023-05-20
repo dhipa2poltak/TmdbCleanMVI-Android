@@ -1,4 +1,4 @@
-package com.dpfht.tmdbcleanmvi.feature.moviereviews
+package com.dpfht.tmdbcleanmvi.feature_movie_reviews
 
 sealed class MovieReviewsIntent {
 
@@ -6,3 +6,4 @@ sealed class MovieReviewsIntent {
   object FetchNextReview: MovieReviewsIntent()
   object EnterIdleState: MovieReviewsIntent()
 }
+

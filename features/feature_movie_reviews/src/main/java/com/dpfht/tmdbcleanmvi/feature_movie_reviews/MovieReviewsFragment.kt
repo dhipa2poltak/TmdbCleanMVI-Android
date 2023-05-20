@@ -1,4 +1,4 @@
-package com.dpfht.tmdbcleanmvi.feature.moviereviews
+package com.dpfht.tmdbcleanmvi.feature_movie_reviews
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,12 +8,12 @@ import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.dpfht.tmdbcleanmvi.databinding.FragmentMovieReviewsBinding
-import com.dpfht.tmdbcleanmvi.feature.moviereviews.MovieReviewsState.Idle
-import com.dpfht.tmdbcleanmvi.feature.moviereviews.MovieReviewsState.IsLoading
-import com.dpfht.tmdbcleanmvi.feature.moviereviews.MovieReviewsState.NotifyItemInserted
-import com.dpfht.tmdbcleanmvi.feature.moviereviews.adapter.MovieReviewsAdapter
-import com.dpfht.tmdbcleanmvi.feature.moviereviews.di.MovieReviewsModule
+import com.dpfht.tmdbcleanmvi.feature_movie_reviews.MovieReviewsState.Idle
+import com.dpfht.tmdbcleanmvi.feature_movie_reviews.MovieReviewsState.IsLoading
+import com.dpfht.tmdbcleanmvi.feature_movie_reviews.MovieReviewsState.NotifyItemInserted
+import com.dpfht.tmdbcleanmvi.feature_movie_reviews.adapter.MovieReviewsAdapter
+import com.dpfht.tmdbcleanmvi.feature_movie_reviews.databinding.FragmentMovieReviewsBinding
+import com.dpfht.tmdbcleanmvi.feature_movie_reviews.di.MovieReviewsModule
 import com.dpfht.tmdbcleanmvi.framework.base.BaseFragment
 import kotlinx.coroutines.launch
 import toothpick.config.Module
@@ -74,16 +74,16 @@ class MovieReviewsFragment: BaseFragment<MovieReviewsState>() {
       }
     }
 
-    val args = MovieReviewsFragmentArgs.fromBundle(requireArguments())
-    val movieId = args.movieId
-    val movieTitle = args.movieTitle
+    arguments?.let {
+      val movieId = it.getInt("movieId")
+      val movieTitle = it.getString("movieTitle")
 
-    binding.tvMovieName.text = movieTitle
+      binding.tvMovieName.text = movieTitle
 
-    viewModel.setMovieId(movieId)
-
-    lifecycleScope.launch {
-      viewModel.intents.send(MovieReviewsIntent.FetchReview)
+      viewModel.setMovieId(movieId)
+      lifecycleScope.launch {
+        viewModel.intents.send(MovieReviewsIntent.FetchReview)
+      }
     }
   }
 

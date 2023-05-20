@@ -1,10 +1,10 @@
-package com.dpfht.tmdbcleanmvi.feature.moviereviews.adapter
+package com.dpfht.tmdbcleanmvi.feature_movie_reviews.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.dpfht.tmdbcleanmvi.databinding.RowReviewBinding
 import com.dpfht.tmdbcleanmvi.domain.entity.ReviewEntity
+import com.dpfht.tmdbcleanmvi.feature_movie_reviews.databinding.RowReviewBinding
 import com.squareup.picasso.Picasso
 import javax.inject.Inject
 

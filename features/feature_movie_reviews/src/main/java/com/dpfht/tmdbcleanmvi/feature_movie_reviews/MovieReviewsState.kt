@@ -1,4 +1,4 @@
-package com.dpfht.tmdbcleanmvi.feature.moviereviews
+package com.dpfht.tmdbcleanmvi.feature_movie_reviews
 
 sealed class MovieReviewsState {
 
@@ -6,3 +6,4 @@ sealed class MovieReviewsState {
   data class IsLoading(val value: Boolean = false): MovieReviewsState()
   object Idle: MovieReviewsState()
 }
+
