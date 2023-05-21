@@ -6,9 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
-import com.dpfht.tmdbcleanmvi.feature_movie_details.MovieDetailsState.Idle
-import com.dpfht.tmdbcleanmvi.feature_movie_details.MovieDetailsState.IsLoading
-import com.dpfht.tmdbcleanmvi.feature_movie_details.MovieDetailsState.ViewDetails
 import com.dpfht.tmdbcleanmvi.feature_movie_details.databinding.FragmentMovieDetailsBinding
 import com.dpfht.tmdbcleanmvi.feature_movie_details.di.MovieDetailsModule
 import com.dpfht.tmdbcleanmvi.framework.base.BaseFragment
@@ -68,16 +65,9 @@ class MovieDetailsFragment: BaseFragment<MovieDetailsState>() {
   }
 
   override fun render(state: MovieDetailsState) {
-    when (state) {
-      is IsLoading -> {
-        showLoading(state.value)
-      }
-      is ViewDetails -> {
-        showDetails(state.title, state.overview, state.imageUrl)
-      }
-      Idle -> {
-
-      }
+    with(state) {
+      showLoading(isLoading)
+      showDetails(title, overview, imageUrl)
     }
   }
 
@@ -93,10 +83,12 @@ class MovieDetailsFragment: BaseFragment<MovieDetailsState>() {
     binding.tvTitleMovie.text = title
     binding.tvDescMovie.text = overview
 
-    Picasso.get().load(imageUrl)
-      .error(android.R.drawable.ic_menu_close_clear_cancel)
-      .placeholder(frameworkR.drawable.loading)
-      .into(binding.ivImageMovie)
+    if (imageUrl.isNotEmpty()) {
+      Picasso.get().load(imageUrl)
+        .error(android.R.drawable.ic_menu_close_clear_cancel)
+        .placeholder(frameworkR.drawable.loading)
+        .into(binding.ivImageMovie)
+    }
   }
 
   private fun onClickShowReview() {
@@ -108,13 +100,6 @@ class MovieDetailsFragment: BaseFragment<MovieDetailsState>() {
   private fun onClickShowTrailer() {
     lifecycleScope.launch {
       viewModel.intents.send(MovieDetailsIntent.NavigateToTrailerScreen)
-    }
-  }
-
-  override fun onPause() {
-    super.onPause()
-    lifecycleScope.launch {
-      viewModel.intents.send(MovieDetailsIntent.EnterIdleState)
     }
   }
 }

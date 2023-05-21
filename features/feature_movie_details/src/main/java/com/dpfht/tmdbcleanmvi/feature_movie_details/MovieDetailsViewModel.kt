@@ -5,7 +5,6 @@ import com.dpfht.tmdbcleanmvi.domain.entity.MovieDetailsDomain
 import com.dpfht.tmdbcleanmvi.domain.entity.Result.ErrorResult
 import com.dpfht.tmdbcleanmvi.domain.entity.Result.Success
 import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieDetailsUseCase
-import com.dpfht.tmdbcleanmvi.feature_movie_details.MovieDetailsIntent.EnterIdleState
 import com.dpfht.tmdbcleanmvi.feature_movie_details.MovieDetailsIntent.FetchDetails
 import com.dpfht.tmdbcleanmvi.feature_movie_details.MovieDetailsIntent.NavigateToReviewScreen
 import com.dpfht.tmdbcleanmvi.feature_movie_details.MovieDetailsIntent.NavigateToTrailerScreen
@@ -15,6 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class MovieDetailsViewModel @Inject constructor(
@@ -22,7 +22,7 @@ class MovieDetailsViewModel @Inject constructor(
   private val navigationService: NavigationService
 ): BaseViewModel<MovieDetailsIntent, MovieDetailsState>() {
 
-  override val _state = MutableStateFlow<MovieDetailsState>(MovieDetailsState.Idle)
+  override val _state = MutableStateFlow(MovieDetailsState())
 
   private var _movieId = -1
   private var title = ""
@@ -50,9 +50,6 @@ class MovieDetailsViewModel @Inject constructor(
           NavigateToTrailerScreen -> {
             navigateToMovieTrailer(_movieId)
           }
-          EnterIdleState -> {
-            enterIdleState()
-          }
         }
       }
     }
@@ -61,14 +58,13 @@ class MovieDetailsViewModel @Inject constructor(
   override fun start() {
     if (title.isEmpty()) {
       getMovieDetails()
-    } else {
-      _state.value = MovieDetailsState.ViewDetails(title, overview, imageUrl)
     }
   }
 
   private fun getMovieDetails() {
-    viewModelScope.launch(Dispatchers.Main) {
-      _state.value = MovieDetailsState.IsLoading(true)
+    viewModelScope.launch {
+      withContext(Dispatchers.Main) { updateState { it.copy(isLoading = true) } }
+
       when (val result = getMovieDetailsUseCase(_movieId)) {
         is Success -> {
           onSuccess(result.value)
@@ -81,24 +77,28 @@ class MovieDetailsViewModel @Inject constructor(
   }
 
   private fun onSuccess(result: MovieDetailsDomain) {
-    imageUrl = ""
-    if (result.imageUrl.isNotEmpty()) {
-      imageUrl = result.imageUrl
+    viewModelScope.launch(Dispatchers.Main) {
+      imageUrl = ""
+      if (result.imageUrl.isNotEmpty()) {
+        imageUrl = result.imageUrl
+      }
+
+      _movieId = result.id
+      title = result.title
+      overview = result.overview
+
+      updateState { it.copy(title = title, overview = overview, imageUrl =  imageUrl) }
+      updateState { it.copy(isLoading = false) }
     }
-
-    _movieId = result.id
-    title = result.title
-    overview = result.overview
-
-    _state.value = MovieDetailsState.ViewDetails(title, overview, imageUrl)
-    _state.value = MovieDetailsState.IsLoading(false)
   }
 
   private fun onError(message: String) {
-    _state.value = MovieDetailsState.IsLoading(false)
+    viewModelScope.launch(Dispatchers.Main) {
+      updateState { it.copy(isLoading = false) }
 
-    if (message.isNotEmpty()) {
-      navigationService.navigateToErrorMessage(message)
+      if (message.isNotEmpty()) {
+        navigationService.navigateToErrorMessage(message)
+      }
     }
   }
 
@@ -108,11 +108,5 @@ class MovieDetailsViewModel @Inject constructor(
 
   private fun navigateToMovieTrailer(movieId: Int) {
     navigationService.navigateToMovieTrailer(movieId)
-  }
-
-  private fun enterIdleState() {
-    viewModelScope.launch {
-      _state.value = MovieDetailsState.Idle
-    }
   }
 }
