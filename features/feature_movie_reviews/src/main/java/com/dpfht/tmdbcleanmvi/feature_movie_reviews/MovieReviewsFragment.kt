@@ -8,9 +8,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.dpfht.tmdbcleanmvi.feature_movie_reviews.MovieReviewsState.Idle
-import com.dpfht.tmdbcleanmvi.feature_movie_reviews.MovieReviewsState.IsLoading
-import com.dpfht.tmdbcleanmvi.feature_movie_reviews.MovieReviewsState.NotifyItemInserted
 import com.dpfht.tmdbcleanmvi.feature_movie_reviews.adapter.MovieReviewsAdapter
 import com.dpfht.tmdbcleanmvi.feature_movie_reviews.databinding.FragmentMovieReviewsBinding
 import com.dpfht.tmdbcleanmvi.feature_movie_reviews.di.MovieReviewsModule
@@ -88,20 +85,13 @@ class MovieReviewsFragment: BaseFragment<MovieReviewsState>() {
   }
 
   override fun render(state: MovieReviewsState) {
-    when (state) {
-      is NotifyItemInserted -> {
-        doNotifyItemInserted(state.value)
-      }
-      is IsLoading -> {
-        showLoading(state.value)
-      }
-      Idle -> {
-
-      }
+    with(state) {
+      showLoading(isLoading)
+      notifyItemInserted(itemInserted)
     }
   }
 
-  private fun doNotifyItemInserted(position: Int) {
+  private fun notifyItemInserted(position: Int) {
     if (position > 0) {
       adapter.notifyItemInserted(position)
     }
@@ -112,13 +102,6 @@ class MovieReviewsFragment: BaseFragment<MovieReviewsState>() {
       loadingDialog.show()
     } else {
       loadingDialog.dismiss()
-    }
-  }
-
-  override fun onPause() {
-    super.onPause()
-    lifecycleScope.launch {
-      viewModel.intents.send(MovieReviewsIntent.EnterIdleState)
     }
   }
 }

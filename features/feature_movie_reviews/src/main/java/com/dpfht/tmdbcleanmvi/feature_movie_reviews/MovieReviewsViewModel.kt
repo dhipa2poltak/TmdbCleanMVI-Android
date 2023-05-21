@@ -5,7 +5,6 @@ import com.dpfht.tmdbcleanmvi.domain.entity.Result.ErrorResult
 import com.dpfht.tmdbcleanmvi.domain.entity.Result.Success
 import com.dpfht.tmdbcleanmvi.domain.entity.ReviewEntity
 import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieReviewUseCase
-import com.dpfht.tmdbcleanmvi.feature_movie_reviews.MovieReviewsIntent.EnterIdleState
 import com.dpfht.tmdbcleanmvi.feature_movie_reviews.MovieReviewsIntent.FetchNextReview
 import com.dpfht.tmdbcleanmvi.feature_movie_reviews.MovieReviewsIntent.FetchReview
 import com.dpfht.tmdbcleanmvi.framework.base.BaseViewModel
@@ -14,6 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class MovieReviewsViewModel @Inject constructor(
@@ -22,7 +22,7 @@ class MovieReviewsViewModel @Inject constructor(
   private val navigationService: NavigationService
 ): BaseViewModel<MovieReviewsIntent, MovieReviewsState>() {
 
-  override val _state = MutableStateFlow<MovieReviewsState>(MovieReviewsState.Idle)
+  override val _state = MutableStateFlow(MovieReviewsState())
 
   private var _movieId = -1
   private var page = 0
@@ -42,9 +42,6 @@ class MovieReviewsViewModel @Inject constructor(
           FetchNextReview -> {
             getMovieReviews()
           }
-          EnterIdleState -> {
-            enterIdleState()
-          }
         }
       }
     }
@@ -63,8 +60,8 @@ class MovieReviewsViewModel @Inject constructor(
   private fun getMovieReviews() {
     if (isEmptyNextResponse) return
 
-    viewModelScope.launch(Dispatchers.Main) {
-      _state.value = MovieReviewsState.IsLoading(true)
+    viewModelScope.launch {
+      withContext(Dispatchers.Main) { updateState { it.copy(isLoading = true) } }
       mIsLoadingData = true
 
       when (val result = getMovieReviewUseCase(_movieId, page + 1)) {
@@ -79,33 +76,31 @@ class MovieReviewsViewModel @Inject constructor(
   }
 
   private fun onSuccess(reviews: List<ReviewEntity>, page: Int) {
-    if (reviews.isNotEmpty()) {
-      this.page = page
+    viewModelScope.launch(Dispatchers.Main) {
+      if (reviews.isNotEmpty()) {
+        this@MovieReviewsViewModel.page = page
 
-      for (review in reviews) {
-        this.reviews.add(review)
-        _state.value = MovieReviewsState.NotifyItemInserted(this.reviews.size - 1)
+        for (review in reviews) {
+          this@MovieReviewsViewModel.reviews.add(review)
+          updateState { it.copy(itemInserted = this@MovieReviewsViewModel.reviews.size - 1) }
+        }
+      } else {
+        isEmptyNextResponse = true
       }
-    } else {
-      isEmptyNextResponse = true
-    }
 
-    _state.value = MovieReviewsState.IsLoading(false)
-    mIsLoadingData = false
+      updateState { it.copy(isLoading = false, itemInserted = 0) }
+      mIsLoadingData = false
+    }
   }
 
   private fun onError(message: String) {
-    _state.value = MovieReviewsState.IsLoading(false)
-    mIsLoadingData = false
+    viewModelScope.launch(Dispatchers.Main) {
+      updateState { it.copy(isLoading = false) }
+      mIsLoadingData = false
 
-    if (message.isNotEmpty()) {
-      navigationService.navigateToErrorMessage(message)
-    }
-  }
-
-  private fun enterIdleState() {
-    viewModelScope.launch {
-      _state.value = MovieReviewsState.Idle
+      if (message.isNotEmpty()) {
+        navigationService.navigateToErrorMessage(message)
+      }
     }
   }
 }

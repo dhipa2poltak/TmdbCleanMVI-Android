@@ -92,8 +92,7 @@ class MoviesByGenreViewModel @Inject constructor(
         isEmptyNextResponse = true
       }
 
-      updateState { it.copy(itemInserted = 0) }
-      updateState { it.copy(isLoading = false) }
+      updateState { it.copy(isLoading = false, itemInserted = 0) }
       mIsLoadingData = false
     }
   }
