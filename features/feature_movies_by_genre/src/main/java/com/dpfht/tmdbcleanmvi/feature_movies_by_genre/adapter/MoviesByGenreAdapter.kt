@@ -5,7 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dpfht.tmdbcleanmvi.domain.entity.MovieEntity
 import com.dpfht.tmdbcleanmvi.feature_movies_by_genre.databinding.RowMovieBinding
+import com.squareup.picasso.Picasso
 import javax.inject.Inject
+import com.dpfht.tmdbcleanmvi.framework.R as frameworkR
 
 class MoviesByGenreAdapter @Inject constructor(
   private val movies: ArrayList<MovieEntity>
@@ -34,6 +36,12 @@ class MoviesByGenreAdapter @Inject constructor(
 
     fun bindData(movie: MovieEntity) {
       binding.tvTitleMovie.text = movie.title
+      binding.tvOverviewMovie.text = movie.overview
+
+      Picasso.get().load(movie.imageUrl)
+        .error(android.R.drawable.ic_menu_close_clear_cancel)
+        .placeholder(frameworkR.drawable.loading)
+        .into(binding.ivMovie)
     }
   }
 
