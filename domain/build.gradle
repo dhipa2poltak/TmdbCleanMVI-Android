@@ -10,8 +10,11 @@ java {
 }
 
 dependencies {
-  implementation 'javax.inject:javax.inject:1@jar'
 
-  implementation 'com.github.stephanenicolas.toothpick:ktp:3.1.0'
-  kapt 'com.github.stephanenicolas.toothpick:toothpick-compiler:3.1.0'
+  def domainDependencies = rootProject.ext.domainDependencies
+
+  implementation domainDependencies.javaxInject
+
+  implementation domainDependencies.toothpickKtp
+  kapt domainDependencies.toothpickCompiler
 }

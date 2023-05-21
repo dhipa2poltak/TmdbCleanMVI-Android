@@ -49,6 +49,8 @@ android {
 
 dependencies {
 
+  def featureMoviesByGenreDependencies = rootProject.ext.featureMoviesByGenreDependencies
+
   implementation project(":domain")
   implementation project(":framework")
 
@@ -59,11 +61,11 @@ dependencies {
   androidTestImplementation 'androidx.test.ext:junit:1.1.5'
   androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-  implementation 'com.github.stephanenicolas.toothpick:ktp:3.1.0'
-  kapt 'com.github.stephanenicolas.toothpick:toothpick-compiler:3.1.0'
+  implementation featureMoviesByGenreDependencies.toothpickKtp
+  kapt featureMoviesByGenreDependencies.toothpickCompiler
 
-  implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0'
-  implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
+  implementation featureMoviesByGenreDependencies.lifecycleRuntime
+  implementation featureMoviesByGenreDependencies.lifecycleViewmodel
 
-  implementation 'com.squareup.picasso:picasso:2.8'
+  implementation featureMoviesByGenreDependencies.picasso
 }

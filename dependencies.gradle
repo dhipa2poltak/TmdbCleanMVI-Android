@@ -1,0 +1,92 @@
+
+ext {
+
+  javaxInjectVersion = '1@jar'
+  toothpickKtpVersion = '3.1.0'
+  toothpickCompilerVersion = '3.1.0'
+  gsonVersion = '2.9.0'
+  annotationVersion = '1.4.0'
+  retrofitConverterGsonVersion = '2.9.0'
+  okhttpLoggingInterceptorVersion = '4.9.1'
+  okhttpVersion = '4.9.3'
+  navigationFragmentVersion = '2.5.3'
+  navigationUIVersion = '2.5.3'
+  multidexVersion = '2.0.1'
+  lifecycleRuntimeVersion = '2.4.0'
+  lifecycleViewmodelVersion = '2.4.0'
+  picassoVersion = '2.8'
+  coroutinesCoreVersion = '1.6.4'
+
+  domainDependencies = [
+      javaxInject: "javax.inject:javax.inject:${javaxInjectVersion}",
+      toothpickKtp: "com.github.stephanenicolas.toothpick:ktp:${toothpickKtpVersion}",
+      toothpickCompiler: "com.github.stephanenicolas.toothpick:toothpick-compiler:${toothpickCompilerVersion}"
+  ]
+
+  dataDependencies = [
+      gson: "com.google.code.gson:gson:${gsonVersion}",
+      annotation: "androidx.annotation:annotation:${annotationVersion}",
+      javaxInject: "javax.inject:javax.inject:${javaxInjectVersion}",
+      toothpickKtp: "com.github.stephanenicolas.toothpick:ktp:${toothpickKtpVersion}",
+      toothpickCompiler: "com.github.stephanenicolas.toothpick:toothpick-compiler:${toothpickCompilerVersion}"
+  ]
+
+  frameworkDependencies = [
+      toothpickKtp: "com.github.stephanenicolas.toothpick:ktp:${toothpickKtpVersion}",
+      toothpickCompiler: "com.github.stephanenicolas.toothpick:toothpick-compiler:${toothpickCompilerVersion}",
+      gson: "com.google.code.gson:gson:${gsonVersion}",
+      retrofitConverterGson: "com.squareup.retrofit2:converter-gson:${retrofitConverterGsonVersion}",
+      okhttpLoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:${okhttpLoggingInterceptorVersion}",
+      okhttp: "com.squareup.okhttp3:okhttp:${okhttpVersion}"
+  ]
+
+  appDependencies = [
+      navigationFragment: "androidx.navigation:navigation-fragment-ktx:${navigationFragmentVersion}",
+      navigationUI: "androidx.navigation:navigation-ui-ktx:${navigationUIVersion}",
+      toothpickKtp: "com.github.stephanenicolas.toothpick:ktp:${toothpickKtpVersion}",
+      toothpickCompiler: "com.github.stephanenicolas.toothpick:toothpick-compiler:${toothpickCompilerVersion}",
+      multidex: "androidx.multidex:multidex:${multidexVersion}"
+  ]
+
+  featureSplashDependencies = [
+      toothpickKtp: "com.github.stephanenicolas.toothpick:ktp:${toothpickKtpVersion}",
+      toothpickCompiler: "com.github.stephanenicolas.toothpick:toothpick-compiler:${toothpickCompilerVersion}",
+  ]
+
+  featureGenreDependencies = [
+      toothpickKtp: "com.github.stephanenicolas.toothpick:ktp:${toothpickKtpVersion}",
+      toothpickCompiler: "com.github.stephanenicolas.toothpick:toothpick-compiler:${toothpickCompilerVersion}",
+      lifecycleRuntime: "androidx.lifecycle:lifecycle-runtime-ktx:${lifecycleRuntimeVersion}",
+      lifecycleViewmodel: "androidx.lifecycle:lifecycle-viewmodel-ktx:${lifecycleViewmodelVersion}"
+  ]
+
+  featureMoviesByGenreDependencies = [
+      toothpickKtp: "com.github.stephanenicolas.toothpick:ktp:${toothpickKtpVersion}",
+      toothpickCompiler: "com.github.stephanenicolas.toothpick:toothpick-compiler:${toothpickCompilerVersion}",
+      lifecycleRuntime: "androidx.lifecycle:lifecycle-runtime-ktx:${lifecycleRuntimeVersion}",
+      lifecycleViewmodel: "androidx.lifecycle:lifecycle-viewmodel-ktx:${lifecycleViewmodelVersion}",
+      picasso: "com.squareup.picasso:picasso:${picassoVersion}"
+  ]
+
+  featureMovieDetailsDependencies = [
+      toothpickKtp: "com.github.stephanenicolas.toothpick:ktp:${toothpickKtpVersion}",
+      toothpickCompiler: "com.github.stephanenicolas.toothpick:toothpick-compiler:${toothpickCompilerVersion}",
+      lifecycleRuntime: "androidx.lifecycle:lifecycle-runtime-ktx:${lifecycleRuntimeVersion}",
+      lifecycleViewmodel: "androidx.lifecycle:lifecycle-viewmodel-ktx:${lifecycleViewmodelVersion}",
+      picasso: "com.squareup.picasso:picasso:${picassoVersion}"
+  ]
+
+  featureMovieReviewsDependencies = [
+      toothpickKtp: "com.github.stephanenicolas.toothpick:ktp:${toothpickKtpVersion}",
+      toothpickCompiler: "com.github.stephanenicolas.toothpick:toothpick-compiler:${toothpickCompilerVersion}",
+      lifecycleRuntime: "androidx.lifecycle:lifecycle-runtime-ktx:${lifecycleRuntimeVersion}",
+      lifecycleViewmodel: "androidx.lifecycle:lifecycle-viewmodel-ktx:${lifecycleViewmodelVersion}",
+      picasso: "com.squareup.picasso:picasso:${picassoVersion}"
+  ]
+
+  featureMovieTrailerDependencies = [
+      toothpickKtp: "com.github.stephanenicolas.toothpick:ktp:${toothpickKtpVersion}",
+      toothpickCompiler: "com.github.stephanenicolas.toothpick:toothpick-compiler:${toothpickCompilerVersion}",
+      coroutinesCore: "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutinesCoreVersion}"
+  ]
+}

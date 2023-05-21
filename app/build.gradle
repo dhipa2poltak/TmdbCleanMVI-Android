@@ -73,6 +73,8 @@ android {
 
 dependencies {
 
+  def appDependencies = rootProject.ext.appDependencies
+
   implementation fileTree(dir: "libs", include: ["*.jar"])
   implementation project(':domain')
   implementation project(':data')
@@ -93,11 +95,11 @@ dependencies {
   androidTestImplementation 'androidx.test.ext:junit:1.1.5'
   androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-  implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
-  implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+  implementation appDependencies.navigationFragment
+  implementation appDependencies.navigationUI
 
-  implementation 'com.github.stephanenicolas.toothpick:ktp:3.1.0'
-  kapt 'com.github.stephanenicolas.toothpick:toothpick-compiler:3.1.0'
+  implementation appDependencies.toothpickKtp
+  kapt appDependencies.toothpickCompiler
 
-  implementation "androidx.multidex:multidex:2.0.1"
+  implementation appDependencies.multidex
 }
