@@ -2,9 +2,6 @@ package com.dpfht.tmdbcleanmvi.feature_movie_trailer
 
 import android.os.Bundle
 import android.widget.Toast
-import com.dpfht.tmdbcleanmvi.feature_movie_trailer.MovieTrailerState.ErrorMessage
-import com.dpfht.tmdbcleanmvi.feature_movie_trailer.MovieTrailerState.Idle
-import com.dpfht.tmdbcleanmvi.feature_movie_trailer.MovieTrailerState.ViewTrailer
 import com.dpfht.tmdbcleanmvi.feature_movie_trailer.databinding.ActivityMovieTrailerBinding
 import com.dpfht.tmdbcleanmvi.feature_movie_trailer.di.MovieTrailerModule
 import com.google.android.youtube.player.YouTubeBaseActivity
@@ -56,16 +53,12 @@ class MovieTrailerActivity: YouTubeBaseActivity() {
   }
 
   private fun render(state: MovieTrailerState) {
-    when (state) {
-      is ViewTrailer -> {
-        showTrailer(state.keyVideo)
+    with(state) {
+      if (keyVideo.isNotEmpty()) {
+        showTrailer(keyVideo)
       }
-      is ErrorMessage -> {
-        showErrorMessage(state.message)
-      }
-      Idle -> {
 
-      }
+      showErrorMessage(errorMessage)
     }
   }
 
@@ -104,13 +97,6 @@ class MovieTrailerActivity: YouTubeBaseActivity() {
     }
   }
 
-  override fun onPause() {
-    super.onPause()
-    scope.launch {
-      viewModel.intents.send(MovieTrailerIntent.EnterIdleState)
-    }
-  }
-
   override fun onDestroy() {
     if (scope.isActive) {
       scope.cancel()
@@ -118,4 +104,3 @@ class MovieTrailerActivity: YouTubeBaseActivity() {
     super.onDestroy()
   }
 }
-
