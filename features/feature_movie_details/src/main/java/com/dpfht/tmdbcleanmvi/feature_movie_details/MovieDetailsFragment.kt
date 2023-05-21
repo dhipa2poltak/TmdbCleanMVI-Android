@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
 import com.dpfht.tmdbcleanmvi.feature_movie_details.databinding.FragmentMovieDetailsBinding
 import com.dpfht.tmdbcleanmvi.feature_movie_details.di.MovieDetailsModule
@@ -14,15 +13,11 @@ import com.squareup.picasso.Picasso
 import kotlinx.coroutines.launch
 import toothpick.config.Module
 import toothpick.ktp.delegate.inject
-import javax.inject.Inject
 
 class MovieDetailsFragment: BaseFragment<MovieDetailsState>() {
 
   private lateinit var binding: FragmentMovieDetailsBinding
   private val viewModel by inject<MovieDetailsViewModel>()
-
-  @Inject
-  lateinit var loadingDialog: AlertDialog
 
   override fun getModules(): ArrayList<Module> {
     return arrayListOf(MovieDetailsModule(requireContext()))
@@ -72,10 +67,10 @@ class MovieDetailsFragment: BaseFragment<MovieDetailsState>() {
   }
 
   private fun showLoading(isLoading: Boolean) {
-    if (isLoading) {
-      loadingDialog.show()
+    binding.pbLoading.visibility = if (isLoading) {
+      View.VISIBLE
     } else {
-      loadingDialog.dismiss()
+      View.GONE
     }
   }
 
