@@ -93,7 +93,9 @@ class MovieTrailerActivity: YouTubeBaseActivity() {
 
   private fun showErrorMessage(message: String) {
     if (message.isNotEmpty()) {
-      Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+      scope.launch(Dispatchers.Main) {
+        Toast.makeText(this@MovieTrailerActivity, message, Toast.LENGTH_SHORT).show()
+      }
     }
   }
 
