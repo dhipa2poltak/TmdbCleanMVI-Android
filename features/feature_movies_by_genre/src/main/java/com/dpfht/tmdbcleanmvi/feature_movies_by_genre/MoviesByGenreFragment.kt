@@ -8,9 +8,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.dpfht.tmdbcleanmvi.feature_movies_by_genre.MoviesByGenreState.Idle
-import com.dpfht.tmdbcleanmvi.feature_movies_by_genre.MoviesByGenreState.IsLoading
-import com.dpfht.tmdbcleanmvi.feature_movies_by_genre.MoviesByGenreState.NotifyItemInserted
 import com.dpfht.tmdbcleanmvi.feature_movies_by_genre.adapter.MoviesByGenreAdapter
 import com.dpfht.tmdbcleanmvi.feature_movies_by_genre.adapter.MoviesByGenreAdapter.OnClickMovieListener
 import com.dpfht.tmdbcleanmvi.feature_movies_by_genre.databinding.FragmentMoviesByGenreBinding
@@ -98,19 +95,13 @@ class MoviesByGenreFragment: BaseFragment<MoviesByGenreState>() {
   }
 
   override fun render(state: MoviesByGenreState) {
-    when (state) {
-      is NotifyItemInserted -> {
-        doNotifyItemInserted(state.value)
-      }
-      is IsLoading -> {
-        showLoading(state.value)
-      }
-      is Idle -> {
-      }
+    with(state) {
+      showLoading(isLoading)
+      notifyItemInserted(itemInserted)
     }
   }
 
-  private fun doNotifyItemInserted(position: Int) {
+  private fun notifyItemInserted(position: Int) {
     if (position > 0) {
       adapter.notifyItemInserted(position)
     }
@@ -121,13 +112,6 @@ class MoviesByGenreFragment: BaseFragment<MoviesByGenreState>() {
       loadingDialog.show()
     } else {
       loadingDialog.dismiss()
-    }
-  }
-
-  override fun onPause() {
-    super.onPause()
-    lifecycleScope.launch {
-      viewModel.intents.send(MoviesByGenreIntent.EnterIdleState)
     }
   }
 }

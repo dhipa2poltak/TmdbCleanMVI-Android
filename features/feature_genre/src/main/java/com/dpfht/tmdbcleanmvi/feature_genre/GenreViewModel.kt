@@ -69,6 +69,7 @@ class GenreViewModel @Inject constructor(
         updateState { it.copy(itemInserted = this@GenreViewModel.genres.size - 1) }
       }
 
+      updateState { it.copy(itemInserted = 0) }
       updateState { it.copy(isLoading = false) }
     }
   }
