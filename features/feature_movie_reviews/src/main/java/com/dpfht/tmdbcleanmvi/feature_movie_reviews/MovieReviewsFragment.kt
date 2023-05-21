@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,9 +23,6 @@ class MovieReviewsFragment: BaseFragment<MovieReviewsState>() {
 
   @Inject
   lateinit var adapter: MovieReviewsAdapter
-
-  @Inject
-  lateinit var loadingDialog: AlertDialog
 
   override fun getModules(): ArrayList<Module> {
     return arrayListOf(MovieReviewsModule(requireContext()))
@@ -98,10 +94,10 @@ class MovieReviewsFragment: BaseFragment<MovieReviewsState>() {
   }
 
   private fun showLoading(isLoading: Boolean) {
-    if (isLoading) {
-      loadingDialog.show()
+    binding.pbLoading.visibility = if (isLoading) {
+      View.VISIBLE
     } else {
-      loadingDialog.dismiss()
+      View.GONE
     }
   }
 }
