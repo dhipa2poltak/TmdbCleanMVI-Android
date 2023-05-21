@@ -22,7 +22,7 @@ class MovieDetailsViewModel @Inject constructor(
   private val navigationService: NavigationService
 ): BaseViewModel<MovieDetailsIntent, MovieDetailsState>() {
 
-  override val mState = MutableStateFlow<MovieDetailsState>(MovieDetailsState.Idle)
+  override val _state = MutableStateFlow<MovieDetailsState>(MovieDetailsState.Idle)
 
   private var _movieId = -1
   private var title = ""
@@ -62,13 +62,13 @@ class MovieDetailsViewModel @Inject constructor(
     if (title.isEmpty()) {
       getMovieDetails()
     } else {
-      mState.value = MovieDetailsState.ViewDetails(title, overview, imageUrl)
+      _state.value = MovieDetailsState.ViewDetails(title, overview, imageUrl)
     }
   }
 
   private fun getMovieDetails() {
     viewModelScope.launch(Dispatchers.Main) {
-      mState.value = MovieDetailsState.IsLoading(true)
+      _state.value = MovieDetailsState.IsLoading(true)
       when (val result = getMovieDetailsUseCase(_movieId)) {
         is Success -> {
           onSuccess(result.value)
@@ -90,12 +90,12 @@ class MovieDetailsViewModel @Inject constructor(
     title = result.title
     overview = result.overview
 
-    mState.value = MovieDetailsState.ViewDetails(title, overview, imageUrl)
-    mState.value = MovieDetailsState.IsLoading(false)
+    _state.value = MovieDetailsState.ViewDetails(title, overview, imageUrl)
+    _state.value = MovieDetailsState.IsLoading(false)
   }
 
   private fun onError(message: String) {
-    mState.value = MovieDetailsState.IsLoading(false)
+    _state.value = MovieDetailsState.IsLoading(false)
 
     if (message.isNotEmpty()) {
       navigationService.navigateToErrorMessage(message)
@@ -112,7 +112,7 @@ class MovieDetailsViewModel @Inject constructor(
 
   private fun enterIdleState() {
     viewModelScope.launch {
-      mState.value = MovieDetailsState.Idle
+      _state.value = MovieDetailsState.Idle
     }
   }
 }

@@ -22,7 +22,7 @@ class MovieReviewsViewModel @Inject constructor(
   private val navigationService: NavigationService
 ): BaseViewModel<MovieReviewsIntent, MovieReviewsState>() {
 
-  override val mState = MutableStateFlow<MovieReviewsState>(MovieReviewsState.Idle)
+  override val _state = MutableStateFlow<MovieReviewsState>(MovieReviewsState.Idle)
 
   private var _movieId = -1
   private var page = 0
@@ -64,7 +64,7 @@ class MovieReviewsViewModel @Inject constructor(
     if (isEmptyNextResponse) return
 
     viewModelScope.launch(Dispatchers.Main) {
-      mState.value = MovieReviewsState.IsLoading(true)
+      _state.value = MovieReviewsState.IsLoading(true)
       mIsLoadingData = true
 
       when (val result = getMovieReviewUseCase(_movieId, page + 1)) {
@@ -84,18 +84,18 @@ class MovieReviewsViewModel @Inject constructor(
 
       for (review in reviews) {
         this.reviews.add(review)
-        mState.value = MovieReviewsState.NotifyItemInserted(this.reviews.size - 1)
+        _state.value = MovieReviewsState.NotifyItemInserted(this.reviews.size - 1)
       }
     } else {
       isEmptyNextResponse = true
     }
 
-    mState.value = MovieReviewsState.IsLoading(false)
+    _state.value = MovieReviewsState.IsLoading(false)
     mIsLoadingData = false
   }
 
   private fun onError(message: String) {
-    mState.value = MovieReviewsState.IsLoading(false)
+    _state.value = MovieReviewsState.IsLoading(false)
     mIsLoadingData = false
 
     if (message.isNotEmpty()) {
@@ -105,7 +105,7 @@ class MovieReviewsViewModel @Inject constructor(
 
   private fun enterIdleState() {
     viewModelScope.launch {
-      mState.value = MovieReviewsState.Idle
+      _state.value = MovieReviewsState.Idle
     }
   }
 }

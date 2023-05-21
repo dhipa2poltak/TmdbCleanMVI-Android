@@ -7,9 +7,11 @@ import com.dpfht.tmdbcleanmvi.domain.entity.Result.Success
 import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieGenreUseCase
 import com.dpfht.tmdbcleanmvi.framework.base.BaseViewModel
 import com.dpfht.tmdbcleanmvi.framework.navigation.NavigationService
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class GenreViewModel @Inject constructor(
@@ -18,7 +20,7 @@ class GenreViewModel @Inject constructor(
   private val navigationService: NavigationService
 ): BaseViewModel<GenreIntent, GenreState>() {
 
-  override val mState = MutableStateFlow<GenreState>(GenreState.Idle)
+  override val _state = MutableStateFlow(GenreState())
 
   init {
     handlerIntent()
@@ -34,9 +36,6 @@ class GenreViewModel @Inject constructor(
           is GenreIntent.NavigateToNextScreen -> {
             navigateToMoviesByGenre(genres[genreIntent.position].id, genres[genreIntent.position].name)
           }
-          GenreIntent.EnterIdleState -> {
-            enterIdleState()
-          }
         }
       }
     }
@@ -50,7 +49,7 @@ class GenreViewModel @Inject constructor(
 
   private fun getMovieGenre() {
     viewModelScope.launch {
-      mState.value = GenreState.IsLoading(true)
+      withContext(Dispatchers.Main) { updateState { it.copy(isLoading = true) } }
 
       when (val result = getMovieGenreUseCase()) {
         is Success -> {
@@ -64,29 +63,27 @@ class GenreViewModel @Inject constructor(
   }
 
   private fun onSuccess(genres: List<GenreEntity>) {
-    for (genre in genres) {
-      this.genres.add(genre)
-      mState.value = GenreState.NotifyItemInserted(this.genres.size - 1)
-    }
+    viewModelScope.launch(Dispatchers.Main) {
+      for (genre in genres) {
+        this@GenreViewModel.genres.add(genre)
+        updateState { it.copy(itemInserted = this@GenreViewModel.genres.size - 1) }
+      }
 
-    mState.value = GenreState.IsLoading(false)
+      updateState { it.copy(isLoading = false) }
+    }
   }
 
   private fun onError(message: String) {
-    mState.value = GenreState.IsLoading(false)
+    viewModelScope.launch(Dispatchers.Main) {
+      updateState { it.copy(isLoading = false) }
 
-    if (message.isNotEmpty()) {
-      navigationService.navigateToErrorMessage(message)
+      if (message.isNotEmpty()) {
+        navigationService.navigateToErrorMessage(message)
+      }
     }
   }
 
   private fun navigateToMoviesByGenre(genreId: Int, genreName: String) {
     navigationService.navigateToMoviesByGender(genreId, genreName)
-  }
-
-  private fun enterIdleState() {
-    viewModelScope.launch {
-      mState.value = GenreState.Idle
-    }
   }
 }

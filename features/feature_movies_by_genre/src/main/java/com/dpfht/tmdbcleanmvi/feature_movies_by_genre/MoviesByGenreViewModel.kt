@@ -23,7 +23,7 @@ class MoviesByGenreViewModel @Inject constructor(
   private val navigationService: NavigationService
 ): BaseViewModel<MoviesByGenreIntent, MoviesByGenreState>() {
 
-  override val mState = MutableStateFlow<MoviesByGenreState>(MoviesByGenreState.Idle)
+  override val _state = MutableStateFlow<MoviesByGenreState>(MoviesByGenreState.Idle)
 
   private var _genreId = -1
   private var page = 0
@@ -68,7 +68,7 @@ class MoviesByGenreViewModel @Inject constructor(
     if (isEmptyNextResponse) return
 
     viewModelScope.launch(Dispatchers.Main) {
-      mState.value = MoviesByGenreState.IsLoading(true)
+      _state.value = MoviesByGenreState.IsLoading(true)
       mIsLoadingData = true
 
       when (val result = getMovieByGenreUseCase(_genreId, page + 1)) {
@@ -88,13 +88,13 @@ class MoviesByGenreViewModel @Inject constructor(
 
       for (movie in movies) {
         this.movies.add(movie)
-        mState.value = MoviesByGenreState.NotifyItemInserted(this.movies.size - 1)
+        _state.value = MoviesByGenreState.NotifyItemInserted(this.movies.size - 1)
       }
     } else {
       isEmptyNextResponse = true
     }
 
-    mState.value = MoviesByGenreState.IsLoading(false)
+    _state.value = MoviesByGenreState.IsLoading(false)
     mIsLoadingData = false
   }
 
@@ -103,7 +103,7 @@ class MoviesByGenreViewModel @Inject constructor(
   }
 
   private fun onError(message: String) {
-    mState.value = MoviesByGenreState.IsLoading(false)
+    _state.value = MoviesByGenreState.IsLoading(false)
     mIsLoadingData = false
 
     if (message.isNotEmpty()) {
@@ -113,7 +113,7 @@ class MoviesByGenreViewModel @Inject constructor(
 
   private fun enterIdleState() {
     viewModelScope.launch {
-      mState.value = MoviesByGenreState.Idle
+      _state.value = MoviesByGenreState.Idle
     }
   }
 }

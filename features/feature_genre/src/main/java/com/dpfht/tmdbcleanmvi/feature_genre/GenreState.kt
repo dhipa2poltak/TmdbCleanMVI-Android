@@ -1,8 +1,6 @@
 package com.dpfht.tmdbcleanmvi.feature_genre
 
-sealed class GenreState {
-
-  data class NotifyItemInserted(val value: Int = 0): GenreState()
-  data class IsLoading(val value: Boolean = false): GenreState()
-  object Idle: GenreState()
-}
+data class GenreState(
+  val itemInserted: Int = 0,
+  val isLoading: Boolean = false
+)

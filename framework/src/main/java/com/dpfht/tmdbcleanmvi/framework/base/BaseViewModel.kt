@@ -9,13 +9,17 @@ abstract class BaseViewModel<VI, VS>: ViewModel() {
 
   val intents: Channel<VI> = Channel(Channel.UNLIMITED)
 
-  protected abstract val mState: MutableStateFlow<VS>
+  protected abstract val _state: MutableStateFlow<VS>
   val state: StateFlow<VS>
-    get() = mState
+    get() = _state
 
   protected var mIsLoadingData = false
 
   fun isLoadingData() = mIsLoadingData
 
   protected abstract fun start()
+
+  protected suspend fun updateState(handler: suspend (intent: VS) -> VS) {
+    _state.value = handler(state.value)
+  }
 }
