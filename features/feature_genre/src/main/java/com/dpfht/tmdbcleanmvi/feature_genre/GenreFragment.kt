@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dpfht.tmdbcleanmvi.feature_genre.adapter.GenreAdapter
@@ -24,9 +24,6 @@ class GenreFragment: BaseFragment<GenreState>() {
   @Inject
   lateinit var adapter: GenreAdapter
 
-  @Inject
-  lateinit var loadingDialog: AlertDialog
-
   override fun getModules(): ArrayList<Module> {
     return arrayListOf(GenreModule(requireContext()))
   }
@@ -42,6 +39,7 @@ class GenreFragment: BaseFragment<GenreState>() {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    setToolbar()
 
     val layoutManager = LinearLayoutManager(requireContext())
     layoutManager.orientation = LinearLayoutManager.VERTICAL
@@ -82,10 +80,14 @@ class GenreFragment: BaseFragment<GenreState>() {
   }
 
   private fun showLoading(isLoading: Boolean) {
-    if (isLoading) {
-      loadingDialog.show()
+    binding.pbLoading.visibility = if (isLoading) {
+      View.VISIBLE
     } else {
-      loadingDialog.dismiss()
+      View.GONE
     }
+  }
+
+  private fun setToolbar() {
+    (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
   }
 }

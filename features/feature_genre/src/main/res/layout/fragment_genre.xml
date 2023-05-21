@@ -38,4 +38,14 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintBottom_toBottomOf="parent"/>
 
+  <ProgressBar
+      android:id="@+id/pb_loading"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:layout_constraintStart_toStartOf="@+id/rv_genre"
+      app:layout_constraintTop_toTopOf="@+id/rv_genre"
+      app:layout_constraintEnd_toEndOf="@+id/rv_genre"
+      app:layout_constraintBottom_toBottomOf="@+id/rv_genre"
+      android:visibility="gone"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

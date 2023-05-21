@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.dpfht.tmdbcleanmvi.databinding.ActivityMainBinding
 import com.dpfht.tmdbcleanmvi.di.NavigationModule
@@ -19,10 +20,14 @@ class MainActivity : AppCompatActivity() {
     binding = ActivityMainBinding.inflate(layoutInflater)
     setContentView(binding.root)
 
+    val appBarConfiguration = AppBarConfiguration(
+      setOf(R.id.genreFragment)
+    )
+
     val navHostFragment =
       supportFragmentManager.findFragmentById(R.id.demo_nav_host_fragment) as NavHostFragment
     navController = navHostFragment.navController
-    NavigationUI.setupActionBarWithNavController(this, navController)
+    NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
 
     KTP.openRootScope()
       .openSubScope("APPSCOPE")
