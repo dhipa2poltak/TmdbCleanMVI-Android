@@ -3,6 +3,7 @@ package com.dpfht.tmdbcleanmvi
 import android.app.Application
 import android.content.Context
 import androidx.multidex.MultiDex
+import com.dpfht.tmdbcleanmvi.framework.Config
 import com.dpfht.tmdbcleanmvi.framework.di.AppModule
 import com.dpfht.tmdbcleanmvi.framework.di.NetworkModule
 import toothpick.ktp.KTP
@@ -14,6 +15,7 @@ class TheApplication: Application() {
   }
 
   override fun onCreate() {
+    Config.BASE_URL = BuildConfig.BASE_URL
     super.onCreate()
     instance = this
 

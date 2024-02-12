@@ -28,23 +28,6 @@ android {
   kotlinOptions {
     jvmTarget = '1.8'
   }
-
-  flavorDimensions "default"
-
-  productFlavors {
-    staging {
-      buildConfigField 'String', 'BASE_URL', STAGING_BASE_URL
-      buildConfigField 'String', 'IMAGE_URL_BASE_PATH', STAGING_IMAGE_URL_BASE_PATH
-    }
-    verify {
-      buildConfigField 'String', 'BASE_URL', VERIFY_BASE_URL
-      buildConfigField 'String', 'IMAGE_URL_BASE_PATH', VERIFY_IMAGE_URL_BASE_PATH
-    }
-    prod {
-      buildConfigField 'String', 'BASE_URL', PROD_BASE_URL
-      buildConfigField 'String', 'IMAGE_URL_BASE_PATH', PROD_IMAGE_URL_BASE_PATH
-    }
-  }
 }
 
 dependencies {
