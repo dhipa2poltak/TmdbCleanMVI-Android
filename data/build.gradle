@@ -11,14 +11,12 @@ java {
 
 dependencies {
 
-  def dataDependencies = rootProject.ext.dataDependencies
-
   implementation project(":domain")
 
-  implementation dataDependencies.gson
-  implementation dataDependencies.annotation
-  implementation dataDependencies.javaxInject
+  implementation Deps.gson
+  implementation Deps.annotation
+  implementation Deps.javaxInject
 
-  implementation dataDependencies.toothpickKtp
-  kapt dataDependencies.toothpickCompiler
+  implementation Deps.toothpickKtp
+  kapt Deps.toothpickCompiler
 }

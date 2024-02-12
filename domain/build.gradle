@@ -11,10 +11,8 @@ java {
 
 dependencies {
 
-  def domainDependencies = rootProject.ext.domainDependencies
+  implementation Deps.javaxInject
 
-  implementation domainDependencies.javaxInject
-
-  implementation domainDependencies.toothpickKtp
-  kapt domainDependencies.toothpickCompiler
+  implementation Deps.toothpickKtp
+  kapt Deps.toothpickCompiler
 }
