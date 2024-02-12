@@ -1,9 +1,7 @@
 package com.dpfht.tmdbcleanmvi.feature_movies_by_genre
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,9 +15,8 @@ import toothpick.config.Module
 import toothpick.ktp.delegate.inject
 import javax.inject.Inject
 
-class MoviesByGenreFragment: BaseFragment<MoviesByGenreState>() {
+class MoviesByGenreFragment: BaseFragment<FragmentMoviesByGenreBinding, MoviesByGenreState>(R.layout.fragment_movies_by_genre) {
 
-  private lateinit var binding: FragmentMoviesByGenreBinding
   private val viewModel by inject<MoviesByGenreViewModel>()
 
   @Inject
@@ -27,15 +24,6 @@ class MoviesByGenreFragment: BaseFragment<MoviesByGenreState>() {
 
   override fun getModules(): ArrayList<Module> {
     return arrayListOf(MoviesByGenreModule(requireContext()))
-  }
-
-  override fun onCreateView(
-    inflater: LayoutInflater, container: ViewGroup?,
-    savedInstanceState: Bundle?
-  ): View {
-    binding = FragmentMoviesByGenreBinding.inflate(inflater, container, false)
-
-    return binding.root
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

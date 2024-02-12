@@ -3,19 +3,16 @@ package com.dpfht.tmdbcleanmvi.feature_splash
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import com.dpfht.tmdbcleanmvi.feature_splash.databinding.FragmentSplashBinding
+import com.dpfht.tmdbcleanmvi.framework.base.BaseFragment
 import com.dpfht.tmdbcleanmvi.framework.navigation.NavigationService
+import toothpick.config.Module
 import toothpick.ktp.KTP
 import javax.inject.Inject
 
-class SplashFragment: Fragment() {
-
-  private lateinit var binding: FragmentSplashBinding
+class SplashFragment: BaseFragment<FragmentSplashBinding, SplashState>(R.layout.fragment_splash) {
 
   @Inject
   lateinit var navigationService: NavigationService
@@ -29,14 +26,11 @@ class SplashFragment: Fragment() {
       .inject(this)
   }
 
-  override fun onCreateView(
-    inflater: LayoutInflater, container: ViewGroup?,
-    savedInstanceState: Bundle?
-  ): View {
-    binding = FragmentSplashBinding.inflate(inflater, container, false)
-
-    return binding.root
+  override fun getModules(): ArrayList<Module> {
+    return arrayListOf()
   }
+
+  override fun render(state: SplashState) {}
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)

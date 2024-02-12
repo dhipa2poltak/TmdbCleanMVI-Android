@@ -1,9 +1,7 @@
 package com.dpfht.tmdbcleanmvi.feature_movie_reviews
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,9 +14,8 @@ import toothpick.config.Module
 import toothpick.ktp.delegate.inject
 import javax.inject.Inject
 
-class MovieReviewsFragment: BaseFragment<MovieReviewsState>() {
+class MovieReviewsFragment: BaseFragment<FragmentMovieReviewsBinding, MovieReviewsState>(R.layout.fragment_movie_reviews) {
 
-  private lateinit var binding: FragmentMovieReviewsBinding
   private val viewModel by inject<MovieReviewsViewModel>()
 
   @Inject
@@ -26,15 +23,6 @@ class MovieReviewsFragment: BaseFragment<MovieReviewsState>() {
 
   override fun getModules(): ArrayList<Module> {
     return arrayListOf(MovieReviewsModule(requireContext()))
-  }
-
-  override fun onCreateView(
-    inflater: LayoutInflater, container: ViewGroup?,
-    savedInstanceState: Bundle?
-  ): View {
-    binding = FragmentMovieReviewsBinding.inflate(inflater, container, false)
-
-    return binding.root
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

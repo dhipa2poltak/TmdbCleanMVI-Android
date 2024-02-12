@@ -1,35 +1,23 @@
 package com.dpfht.tmdbcleanmvi.feature_movie_details
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import com.dpfht.tmdbcleanmvi.feature_movie_details.databinding.FragmentMovieDetailsBinding
 import com.dpfht.tmdbcleanmvi.feature_movie_details.di.MovieDetailsModule
 import com.dpfht.tmdbcleanmvi.framework.base.BaseFragment
-import com.dpfht.tmdbcleanmvi.framework.R as frameworkR
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.launch
 import toothpick.config.Module
 import toothpick.ktp.delegate.inject
+import com.dpfht.tmdbcleanmvi.framework.R as frameworkR
 
-class MovieDetailsFragment: BaseFragment<MovieDetailsState>() {
+class MovieDetailsFragment: BaseFragment<FragmentMovieDetailsBinding, MovieDetailsState>(R.layout.fragment_movie_details) {
 
-  private lateinit var binding: FragmentMovieDetailsBinding
   private val viewModel by inject<MovieDetailsViewModel>()
 
   override fun getModules(): ArrayList<Module> {
     return arrayListOf(MovieDetailsModule(requireContext()))
-  }
-
-  override fun onCreateView(
-    inflater: LayoutInflater, container: ViewGroup?,
-    savedInstanceState: Bundle?
-  ): View {
-    binding = FragmentMovieDetailsBinding.inflate(inflater, container, false)
-
-    return binding.root
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
