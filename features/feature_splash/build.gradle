@@ -48,4 +48,7 @@ dependencies {
 
   implementation Deps.toothpickKtp
   kapt Deps.toothpickCompiler
+
+  implementation Deps.lifecycleRuntime
+  implementation Deps.lifecycleViewModel
 }
