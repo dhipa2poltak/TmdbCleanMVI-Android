@@ -1,8 +1,6 @@
 package com.dpfht.tmdbcleanmvi
 
 import android.app.Application
-import android.content.Context
-import androidx.multidex.MultiDex
 import com.dpfht.tmdbcleanmvi.framework.Config
 import com.dpfht.tmdbcleanmvi.framework.di.AppModule
 import com.dpfht.tmdbcleanmvi.framework.di.NetworkModule
@@ -22,10 +20,5 @@ class TheApplication: Application() {
     KTP.openRootScope()
       .openSubScope("APPSCOPE")
       .installModules(NetworkModule(), AppModule(this@TheApplication))
-  }
-
-  override fun attachBaseContext(base: Context) {
-    super.attachBaseContext(base)
-    MultiDex.install(this)
   }
 }

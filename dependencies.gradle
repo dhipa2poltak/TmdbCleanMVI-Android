@@ -2,9 +2,9 @@
 ext {
 
   ConfigData = [
-      compileSdkVersion: 33,
-      minSdkVersion: 16,
-      targetSdkVersion: 33
+      compileSdkVersion: 34,
+      minSdkVersion: 21,
+      targetSdkVersion: 34
   ]
 
   Versions = [
@@ -25,11 +25,12 @@ ext {
       okhttpVersion: '4.9.3',
       navigationFragmentVersion: '2.5.3',
       navigationUIVersion: '2.5.3',
-      multidexVersion: '2.0.1',
       lifecycleRuntimeVersion: '2.4.0',
-      lifecycleViewmodelVersion: '2.4.0',
+      lifecycleViewModelVersion: '2.4.0',
+      activityKtx: '1.8.2',
       picassoVersion: '2.8',
       coroutinesCoreVersion: '1.6.4',
+      youtubePlayerCore: '12.1.0',
   ]
 
   Deps = [
@@ -50,10 +51,11 @@ ext {
       okhttp: "com.squareup.okhttp3:okhttp:${Versions.okhttpVersion}",
       navigationFragment: "androidx.navigation:navigation-fragment-ktx:${Versions.navigationFragmentVersion}",
       navigationUI: "androidx.navigation:navigation-ui-ktx:${Versions.navigationUIVersion}",
-      multidex: "androidx.multidex:multidex:${Versions.multidexVersion}",
       lifecycleRuntime: "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleRuntimeVersion}",
-      lifecycleViewmodel: "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleViewmodelVersion}",
+      lifecycleViewModel: "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleViewModelVersion}",
+      activityKtx: "androidx.activity:activity-ktx:${Versions.activityKtx}",
       picasso: "com.squareup.picasso:picasso:${Versions.picassoVersion}",
-      coroutinesCore: "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutinesCoreVersion}"
+      coroutinesCore: "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutinesCoreVersion}",
+      youtubePlayerCore: "com.pierfrancescosoffritti.androidyoutubeplayer:core:${Versions.youtubePlayerCore}",
   ]
 }

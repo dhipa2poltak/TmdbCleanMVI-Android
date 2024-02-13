@@ -5,6 +5,7 @@ plugins {
 }
 
 android {
+  namespace = "com.dpfht.tmdbcleanmvi.feature_movies_by_genre"
   compileSdk ConfigData.compileSdkVersion
 
   defaultConfig {
@@ -26,11 +27,11 @@ android {
     dataBinding true
   }
   compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_8
-    targetCompatibility JavaVersion.VERSION_1_8
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
   }
   kotlinOptions {
-    jvmTarget = '1.8'
+    jvmTarget = '17'
   }
 }
 
@@ -50,7 +51,7 @@ dependencies {
   kapt Deps.toothpickCompiler
 
   implementation Deps.lifecycleRuntime
-  implementation Deps.lifecycleViewmodel
+  implementation Deps.lifecycleViewModel
 
   implementation Deps.picasso
 }

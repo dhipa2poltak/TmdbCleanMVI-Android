@@ -1,12 +1,12 @@
 package com.dpfht.tmdbcleanmvi.feature_movie_trailer
 
+import androidx.lifecycle.viewModelScope
 import com.dpfht.tmdbcleanmvi.domain.entity.Result.Error
 import com.dpfht.tmdbcleanmvi.domain.entity.Result.Success
 import com.dpfht.tmdbcleanmvi.domain.entity.TrailerEntity
 import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieTrailerUseCase
 import com.dpfht.tmdbcleanmvi.feature_movie_trailer.MovieTrailerIntent.FetchTrailer
 import com.dpfht.tmdbcleanmvi.framework.base.BaseViewModel
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.consumeAsFlow
@@ -15,8 +15,7 @@ import java.util.Locale
 import javax.inject.Inject
 
 class MovieTrailerViewModel @Inject constructor(
-  private val getMovieTrailerUseCase: GetMovieTrailerUseCase,
-  private val scope: CoroutineScope
+  private val getMovieTrailerUseCase: GetMovieTrailerUseCase
 ): BaseViewModel<MovieTrailerIntent, MovieTrailerState>() {
 
   override val _state = MutableStateFlow(MovieTrailerState())
@@ -31,7 +30,7 @@ class MovieTrailerViewModel @Inject constructor(
   }
 
   private fun handlerIntent() {
-    scope.launch {
+    viewModelScope.launch {
       intents.consumeAsFlow().collect { intent ->
         when (intent) {
           FetchTrailer -> {
@@ -49,7 +48,7 @@ class MovieTrailerViewModel @Inject constructor(
   }
 
   private fun getMovieTrailer() {
-    scope.launch {
+    viewModelScope.launch {
       when (val result = getMovieTrailerUseCase(_movieId)) {
         is Success -> {
           onSuccess(result.value.results)
@@ -62,7 +61,7 @@ class MovieTrailerViewModel @Inject constructor(
   }
 
   private fun onSuccess(trailers: List<TrailerEntity>) {
-    scope.launch(Dispatchers.Main) {
+    viewModelScope.launch(Dispatchers.Main) {
       var keyVideo = ""
       for (trailer in trailers) {
         if (trailer.site.lowercase(Locale.ROOT).trim() == "youtube"
@@ -79,7 +78,7 @@ class MovieTrailerViewModel @Inject constructor(
   }
 
   private fun onError(message: String) {
-    scope.launch(Dispatchers.Main) {
+    viewModelScope.launch(Dispatchers.Main) {
       updateState { it.copy(errorMessage = message) }
     }
   }

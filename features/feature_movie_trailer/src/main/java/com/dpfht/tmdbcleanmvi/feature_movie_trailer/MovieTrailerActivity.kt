@@ -2,40 +2,37 @@ package com.dpfht.tmdbcleanmvi.feature_movie_trailer
 
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.dpfht.tmdbcleanmvi.feature_movie_trailer.databinding.ActivityMovieTrailerBinding
 import com.dpfht.tmdbcleanmvi.feature_movie_trailer.di.MovieTrailerModule
-import com.google.android.youtube.player.YouTubeBaseActivity
-import com.google.android.youtube.player.YouTubeInitializationResult
-import com.google.android.youtube.player.YouTubePlayer
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.isActive
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
 import kotlinx.coroutines.launch
 import toothpick.ktp.KTP
 import toothpick.ktp.delegate.inject
-import javax.inject.Inject
 
-class MovieTrailerActivity: YouTubeBaseActivity() {
+class MovieTrailerActivity: AppCompatActivity() {
 
   private lateinit var binding: ActivityMovieTrailerBinding
   private val viewModel by inject<MovieTrailerViewModel>()
 
-  @Inject
-  lateinit var scope: CoroutineScope
+  private lateinit var youTubePlayer: YouTubePlayer
 
   override fun onCreate(savedInstanceState: Bundle?) {
     KTP.openRootScope()
       .openSubScope("APPSCOPE")
+      .openSubScope("ActivityScope")
       .openSubScope(this)
-      .installModules(MovieTrailerModule(baseContext))
+      .installModules(MovieTrailerModule())
       .inject(this)
 
     super.onCreate(savedInstanceState)
     binding = ActivityMovieTrailerBinding.inflate(layoutInflater)
     setContentView(binding.root)
 
-    scope.launch {
+    lifecycleScope.launch {
       viewModel.state.collect {
         render(it)
       }
@@ -46,7 +43,7 @@ class MovieTrailerActivity: YouTubeBaseActivity() {
 
       viewModel.setMovieId(movieId)
 
-      scope.launch {
+      lifecycleScope.launch {
         viewModel.intents.send(MovieTrailerIntent.FetchTrailer)
       }
     }
@@ -61,48 +58,35 @@ class MovieTrailerActivity: YouTubeBaseActivity() {
       showErrorMessage(errorMessage)
     }
   }
-
   private fun showTrailer(keyVideo: String) {
-    scope.launch(Dispatchers.Main) {
-      binding.playerYoutube.initialize(
-        PlayerConfig.API_KEY,
-        object : YouTubePlayer.OnInitializedListener {
+    val iFramePlayerOptions = IFramePlayerOptions.Builder()
+      .controls(1)
+      .build()
 
-          override fun onInitializationSuccess(
-            p0: YouTubePlayer.Provider?,
-            youtubePlayer: YouTubePlayer?,
-            p2: Boolean
-          ) {
-            youtubePlayer?.loadVideo(keyVideo)
-            youtubePlayer?.play()
-          }
+    binding.youtubePlayerView.enableAutomaticInitialization = false
+    binding.youtubePlayerView.initialize(object : AbstractYouTubePlayerListener() {
+      override fun onReady(youTubePlayer: YouTubePlayer) {
+        super.onReady(youTubePlayer)
 
-          override fun onInitializationFailure(
-            p0: YouTubePlayer.Provider?,
-            p1: YouTubeInitializationResult?
-          ) {
-            Toast.makeText(
-              baseContext,
-              "error loading youtube video",
-              Toast.LENGTH_SHORT
-            ).show()
-          }
-        })
-    }
+        this@MovieTrailerActivity.youTubePlayer = youTubePlayer
+        youTubePlayer.loadVideo(keyVideo, 0f)
+      }
+    }, iFramePlayerOptions)
   }
 
   private fun showErrorMessage(message: String) {
     if (message.isNotEmpty()) {
-      scope.launch(Dispatchers.Main) {
-        Toast.makeText(this@MovieTrailerActivity, message, Toast.LENGTH_SHORT).show()
-      }
+      Toast.makeText(this@MovieTrailerActivity, message, Toast.LENGTH_SHORT).show()
     }
   }
 
-  override fun onDestroy() {
-    if (scope.isActive) {
-      scope.cancel()
-    }
-    super.onDestroy()
+  override fun onResume() {
+    super.onResume()
+    supportActionBar?.hide()
+  }
+
+  override fun onPause() {
+    super.onPause()
+    supportActionBar?.show()
   }
 }
