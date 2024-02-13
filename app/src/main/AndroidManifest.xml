@@ -10,15 +10,16 @@
       android:allowBackup="true"
       android:dataExtractionRules="@xml/data_extraction_rules"
       android:fullBackupContent="@xml/backup_rules"
-      android:icon="@mipmap/ic_launcher"
+      android:icon="@drawable/ic_app_launcher"
       android:label="${appName}${appNameSuffix}"
-      android:roundIcon="@mipmap/ic_launcher_round"
+      android:roundIcon="@drawable/ic_app_launcher"
       android:supportsRtl="true"
       android:theme="@style/Theme.TmdbMVI"
       tools:targetApi="31">
     <activity
         android:name="com.dpfht.tmdbcleanmvi.MainActivity"
-        android:exported="true">
+        android:exported="true"
+        android:screenOrientation="portrait">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 
@@ -28,7 +29,8 @@
     <activity
         android:name="com.dpfht.tmdbcleanmvi.feature_movie_trailer.MovieTrailerActivity"
         android:exported="false"
-        android:launchMode="singleInstance"/>
+        android:launchMode="singleInstance"
+        android:screenOrientation="portrait"/>
   </application>
 
   <queries>

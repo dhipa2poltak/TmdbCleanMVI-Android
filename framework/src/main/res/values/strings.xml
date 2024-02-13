@@ -4,6 +4,7 @@
   <string name="text_loading">loading…</string>
 
   <string name="title_movie_genres">Movie Genres</string>
+  <string name="content_desc_author">Image for review author</string>
 
   <string name="framework_text_error_connection">error in connection</string>
   <string name="framework_text_error_conversion">error in conversion</string>

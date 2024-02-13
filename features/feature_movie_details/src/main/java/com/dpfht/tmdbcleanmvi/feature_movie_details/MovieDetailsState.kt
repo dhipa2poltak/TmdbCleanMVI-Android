@@ -4,5 +4,6 @@ data class MovieDetailsState(
   val isLoading: Boolean = false,
   val title: String = "",
   val overview: String = "",
-  val imageUrl: String = ""
+  val imageUrl: String = "",
+  val genres: String = ""
 )

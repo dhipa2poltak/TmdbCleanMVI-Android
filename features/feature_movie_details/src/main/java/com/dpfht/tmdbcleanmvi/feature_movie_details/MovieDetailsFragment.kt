@@ -50,7 +50,7 @@ class MovieDetailsFragment: BaseFragment<FragmentMovieDetailsBinding, MovieDetai
   override fun render(state: MovieDetailsState) {
     with(state) {
       showLoading(isLoading)
-      showDetails(title, overview, imageUrl)
+      showDetails(title, overview, imageUrl, state.genres)
     }
   }
 
@@ -62,9 +62,10 @@ class MovieDetailsFragment: BaseFragment<FragmentMovieDetailsBinding, MovieDetai
     }
   }
 
-  private fun showDetails(title: String, overview: String, imageUrl: String) {
+  private fun showDetails(title: String, overview: String, imageUrl: String, genres: String) {
     binding.tvTitleMovie.text = title
     binding.tvDescMovie.text = overview
+    binding.tvGenresMovie.text = genres
 
     if (imageUrl.isNotEmpty()) {
       Picasso.get().load(imageUrl)

@@ -87,7 +87,16 @@ class MovieDetailsViewModel @Inject constructor(
       title = result.title
       overview = result.overview
 
-      updateState { it.copy(title = title, overview = overview, imageUrl =  imageUrl) }
+      var strGenres = ""
+      for (genre in result.genres) {
+        if (strGenres.isEmpty()) {
+          strGenres = genre.name
+        } else {
+          strGenres += ", ${genre.name}"
+        }
+      }
+
+      updateState { it.copy(title = title, overview = overview, imageUrl =  imageUrl, genres = strGenres) }
       updateState { it.copy(isLoading = false) }
     }
   }
