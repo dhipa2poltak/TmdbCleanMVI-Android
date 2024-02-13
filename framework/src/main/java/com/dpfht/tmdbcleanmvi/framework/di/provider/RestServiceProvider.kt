@@ -1,6 +1,6 @@
 package com.dpfht.tmdbcleanmvi.framework.di.provider
 
-import com.dpfht.tmdbcleanmvi.framework.data.core.api.rest.RestService
+import com.dpfht.tmdbcleanmvi.framework.data.datasource.remote.rest.RestService
 import retrofit2.Retrofit
 import javax.inject.Inject
 import javax.inject.Provider

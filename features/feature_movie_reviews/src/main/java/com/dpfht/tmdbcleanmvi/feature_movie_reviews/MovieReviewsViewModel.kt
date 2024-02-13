@@ -1,7 +1,7 @@
 package com.dpfht.tmdbcleanmvi.feature_movie_reviews
 
 import androidx.lifecycle.viewModelScope
-import com.dpfht.tmdbcleanmvi.domain.entity.Result.ErrorResult
+import com.dpfht.tmdbcleanmvi.domain.entity.Result.Error
 import com.dpfht.tmdbcleanmvi.domain.entity.Result.Success
 import com.dpfht.tmdbcleanmvi.domain.entity.ReviewEntity
 import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieReviewUseCase
@@ -68,7 +68,7 @@ class MovieReviewsViewModel @Inject constructor(
         is Success -> {
           onSuccess(result.value.results, result.value.page)
         }
-        is ErrorResult -> {
+        is Error -> {
           onError(result.message)
         }
       }

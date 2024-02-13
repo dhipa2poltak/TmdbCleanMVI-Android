@@ -21,7 +21,7 @@ class TheApplication: Application() {
 
     KTP.openRootScope()
       .openSubScope("APPSCOPE")
-      .installModules(NetworkModule(), AppModule())
+      .installModules(NetworkModule(), AppModule(this@TheApplication))
   }
 
   override fun attachBaseContext(base: Context) {

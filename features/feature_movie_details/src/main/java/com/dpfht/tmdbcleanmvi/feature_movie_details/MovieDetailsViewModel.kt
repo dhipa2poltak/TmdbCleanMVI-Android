@@ -2,7 +2,7 @@ package com.dpfht.tmdbcleanmvi.feature_movie_details
 
 import androidx.lifecycle.viewModelScope
 import com.dpfht.tmdbcleanmvi.domain.entity.MovieDetailsDomain
-import com.dpfht.tmdbcleanmvi.domain.entity.Result.ErrorResult
+import com.dpfht.tmdbcleanmvi.domain.entity.Result.Error
 import com.dpfht.tmdbcleanmvi.domain.entity.Result.Success
 import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieDetailsUseCase
 import com.dpfht.tmdbcleanmvi.feature_movie_details.MovieDetailsIntent.FetchDetails
@@ -69,7 +69,7 @@ class MovieDetailsViewModel @Inject constructor(
         is Success -> {
           onSuccess(result.value)
         }
-        is ErrorResult -> {
+        is Error -> {
           onError(result.message)
         }
       }

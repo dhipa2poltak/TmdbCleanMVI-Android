@@ -1,4 +1,4 @@
-package com.dpfht.tmdbcleanmvi.framework.data.core.api.rest
+package com.dpfht.tmdbcleanmvi.framework.data.datasource.remote.rest
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

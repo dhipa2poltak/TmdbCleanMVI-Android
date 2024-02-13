@@ -1,5 +1,6 @@
 package com.dpfht.tmdbcleanmvi.domain.usecase
 
+import com.dpfht.tmdbcleanmvi.domain.entity.AppException
 import com.dpfht.tmdbcleanmvi.domain.entity.ReviewDomain
 import com.dpfht.tmdbcleanmvi.domain.entity.Result
 import com.dpfht.tmdbcleanmvi.domain.repository.AppRepository
@@ -13,6 +14,10 @@ class GetMovieReviewUseCaseImpl @Inject constructor(
     movieId: Int,
     page: Int
   ): Result<ReviewDomain> {
-    return appRepository.getMovieReviews(movieId, page)
+    return try {
+      Result.Success(appRepository.getMovieReviews(movieId, page))
+    } catch (e: AppException) {
+      Result.Error(e.message)
+    }
   }
 }

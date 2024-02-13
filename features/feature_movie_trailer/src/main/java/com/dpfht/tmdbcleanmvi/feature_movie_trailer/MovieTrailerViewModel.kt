@@ -1,6 +1,6 @@
 package com.dpfht.tmdbcleanmvi.feature_movie_trailer
 
-import com.dpfht.tmdbcleanmvi.domain.entity.Result.ErrorResult
+import com.dpfht.tmdbcleanmvi.domain.entity.Result.Error
 import com.dpfht.tmdbcleanmvi.domain.entity.Result.Success
 import com.dpfht.tmdbcleanmvi.domain.entity.TrailerEntity
 import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieTrailerUseCase
@@ -54,7 +54,7 @@ class MovieTrailerViewModel @Inject constructor(
         is Success -> {
           onSuccess(result.value.results)
         }
-        is ErrorResult -> {
+        is Error -> {
           onError(result.message)
         }
       }
