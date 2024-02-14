@@ -17,7 +17,7 @@ class MovieDetailsFragment: BaseFragment<FragmentMovieDetailsBinding, MovieDetai
   private val viewModel by inject<MovieDetailsViewModel>()
 
   override fun getModules(): ArrayList<Module> {
-    return arrayListOf(MovieDetailsModule(requireContext()))
+    return arrayListOf(MovieDetailsModule())
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
