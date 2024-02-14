@@ -26,10 +26,6 @@ class MovieReviewsViewModel @Inject constructor(
 
   override val _state = MutableStateFlow(MovieReviewsState())
 
-  private var _movieId = -1
-  private var page = 0
-  private var isEmptyNextResponse = false
-
   init {
     handlerIntent()
   }
@@ -50,23 +46,25 @@ class MovieReviewsViewModel @Inject constructor(
   }
 
   fun setMovieId(movieId: Int) {
-    this._movieId = movieId
+    viewModelScope.launch {
+      updateState { it.copy(movieId = movieId) }
+    }
   }
 
   override fun start() {
-    if (_movieId != -1 && reviews.isEmpty()) {
+    if (state.value.movieId != -1 && reviews.isEmpty()) {
       getMovieReviews()
     }
   }
 
   private fun getMovieReviews() {
-    if (isEmptyNextResponse) return
+    if (state.value.isEmptyNextResponse) return
 
     viewModelScope.launch {
       withContext(Dispatchers.Main) { updateState { it.copy(isLoading = true) } }
       mIsLoadingData = true
 
-      when (val result = getMovieReviewUseCase(_movieId, page + 1)) {
+      when (val result = getMovieReviewUseCase(state.value.movieId, state.value.page + 1)) {
         is Success -> {
           onSuccess(result.value.results, result.value.page)
         }
@@ -80,14 +78,14 @@ class MovieReviewsViewModel @Inject constructor(
   private fun onSuccess(reviews: List<ReviewEntity>, page: Int) {
     viewModelScope.launch(Dispatchers.Main) {
       if (reviews.isNotEmpty()) {
-        this@MovieReviewsViewModel.page = page
+        updateState { it.copy(page = page) }
 
         for (review in reviews) {
           this@MovieReviewsViewModel.reviews.add(review)
           adapter.notifyItemInserted(this@MovieReviewsViewModel.reviews.size - 1)
         }
       } else {
-        isEmptyNextResponse = true
+        updateState { it.copy(isEmptyNextResponse = true) }
       }
 
       updateState { it.copy(isLoading = false) }
