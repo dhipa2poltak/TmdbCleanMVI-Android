@@ -14,7 +14,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "TmdbCleanMVI"
 include ':app'
-include ':core'
 include ':domain'
 include ':data'
 include ':framework'
