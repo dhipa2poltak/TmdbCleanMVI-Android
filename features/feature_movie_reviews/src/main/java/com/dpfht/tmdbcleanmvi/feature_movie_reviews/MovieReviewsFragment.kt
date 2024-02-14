@@ -5,24 +5,19 @@ import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.dpfht.tmdbcleanmvi.feature_movie_reviews.adapter.MovieReviewsAdapter
 import com.dpfht.tmdbcleanmvi.feature_movie_reviews.databinding.FragmentMovieReviewsBinding
 import com.dpfht.tmdbcleanmvi.feature_movie_reviews.di.MovieReviewsModule
 import com.dpfht.tmdbcleanmvi.framework.base.BaseFragment
 import kotlinx.coroutines.launch
 import toothpick.config.Module
 import toothpick.ktp.delegate.inject
-import javax.inject.Inject
 
 class MovieReviewsFragment: BaseFragment<FragmentMovieReviewsBinding, MovieReviewsState>(R.layout.fragment_movie_reviews) {
 
   private val viewModel by inject<MovieReviewsViewModel>()
 
-  @Inject
-  lateinit var adapter: MovieReviewsAdapter
-
   override fun getModules(): ArrayList<Module> {
-    return arrayListOf(MovieReviewsModule(requireContext()))
+    return arrayListOf(MovieReviewsModule())
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -32,7 +27,7 @@ class MovieReviewsFragment: BaseFragment<FragmentMovieReviewsBinding, MovieRevie
     layoutManager.orientation = LinearLayoutManager.VERTICAL
 
     binding.rvReview.layoutManager = layoutManager
-    binding.rvReview.adapter = adapter
+    binding.rvReview.adapter = viewModel.adapter
 
     binding.rvReview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
       override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -71,13 +66,6 @@ class MovieReviewsFragment: BaseFragment<FragmentMovieReviewsBinding, MovieRevie
   override fun render(state: MovieReviewsState) {
     with(state) {
       showLoading(isLoading)
-      notifyItemInserted(itemInserted)
-    }
-  }
-
-  private fun notifyItemInserted(position: Int) {
-    if (position > 0) {
-      adapter.notifyItemInserted(position)
     }
   }
 

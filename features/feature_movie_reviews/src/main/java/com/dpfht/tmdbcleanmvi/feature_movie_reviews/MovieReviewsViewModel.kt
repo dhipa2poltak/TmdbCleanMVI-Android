@@ -7,6 +7,7 @@ import com.dpfht.tmdbcleanmvi.domain.entity.ReviewEntity
 import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieReviewUseCase
 import com.dpfht.tmdbcleanmvi.feature_movie_reviews.MovieReviewsIntent.FetchNextReview
 import com.dpfht.tmdbcleanmvi.feature_movie_reviews.MovieReviewsIntent.FetchReview
+import com.dpfht.tmdbcleanmvi.feature_movie_reviews.adapter.MovieReviewsAdapter
 import com.dpfht.tmdbcleanmvi.framework.base.BaseViewModel
 import com.dpfht.tmdbcleanmvi.framework.navigation.NavigationService
 import kotlinx.coroutines.Dispatchers
@@ -19,6 +20,7 @@ import javax.inject.Inject
 class MovieReviewsViewModel @Inject constructor(
   private val getMovieReviewUseCase: GetMovieReviewUseCase,
   private val reviews: ArrayList<ReviewEntity>,
+  val adapter: MovieReviewsAdapter,
   private val navigationService: NavigationService
 ): BaseViewModel<MovieReviewsIntent, MovieReviewsState>() {
 
@@ -82,13 +84,13 @@ class MovieReviewsViewModel @Inject constructor(
 
         for (review in reviews) {
           this@MovieReviewsViewModel.reviews.add(review)
-          updateState { it.copy(itemInserted = this@MovieReviewsViewModel.reviews.size - 1) }
+          adapter.notifyItemInserted(this@MovieReviewsViewModel.reviews.size - 1)
         }
       } else {
         isEmptyNextResponse = true
       }
 
-      updateState { it.copy(isLoading = false, itemInserted = 0) }
+      updateState { it.copy(isLoading = false) }
       mIsLoadingData = false
     }
   }
