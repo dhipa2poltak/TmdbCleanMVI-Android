@@ -19,4 +19,8 @@ dependencies {
 
   implementation Deps.toothpickKtp
   kapt Deps.toothpickCompiler
+
+  testImplementation Deps.jUnit
+  testImplementation Deps.mockitoKotlin
+  testImplementation Deps.coroutinesTest
 }

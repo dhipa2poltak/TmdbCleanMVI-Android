@@ -1,0 +1,421 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/meyhnvssZOPPjud4F1CjOb4snET.jpg",
+      "genre_ids": [
+        16,
+        28,
+        12,
+        35,
+        10751
+      ],
+      "id": 940551,
+      "original_language": "en",
+      "original_title": "Migration",
+      "overview": "After a migrating duck family alights on their pond with thrilling tales of far-flung places, the Mallard family embarks on a family road trip, from New England, to New York City, to tropical Jamaica.",
+      "popularity": 1956.726,
+      "poster_path": "/jdy2fD277bKMgKvNJKZiTkF2aFg.jpg",
+      "release_date": "2023-12-06",
+      "title": "Migration",
+      "video": false,
+      "vote_average": 7.746,
+      "vote_count": 479
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/cnqwv5Uz3UW5f086IWbQKr3ksJr.jpg",
+      "genre_ids": [
+        28,
+        12,
+        14
+      ],
+      "id": 572802,
+      "original_language": "en",
+      "original_title": "Aquaman and the Lost Kingdom",
+      "overview": "Black Manta seeks revenge on Aquaman for his father's death. Wielding the Black Trident's power, he becomes a formidable foe. To defend Atlantis, Aquaman forges an alliance with his imprisoned brother. They must protect the kingdom.",
+      "popularity": 2050.435,
+      "poster_path": "/7lTnXOy0iNtBAdRP3TZvaKJ77F6.jpg",
+      "release_date": "2023-12-20",
+      "title": "Aquaman and the Lost Kingdom",
+      "video": false,
+      "vote_average": 6.998,
+      "vote_count": 1376
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/a0GM57AnJtNi7lMOCamniiyV10W.jpg",
+      "genre_ids": [
+        16,
+        12,
+        14
+      ],
+      "id": 508883,
+      "original_language": "ja",
+      "original_title": "君たちはどう生きるか",
+      "overview": "While the Second World War rages, the teenage Mahito, haunted by his mother's tragic death, is relocated from Tokyo to the serene rural home of his new stepmother Natsuko, a woman who bears a striking resemblance to the boy's mother. As he tries to adjust, this strange new world grows even stranger following the appearance of a persistent gray heron, who perplexes and bedevils Mahito, dubbing him the \"long-awaited one.\"",
+      "popularity": 825.615,
+      "poster_path": "/y9xS5NQTBnFjDoXhSFQeGxlmkoM.jpg",
+      "release_date": "2023-07-14",
+      "title": "The Boy and the Heron",
+      "video": false,
+      "vote_average": 7.462,
+      "vote_count": 907
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/upDUDOlpGBPGwV6A4vs0y2Whzg0.jpg",
+      "genre_ids": [
+        16,
+        28,
+        14,
+        12
+      ],
+      "id": 1230393,
+      "original_language": "ja",
+      "original_title": "MONSTERS 一百三情飛龍侍極",
+      "overview": "A samurai's path leads him to a young waitress whose hometown was destroyed by a dragon. He doesn't want any trouble — but it finds them anyway.",
+      "popularity": 473.376,
+      "poster_path": "/yG8QKnaiz7JoIMh3oxdm0JJN6IG.jpg",
+      "release_date": "2024-01-21",
+      "title": "Monsters 103 Mercies Dragon Damnation",
+      "video": false,
+      "vote_average": 8.119,
+      "vote_count": 42
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/gg4zZoTggZmpAQ32qIrP5dtnkEZ.jpg",
+      "genre_ids": [
+        28,
+        12,
+        53,
+        80,
+        18
+      ],
+      "id": 891699,
+      "original_language": "en",
+      "original_title": "Silent Night",
+      "overview": "A tormented father witnesses his young son die when caught in a gang's crossfire on Christmas Eve. While recovering from a wound that costs him his voice, he makes vengeance his life's mission and embarks on a punishing training regimen in order to avenge his son's death.",
+      "popularity": 372.089,
+      "poster_path": "/nJCP1ZNTPKlZ7S0Kv3gbmuraAT4.jpg",
+      "release_date": "2023-11-30",
+      "title": "Silent Night",
+      "video": false,
+      "vote_average": 6.2,
+      "vote_count": 389
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/jR7ugO72zsNoNTIyt1iwlNP2qm4.jpg",
+      "genre_ids": [
+        16,
+        10751,
+        35,
+        12
+      ],
+      "id": 519182,
+      "original_language": "en",
+      "original_title": "Despicable Me 4",
+      "overview": "Gru and Lucy and their girls — Margo, Edith and Agnes — welcome a new member to the Gru family, Gru Jr., who is intent on tormenting his dad. Gru faces a new nemesis in Maxime Le Mal and his femme fatale girlfriend Valentina, and the family is forced to go on the run.",
+      "popularity": 304.637,
+      "poster_path": "/hoJDI4mkP2w9WK2po5aZx3YIcLP.jpg",
+      "release_date": "2024-07-03",
+      "title": "Despicable Me 4",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/9QusGjxcYvfPD1THg6oW3RLeNn7.jpg",
+      "genre_ids": [
+        28,
+        12,
+        14
+      ],
+      "id": 297802,
+      "original_language": "en",
+      "original_title": "Aquaman",
+      "overview": "Once home to the most advanced civilization on Earth, Atlantis is now an underwater kingdom ruled by the po,wer-hungry King Orm. With a vast army at his disposal, Orm plans to conquer the remaining oceanic people and then the surface world. Standing in his way is Arthur Curry, Orm's half-human, half-Atlantean brother and true heir to the throne.",
+      "popularity": 348.719,
+      "poster_path": "/zdw7Wf97vsQ0YnGomxDqfcEdUjX.jpg",
+      "release_date": "2018-12-07",
+      "title": "Aquaman",
+      "video": false,
+      "vote_average": 6.902,
+      "vote_count": 13411
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/lnW8H1fNtzzI8OOrjZmXzMn5A0j.jpg",
+      "genre_ids": [
+        12,
+        10751,
+        878
+      ],
+      "id": 506517,
+      "original_language": "hr",
+      "original_title": "Moj dida je pao s Marsa",
+      "overview": "Una and an alien robot have 24 hours to find her Grandpa who was kidnapped by aliens. The extraordinary adventure leads to friendship, the rational robotic logic is replaced by emotions and Una's selfless love saves her partly alien family.",
+      "popularity": 303.408,
+      "poster_path": "/bWXH1kEDlLkHmn2R0udaspgVQSJ.jpg",
+      "release_date": "2019-03-21",
+      "title": "My Grandpa is an Alien",
+      "video": false,
+      "vote_average": 7.3,
+      "vote_count": 23
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/kjQBrc00fB2RjHZB3PGR4w9ibpz.jpg",
+      "genre_ids": [
+        28,
+        12,
+        878
+      ],
+      "id": 670292,
+      "original_language": "en",
+      "original_title": "The Creator",
+      "overview": "Amid a future war between the human race and the forces of artificial intelligence, a hardened ex-special forces agent grieving the disappearance of his wife, is recruited to hunt down and kill the Creator, the elusive architect of advanced AI who has developed a mysterious weapon with the power to end the war—and mankind itself.",
+      "popularity": 293.912,
+      "poster_path": "/vBZ0qvaRxqEhZwl6LWmruJqWE8Z.jpg",
+      "release_date": "2023-09-27",
+      "title": "The Creator",
+      "video": false,
+      "vote_average": 7.135,
+      "vote_count": 2125
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/58KBZ6EhPacJPHzhVnhwijROOkk.jpg",
+      "genre_ids": [
+        16,
+        12,
+        35,
+        10751
+      ],
+      "id": 1061855,
+      "original_language": "en",
+      "original_title": "Richard the Stork and the Mystery of the Great Jewel",
+      "overview": "Richard, a sparrow adopted by a stork family, is wintering at the Great Lake in Northern Africa. When he realises that he won’t be the one to lead his flock back North, Richard decides to travel on his own and crosses paths with Samia and her sparrow flock, who are being held captive by evil marabous under the control of greedy peacock Zamano. The only chance of freedom for the sparrows is to solve a riddle and find the Great Jewel, which will call upon teamwork, trust and most of all- spork (sparrow + stork) skills.",
+      "popularity": 236.575,
+      "poster_path": "/i2ITl0QHxZ4S0u12NK7Ddtm463k.jpg",
+      "release_date": "2023-03-23",
+      "title": "Richard the Stork and the Mystery of the Great Jewel",
+      "video": false,
+      "vote_average": 7.2,
+      "vote_count": 6
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/xFYpUmB01nswPgbzi8EOCT1ZYFu.jpg",
+      "genre_ids": [
+        12,
+        28,
+        18
+      ],
+      "id": 980489,
+      "original_language": "en",
+      "original_title": "Gran Turismo",
+      "overview": "The ultimate wish-fulfillment tale of a teenage Gran Turismo player whose gaming skills won him a series of Nissan competitions to become an actual professional racecar driver.",
+      "popularity": 249.629,
+      "poster_path": "/51tqzRtKMMZEYUpSYkrUE7v9ehm.jpg",
+      "release_date": "2023-08-09",
+      "title": "Gran Turismo",
+      "video": false,
+      "vote_average": 7.956,
+      "vote_count": 1895
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/mDfJG3LC3Dqb67AZ52x3Z0jU0uB.jpg",
+      "genre_ids": [
+        12,
+        28,
+        878
+      ],
+      "id": 299536,
+      "original_language": "en",
+      "original_title": "Avengers: Infinity War",
+      "overview": "As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain.",
+      "popularity": 236.055,
+      "poster_path": "/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg",
+      "release_date": "2018-04-25",
+      "title": "Avengers: Infinity War",
+      "video": false,
+      "vote_average": 8.251,
+      "vote_count": 28383
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/zgQQF04u3OgNBJqClRNby1FPz9s.jpg",
+      "genre_ids": [
+        16,
+        10751,
+        28,
+        878,
+        35,
+        18,
+        12
+      ],
+      "id": 893723,
+      "original_language": "en",
+      "original_title": "PAW Patrol: The Mighty Movie",
+      "overview": "A magical meteor crash lands in Adventure City and gives the PAW Patrol pups superpowers, transforming them into The Mighty Pups.",
+      "popularity": 225.6,
+      "poster_path": "/aTvePCU7exLepwg5hWySjwxojQK.jpg",
+      "release_date": "2023-09-21",
+      "title": "PAW Patrol: The Mighty Movie",
+      "video": false,
+      "vote_average": 7.075,
+      "vote_count": 319
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/bSvUW4JQ6g4QiKvwejcfcPRd4Ke.jpg",
+      "genre_ids": [
+        12,
+        35,
+        10751,
+        14
+      ],
+      "id": 118,
+      "original_language": "en",
+      "original_title": "Charlie and the Chocolate Factory",
+      "overview": "A young boy wins a tour through the most magnificent chocolate factory in the world, led by the world's most unusual candy maker.",
+      "popularity": 212.767,
+      "poster_path": "/wfGfxtBkhBzQfOZw4S8IQZgrH0a.jpg",
+      "release_date": "2005-07-13",
+      "title": "Charlie and the Chocolate Factory",
+      "video": false,
+      "vote_average": 7.049,
+      "vote_count": 14454
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/zUY1WawCBY8y6YBoiUCAmUorXfx.jpg",
+      "genre_ids": [
+        14,
+        28,
+        12
+      ],
+      "id": 528656,
+      "original_language": "zh",
+      "original_title": "战神纪",
+      "overview": "Temüjin and Börte are childhood lovers who are deeply in love; but news of Temüjin's father's death swiftly disrupted their relationship. Temüjin heads back to his hometown, but was faced with a sudden attack from his father's former comrades, causing his whole tribe to be destroyed.",
+      "popularity": 252.281,
+      "poster_path": "/FgFoX4wlZUT31ErGGzVnNlh8U3.jpg",
+      "release_date": "2018-04-28",
+      "title": "Genghis Khan",
+      "video": false,
+      "vote_average": 5.143,
+      "vote_count": 7
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/hziiv14OpD73u9gAak4XDDfBKa2.jpg",
+      "genre_ids": [
+        12,
+        14
+      ],
+      "id": 671,
+      "original_language": "en",
+      "original_title": "Harry Potter and the Philosopher's Stone",
+      "overview": "Harry Potter has lived under the stairs at his aunt and uncle's house his whole life. But on his 11th birthday, he learns he's a powerful wizard—with a place waiting for him at the Hogwarts School of Witchcraft and Wizardry. As he learns to harness his newfound powers with the help of the school's kindly headmaster, Harry uncovers the truth about his parents' deaths—and about the villain who's to blame.",
+      "popularity": 195.849,
+      "poster_path": "/wuMc08IPKEatf9rnMNXvIDxqP4W.jpg",
+      "release_date": "2001-11-16",
+      "title": "Harry Potter and the Philosopher's Stone",
+      "video": false,
+      "vote_average": 7.915,
+      "vote_count": 26058
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/xzdOIL7261CWehsHOk3lnP0xqam.jpg",
+      "genre_ids": [
+        28,
+        878,
+        12
+      ],
+      "id": 565770,
+      "original_language": "en",
+      "original_title": "Blue Beetle",
+      "overview": "Recent college grad Jaime Reyes returns home full of aspirations for his future, only to find that home is not quite as he left it. As he searches to find his purpose in the world, fate intervenes when Jaime unexpectedly finds himself in possession of an ancient relic of alien biotechnology: the Scarab.",
+      "popularity": 195.652,
+      "poster_path": "/mXLOHHc1Zeuwsl4xYKjKh2280oL.jpg",
+      "release_date": "2023-08-16",
+      "title": "Blue Beetle",
+      "video": false,
+      "vote_average": 6.876,
+      "vote_count": 2122
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/k63u1PAW8aL7hy1Rwtn0d0oy4rn.jpg",
+      "genre_ids": [
+        18,
+        12,
+        36
+      ],
+      "id": 9912,
+      "original_language": "en",
+      "original_title": "The World's Fastest Indian",
+      "overview": "The life story of New Zealander Burt Munro, who spent years building a 1920 Indian motorcycle—a bike which helped him set the land-speed world record at Utah's Bonneville Salt Flats in 1967.",
+      "popularity": 145.636,
+      "poster_path": "/i7obsEYXjo725H9vneFqxxUiZw7.jpg",
+      "release_date": "2005-10-12",
+      "title": "The World's Fastest Indian",
+      "video": false,
+      "vote_average": 7.626,
+      "vote_count": 668
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/uVu2fBc114un7F1GD76RBouWyBP.jpg",
+      "genre_ids": [
+        16,
+        10751,
+        35,
+        18,
+        12,
+        14
+      ],
+      "id": 1022789,
+      "original_language": "en",
+      "original_title": "Inside Out 2",
+      "overview": "Teenager Riley's mind headquarters is undergoing a sudden demolition to make room for something entirely unexpected: new Emotions! Joy, Sadness, Anger, Fear and Disgust, who’ve long been running a successful operation by all accounts, aren’t sure how to feel when Anxiety shows up. And it looks like she’s not alone.",
+      "popularity": 184.431,
+      "poster_path": "/q1P71jvmGuHjee9I4PgQKMCB1c9.jpg",
+      "release_date": "2024-06-13",
+      "title": "Inside Out 2",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/yKAg8z8T1iXeYA0Io3E4u9mchdt.jpg",
+      "genre_ids": [
+        28,
+        878,
+        12
+      ],
+      "id": 823464,
+      "original_language": "en",
+      "original_title": "Godzilla x Kong: The New Empire",
+      "overview": "Following their explosive showdown, Godzilla and Kong must reunite against a colossal undiscovered threat hidden within our world, challenging their very existence – and our own.",
+      "popularity": 188.892,
+      "poster_path": "/bQ2ywkchIiaKLSEaMrcT6e29f91.jpg",
+      "release_date": "2024-03-27",
+      "title": "Godzilla x Kong: The New Empire",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    }
+  ],
+  "total_pages": 1049,
+  "total_results": 20965
+}
