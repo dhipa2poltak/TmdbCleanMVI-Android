@@ -8,6 +8,7 @@ import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieByGenreUseCase
 import com.dpfht.tmdbcleanmvi.feature_movies_by_genre.MoviesByGenreIntent.FetchMovie
 import com.dpfht.tmdbcleanmvi.feature_movies_by_genre.MoviesByGenreIntent.FetchNextMovie
 import com.dpfht.tmdbcleanmvi.feature_movies_by_genre.MoviesByGenreIntent.NavigateToNextScreen
+import com.dpfht.tmdbcleanmvi.feature_movies_by_genre.adapter.MoviesByGenreAdapter
 import com.dpfht.tmdbcleanmvi.framework.base.BaseViewModel
 import com.dpfht.tmdbcleanmvi.framework.navigation.NavigationService
 import kotlinx.coroutines.Dispatchers
@@ -20,6 +21,7 @@ import javax.inject.Inject
 class MoviesByGenreViewModel @Inject constructor(
   private val getMovieByGenreUseCase: GetMovieByGenreUseCase,
   private val movies: ArrayList<MovieEntity>,
+  val adapter: MoviesByGenreAdapter,
   private val navigationService: NavigationService
 ): BaseViewModel<MoviesByGenreIntent, MoviesByGenreState>() {
 
@@ -86,13 +88,13 @@ class MoviesByGenreViewModel @Inject constructor(
 
         for (movie in movies) {
           this@MoviesByGenreViewModel.movies.add(movie)
-          updateState { it.copy(itemInserted = this@MoviesByGenreViewModel.movies.size - 1) }
+          adapter.notifyItemInserted(this@MoviesByGenreViewModel.movies.size - 1)
         }
       } else {
         isEmptyNextResponse = true
       }
 
-      updateState { it.copy(isLoading = false, itemInserted = 0) }
+      updateState { it.copy(isLoading = false) }
       mIsLoadingData = false
     }
   }

@@ -5,7 +5,6 @@ import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.dpfht.tmdbcleanmvi.feature_movies_by_genre.adapter.MoviesByGenreAdapter
 import com.dpfht.tmdbcleanmvi.feature_movies_by_genre.adapter.MoviesByGenreAdapter.OnClickMovieListener
 import com.dpfht.tmdbcleanmvi.feature_movies_by_genre.databinding.FragmentMoviesByGenreBinding
 import com.dpfht.tmdbcleanmvi.feature_movies_by_genre.di.MoviesByGenreModule
@@ -13,17 +12,13 @@ import com.dpfht.tmdbcleanmvi.framework.base.BaseFragment
 import kotlinx.coroutines.launch
 import toothpick.config.Module
 import toothpick.ktp.delegate.inject
-import javax.inject.Inject
 
 class MoviesByGenreFragment: BaseFragment<FragmentMoviesByGenreBinding, MoviesByGenreState>(R.layout.fragment_movies_by_genre) {
 
   private val viewModel by inject<MoviesByGenreViewModel>()
 
-  @Inject
-  lateinit var adapter: MoviesByGenreAdapter
-
   override fun getModules(): ArrayList<Module> {
-    return arrayListOf(MoviesByGenreModule(requireContext()))
+    return arrayListOf(MoviesByGenreModule())
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,9 +28,9 @@ class MoviesByGenreFragment: BaseFragment<FragmentMoviesByGenreBinding, MoviesBy
     layoutManager.orientation = LinearLayoutManager.VERTICAL
 
     binding.rvMoviesByGenre.layoutManager = layoutManager
-    binding.rvMoviesByGenre.adapter = adapter
+    binding.rvMoviesByGenre.adapter = viewModel.adapter
 
-    adapter.onClickMovieListener = object : OnClickMovieListener {
+    viewModel.adapter.onClickMovieListener = object : OnClickMovieListener {
       override fun onClickMovie(position: Int) {
         lifecycleScope.launch {
           viewModel.intents.send(MoviesByGenreIntent.NavigateToNextScreen(position))
@@ -81,13 +76,6 @@ class MoviesByGenreFragment: BaseFragment<FragmentMoviesByGenreBinding, MoviesBy
   override fun render(state: MoviesByGenreState) {
     with(state) {
       showLoading(isLoading)
-      notifyItemInserted(itemInserted)
-    }
-  }
-
-  private fun notifyItemInserted(position: Int) {
-    if (position > 0) {
-      adapter.notifyItemInserted(position)
     }
   }
 
