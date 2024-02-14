@@ -5,6 +5,7 @@ import com.dpfht.tmdbcleanmvi.domain.entity.GenreEntity
 import com.dpfht.tmdbcleanmvi.domain.entity.Result.Error
 import com.dpfht.tmdbcleanmvi.domain.entity.Result.Success
 import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieGenreUseCase
+import com.dpfht.tmdbcleanmvi.feature_genre.adapter.GenreAdapter
 import com.dpfht.tmdbcleanmvi.framework.base.BaseViewModel
 import com.dpfht.tmdbcleanmvi.framework.navigation.NavigationService
 import kotlinx.coroutines.Dispatchers
@@ -17,6 +18,7 @@ import javax.inject.Inject
 class GenreViewModel @Inject constructor(
   private val getMovieGenreUseCase: GetMovieGenreUseCase,
   private val genres: ArrayList<GenreEntity>,
+  val adapter: GenreAdapter,
   private val navigationService: NavigationService
 ): BaseViewModel<GenreIntent, GenreState>() {
 
@@ -66,10 +68,10 @@ class GenreViewModel @Inject constructor(
     viewModelScope.launch(Dispatchers.Main) {
       for (genre in genres) {
         this@GenreViewModel.genres.add(genre)
-        updateState { it.copy(itemInserted = this@GenreViewModel.genres.size - 1) }
+        adapter.notifyItemInserted(this@GenreViewModel.genres.size - 1)
       }
 
-      updateState { it.copy(isLoading = false, itemInserted = 0) }
+      updateState { it.copy(isLoading = false) }
     }
   }
 

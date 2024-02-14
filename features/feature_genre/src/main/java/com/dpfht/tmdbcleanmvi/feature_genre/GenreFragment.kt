@@ -12,17 +12,13 @@ import com.dpfht.tmdbcleanmvi.framework.base.BaseFragment
 import kotlinx.coroutines.launch
 import toothpick.config.Module
 import toothpick.ktp.delegate.inject
-import javax.inject.Inject
 
 class GenreFragment: BaseFragment<FragmentGenreBinding, GenreState>(R.layout.fragment_genre) {
 
   private val viewModel by inject<GenreViewModel>()
 
-  @Inject
-  lateinit var adapter: GenreAdapter
-
   override fun getModules(): ArrayList<Module> {
-    return arrayListOf(GenreModule(requireContext()))
+    return arrayListOf(GenreModule())
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,9 +29,9 @@ class GenreFragment: BaseFragment<FragmentGenreBinding, GenreState>(R.layout.fra
     layoutManager.orientation = LinearLayoutManager.VERTICAL
 
     binding.rvGenre.layoutManager = layoutManager
-    binding.rvGenre.adapter = adapter
+    binding.rvGenre.adapter = viewModel.adapter
 
-    adapter.onClickGenreListener = object : GenreAdapter.OnClickGenreListener {
+    viewModel.adapter.onClickGenreListener = object : GenreAdapter.OnClickGenreListener {
       override fun onClickGenre(position: Int) {
         lifecycleScope.launch {
           viewModel.intents.send(GenreIntent.NavigateToNextScreen(position))
@@ -57,13 +53,6 @@ class GenreFragment: BaseFragment<FragmentGenreBinding, GenreState>(R.layout.fra
   override fun render(state: GenreState) {
     with(state) {
       showLoading(isLoading)
-      notifyItemInserted(itemInserted)
-    }
-  }
-
-  private fun notifyItemInserted(position: Int) {
-    if (position > 0) {
-      adapter.notifyItemInserted(position)
     }
   }
 
