@@ -24,13 +24,10 @@ class MovieDetailsViewModel @Inject constructor(
 
   override val _state = MutableStateFlow(MovieDetailsState())
 
-  private var _movieId = -1
-  private var title = ""
-  private var overview = ""
-  private var imageUrl = ""
-
   fun setMovieId(movieId: Int) {
-    this._movieId = movieId
+    viewModelScope.launch {
+      updateState { it.copy(movieId = movieId) }
+    }
   }
 
   init {
@@ -45,10 +42,10 @@ class MovieDetailsViewModel @Inject constructor(
             start()
           }
           NavigateToReviewScreen -> {
-            navigateToMovieReviews(_movieId, title)
+            navigateToMovieReviews(state.value.movieId, state.value.title)
           }
           NavigateToTrailerScreen -> {
-            navigateToMovieTrailer(_movieId)
+            navigateToMovieTrailer(state.value.movieId)
           }
         }
       }
@@ -56,7 +53,7 @@ class MovieDetailsViewModel @Inject constructor(
   }
 
   override fun start() {
-    if (title.isEmpty()) {
+    if (state.value.title.isEmpty()) {
       getMovieDetails()
     }
   }
@@ -65,7 +62,7 @@ class MovieDetailsViewModel @Inject constructor(
     viewModelScope.launch {
       withContext(Dispatchers.Main) { updateState { it.copy(isLoading = true) } }
 
-      when (val result = getMovieDetailsUseCase(_movieId)) {
+      when (val result = getMovieDetailsUseCase(state.value.movieId)) {
         is Success -> {
           onSuccess(result.value)
         }
@@ -78,14 +75,10 @@ class MovieDetailsViewModel @Inject constructor(
 
   private fun onSuccess(result: MovieDetailsDomain) {
     viewModelScope.launch(Dispatchers.Main) {
-      imageUrl = ""
-      if (result.imageUrl.isNotEmpty()) {
-        imageUrl = result.imageUrl
-      }
-
-      _movieId = result.id
-      title = result.title
-      overview = result.overview
+      val imageUrl = result.imageUrl
+      val movieId = result.id
+      val title = result.title
+      val overview = result.overview
 
       var strGenres = ""
       for (genre in result.genres) {
@@ -96,7 +89,7 @@ class MovieDetailsViewModel @Inject constructor(
         }
       }
 
-      updateState { it.copy(title = title, overview = overview, imageUrl =  imageUrl, genres = strGenres) }
+      updateState { it.copy(movieId = movieId, title = title, overview = overview, imageUrl =  imageUrl, genres = strGenres) }
       updateState { it.copy(isLoading = false) }
     }
   }
