@@ -99,4 +99,9 @@ dependencies {
 
   implementation Deps.toothpickKtp
   kapt Deps.toothpickCompiler
+
+  testImplementation Deps.coroutinesTest
+  testImplementation Deps.mockitoKotlin
+  testImplementation Deps.coreTesting
+  testImplementation Deps.robolectric
 }
