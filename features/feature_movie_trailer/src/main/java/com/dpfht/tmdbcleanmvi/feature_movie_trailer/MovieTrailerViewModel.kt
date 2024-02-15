@@ -19,10 +19,11 @@ class MovieTrailerViewModel @Inject constructor(
 ): BaseViewModel<MovieTrailerIntent, MovieTrailerState>() {
 
   override val _state = MutableStateFlow(MovieTrailerState())
-  private var _movieId = -1
 
   fun setMovieId(movieId: Int) {
-    this._movieId = movieId
+    viewModelScope.launch {
+      updateState { it.copy(movieId = movieId) }
+    }
   }
 
   init {
@@ -42,14 +43,14 @@ class MovieTrailerViewModel @Inject constructor(
   }
 
   override fun start() {
-    if (_movieId != -1) {
+    if (state.value.movieId != -1) {
       getMovieTrailer()
     }
   }
 
   private fun getMovieTrailer() {
     viewModelScope.launch {
-      when (val result = getMovieTrailerUseCase(_movieId)) {
+      when (val result = getMovieTrailerUseCase(state.value.movieId)) {
         is Success -> {
           onSuccess(result.value.results)
         }

@@ -44,6 +44,10 @@ dependencies {
   implementation Deps.appCompat
   implementation Deps.material
   testImplementation Deps.jUnit
+  testImplementation Deps.coroutinesTest
+  testImplementation Deps.mockitoKotlin
+  testImplementation Deps.coreTesting
+  testImplementation Deps.mockitoInline
   androidTestImplementation Deps.jUnitExt
   androidTestImplementation Deps.espresso
 
