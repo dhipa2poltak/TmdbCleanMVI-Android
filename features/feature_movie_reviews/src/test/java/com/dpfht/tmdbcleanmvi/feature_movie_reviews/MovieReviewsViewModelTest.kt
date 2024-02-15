@@ -44,6 +44,13 @@ class MovieReviewsViewModelTest {
   @Mock
   private lateinit var navigationService: NavigationService
 
+  private val review1 = ReviewEntity(author = "author1", content = "content1")
+  private val review2 = ReviewEntity(author = "author2", content = "content2")
+  private val reviews = listOf(review1, review2)
+
+  private val movieId = 1
+  private val page = 1
+
   @Before
   fun setup() {
     Dispatchers.setMain(testDispatcher)
@@ -52,13 +59,6 @@ class MovieReviewsViewModelTest {
 
   @Test
   fun `fetch movie review successfully`() = runTest {
-    val review1 = ReviewEntity(author = "author1", content = "content1")
-    val review2 = ReviewEntity(author = "author2", content = "content2")
-    val reviews = listOf(review1, review2)
-
-    val movieId = 1
-    val page = 1
-
     val getMovieReviewResult = ReviewDomain(reviews)
     val result = Result.Success(getMovieReviewResult)
 
@@ -69,6 +69,34 @@ class MovieReviewsViewModelTest {
 
     verify(adapter, times(reviews.size)).notifyItemInserted(anyInt())
     assertTrue(!viewModel.state.value.isLoading)
+  }
+
+  @Test
+  fun `fetch next movie review successfully`() = runTest {
+    val getMovieReviewResult = ReviewDomain(reviews)
+    val result = Result.Success(getMovieReviewResult)
+
+    whenever(getMovieReviewUseCase.invoke(movieId, page)).thenReturn(result)
+
+    viewModel.setMovieId(movieId)
+    viewModel.intents.send(MovieReviewsIntent.FetchNextReview)
+
+    verify(adapter, times(reviews.size)).notifyItemInserted(anyInt())
+    assertTrue(!viewModel.state.value.isLoading)
+  }
+
+  @Test
+  fun `fetch next movie review successfully but empty`() = runTest {
+    val reviews = arrayListOf<ReviewEntity>()
+    val getMovieReviewResult = ReviewDomain(reviews)
+    val result = Result.Success(getMovieReviewResult)
+
+    whenever(getMovieReviewUseCase.invoke(movieId, page)).thenReturn(result)
+
+    viewModel.setMovieId(movieId)
+    viewModel.intents.send(MovieReviewsIntent.FetchNextReview)
+
+    assertTrue(viewModel.state.value.isEmptyNextResponse)
   }
 
   @Test
