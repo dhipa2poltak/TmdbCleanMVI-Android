@@ -27,10 +27,6 @@ class MoviesByGenreViewModel @Inject constructor(
 
   override val _state = MutableStateFlow(MoviesByGenreState())
 
-  private var _genreId = -1
-  private var page = 0
-  private var isEmptyNextResponse = false
-
   init {
     handlerIntent()
   }
@@ -54,23 +50,25 @@ class MoviesByGenreViewModel @Inject constructor(
   }
 
   fun setGenreId(genreId: Int) {
-    this._genreId = genreId
+    viewModelScope.launch {
+      updateState { it.copy(genreId = genreId) }
+    }
   }
 
   override fun start() {
-    if (_genreId != -1 && movies.isEmpty()) {
+    if (state.value.genreId != -1 && movies.isEmpty()) {
       getMoviesByGenre()
     }
   }
 
   private fun getMoviesByGenre() {
-    if (isEmptyNextResponse) return
+    if (state.value.isEmptyNextResponse) return
 
     viewModelScope.launch {
       withContext(Dispatchers.Main) { updateState { it.copy(isLoading = true) } }
       mIsLoadingData = true
 
-      when (val result = getMovieByGenreUseCase(_genreId, page + 1)) {
+      when (val result = getMovieByGenreUseCase(state.value.genreId, state.value.page + 1)) {
         is Success -> {
           onSuccess(result.value.results, result.value.page)
         }
@@ -84,14 +82,14 @@ class MoviesByGenreViewModel @Inject constructor(
   private fun onSuccess(movies: List<MovieEntity>, page: Int) {
     viewModelScope.launch(Dispatchers.Main) {
       if (movies.isNotEmpty()) {
-        this@MoviesByGenreViewModel.page = page
+        updateState { it.copy(page = page) }
 
         for (movie in movies) {
           this@MoviesByGenreViewModel.movies.add(movie)
           adapter.notifyItemInserted(this@MoviesByGenreViewModel.movies.size - 1)
         }
       } else {
-        isEmptyNextResponse = true
+        updateState { it.copy(isEmptyNextResponse = true) }
       }
 
       updateState { it.copy(isLoading = false) }
