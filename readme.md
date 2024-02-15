@@ -2,6 +2,7 @@
 
 **Technology Stack:**
 - Kotlin Programming Language
+- Clean Architecture
 - MVI Architecture Pattern
 - ViewModel
 - Coroutine
@@ -12,6 +13,8 @@
 - Retrofit REST + OkHttp
 - GSON Serialization
 - Picasso Image Loader
+- Unit Test: JUnit, Mockito, MockWebServer, Robolectric
+- Code Coverage: JaCoCo
 - All layouts are implemented using ConstraintLayout
 - Gradle build flavors
 - Proguard
