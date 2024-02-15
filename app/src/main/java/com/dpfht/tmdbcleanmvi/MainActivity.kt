@@ -7,7 +7,8 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.dpfht.tmdbcleanmvi.databinding.ActivityMainBinding
-import com.dpfht.tmdbcleanmvi.di.NavigationModule
+import com.dpfht.tmdbcleanmvi.navigation.di.NavigationModule
+import com.dpfht.tmdbcleanmvi.navigation.R as navigationR
 import toothpick.ktp.KTP
 
 class MainActivity : AppCompatActivity() {
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     setContentView(binding.root)
 
     val appBarConfiguration = AppBarConfiguration(
-      setOf(R.id.genreFragment)
+      setOf(navigationR.id.genreFragment)
     )
 
     val navHostFragment =

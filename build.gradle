@@ -42,7 +42,7 @@ tasks.register('codeCoverModules') {
 
     if (projectName != "domain" && projectName != "data" && projectName != "app") {
       if (projectName != "features") {
-        if (projectName == "framework") {
+        if (projectName == "framework" || projectName == "navigation") {
           dependsOn(":${projectName}:testDebugUnitTestCoverage")
         } else {
           dependsOn(":features:${projectName}:testDebugUnitTestCoverage")

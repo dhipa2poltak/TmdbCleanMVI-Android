@@ -5,7 +5,6 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.NavDeepLinkRequest
-import com.dpfht.tmdbcleanmvi.R
 import com.dpfht.tmdbcleanmvi.feature_movie_trailer.MovieTrailerActivity
 import com.dpfht.tmdbcleanmvi.framework.navigation.NavigationService
 import javax.inject.Inject

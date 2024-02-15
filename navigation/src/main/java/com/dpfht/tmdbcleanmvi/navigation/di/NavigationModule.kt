@@ -1,4 +1,4 @@
-package com.dpfht.tmdbcleanmvi.di
+package com.dpfht.tmdbcleanmvi.navigation.di
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
