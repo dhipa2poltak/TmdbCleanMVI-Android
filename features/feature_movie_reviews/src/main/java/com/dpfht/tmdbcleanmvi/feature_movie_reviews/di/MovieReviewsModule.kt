@@ -5,7 +5,7 @@ import com.dpfht.tmdbcleanmvi.domain.entity.ReviewEntity
 import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieReviewUseCase
 import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieReviewUseCaseImpl
 import com.dpfht.tmdbcleanmvi.feature_movie_reviews.adapter.MovieReviewsAdapter
-import com.dpfht.tmdbcleanmvi.framework.common.LoadingDialogProvider
+import com.dpfht.tmdbcleanmvi.framework.di.provider.LoadingDialogProvider
 import toothpick.config.Module
 import toothpick.ktp.binding.bind
 

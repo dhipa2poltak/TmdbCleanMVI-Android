@@ -1,4 +1,4 @@
-package com.dpfht.tmdbcleanmvi.framework.common
+package com.dpfht.tmdbcleanmvi.framework.di.provider
 
 import android.content.Context
 import androidx.appcompat.app.AlertDialog

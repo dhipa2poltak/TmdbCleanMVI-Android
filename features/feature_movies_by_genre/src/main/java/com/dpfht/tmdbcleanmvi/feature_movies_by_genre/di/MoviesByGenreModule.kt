@@ -4,7 +4,7 @@ import androidx.appcompat.app.AlertDialog
 import com.dpfht.tmdbcleanmvi.domain.entity.GenreEntity
 import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieByGenreUseCase
 import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieByGenreUseCaseImpl
-import com.dpfht.tmdbcleanmvi.framework.common.LoadingDialogProvider
+import com.dpfht.tmdbcleanmvi.framework.di.provider.LoadingDialogProvider
 import toothpick.config.Module
 import toothpick.ktp.binding.bind
 
