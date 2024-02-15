@@ -43,6 +43,8 @@ def setupKotlinReporting() {
             '**/*Subcomponent$Builder.class',
             '**/*Module_*Factory.class',
             '**/di/module/*',
+            '**/di/provider/*',
+            '**/di/*Provider*.*',
             '**/*_Factory*.*',
             '**/*Module*.*',
             '**/*Dagger*.*',
