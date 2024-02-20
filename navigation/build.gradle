@@ -60,6 +60,7 @@ dependencies {
 
   testImplementation Deps.coroutinesTest
   testImplementation Deps.mockitoKotlin
+  testImplementation Deps.mockitoInline
   testImplementation Deps.coreTesting
   testImplementation Deps.robolectric
 }
