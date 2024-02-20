@@ -5,13 +5,12 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-abstract class BaseViewModel<VI, VS>: ViewModel() {
+abstract class BaseViewModel<VI, VS>(viewState: VS): ViewModel() {
 
   val intents: Channel<VI> = Channel(Channel.UNLIMITED)
 
-  protected abstract val _state: MutableStateFlow<VS>
-  val state: StateFlow<VS>
-    get() = _state
+  protected val _state = MutableStateFlow(viewState)
+  val state: StateFlow<VS> = _state
 
   protected var mIsLoadingData = false
 
@@ -19,7 +18,7 @@ abstract class BaseViewModel<VI, VS>: ViewModel() {
 
   protected abstract fun start()
 
-  protected suspend fun updateState(handler: suspend (intent: VS) -> VS) {
+  protected fun updateState(handler: (intent: VS) -> VS) {
     _state.value = handler(state.value)
   }
 }

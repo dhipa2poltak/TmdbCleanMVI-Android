@@ -10,11 +10,8 @@ import com.dpfht.tmdbcleanmvi.feature_movie_reviews.MovieReviewsIntent.FetchRevi
 import com.dpfht.tmdbcleanmvi.feature_movie_reviews.adapter.MovieReviewsAdapter
 import com.dpfht.tmdbcleanmvi.framework.base.BaseViewModel
 import com.dpfht.tmdbcleanmvi.framework.navigation.NavigationService
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class MovieReviewsViewModel @Inject constructor(
@@ -22,9 +19,7 @@ class MovieReviewsViewModel @Inject constructor(
   private val reviews: ArrayList<ReviewEntity>,
   val adapter: MovieReviewsAdapter,
   private val navigationService: NavigationService
-): BaseViewModel<MovieReviewsIntent, MovieReviewsState>() {
-
-  override val _state = MutableStateFlow(MovieReviewsState())
+): BaseViewModel<MovieReviewsIntent, MovieReviewsState>(MovieReviewsState()) {
 
   init {
     handlerIntent()
@@ -46,9 +41,7 @@ class MovieReviewsViewModel @Inject constructor(
   }
 
   fun setMovieId(movieId: Int) {
-    viewModelScope.launch {
-      updateState { it.copy(movieId = movieId) }
-    }
+    updateState { it.copy(movieId = movieId) }
   }
 
   override fun start() {
@@ -60,8 +53,8 @@ class MovieReviewsViewModel @Inject constructor(
   private fun getMovieReviews() {
     if (state.value.isEmptyNextResponse) return
 
+    updateState { it.copy(isLoading = true) }
     viewModelScope.launch {
-      withContext(Dispatchers.Main) { updateState { it.copy(isLoading = true) } }
       mIsLoadingData = true
 
       when (val result = getMovieReviewUseCase(state.value.movieId, state.value.page + 1)) {
@@ -76,31 +69,27 @@ class MovieReviewsViewModel @Inject constructor(
   }
 
   private fun onSuccess(reviews: List<ReviewEntity>, page: Int) {
-    viewModelScope.launch(Dispatchers.Main) {
-      if (reviews.isNotEmpty()) {
-        updateState { it.copy(page = page) }
+    if (reviews.isNotEmpty()) {
+      updateState { it.copy(page = page) }
 
-        for (review in reviews) {
-          this@MovieReviewsViewModel.reviews.add(review)
-          adapter.notifyItemInserted(this@MovieReviewsViewModel.reviews.size - 1)
-        }
-      } else {
-        updateState { it.copy(isEmptyNextResponse = true) }
+      for (review in reviews) {
+        this@MovieReviewsViewModel.reviews.add(review)
+        adapter.notifyItemInserted(this@MovieReviewsViewModel.reviews.size - 1)
       }
-
-      updateState { it.copy(isLoading = false) }
-      mIsLoadingData = false
+    } else {
+      updateState { it.copy(isEmptyNextResponse = true) }
     }
+
+    updateState { it.copy(isLoading = false) }
+    mIsLoadingData = false
   }
 
   private fun onError(message: String) {
-    viewModelScope.launch(Dispatchers.Main) {
-      updateState { it.copy(isLoading = false) }
-      mIsLoadingData = false
+    updateState { it.copy(isLoading = false) }
+    mIsLoadingData = false
 
-      if (message.isNotEmpty()) {
-        navigationService.navigateToErrorMessage(message)
-      }
+    if (message.isNotEmpty()) {
+      navigationService.navigateToErrorMessage(message)
     }
   }
 }

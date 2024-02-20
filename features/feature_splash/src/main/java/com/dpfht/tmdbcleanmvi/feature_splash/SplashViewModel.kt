@@ -4,16 +4,13 @@ import androidx.lifecycle.viewModelScope
 import com.dpfht.tmdbcleanmvi.framework.base.BaseViewModel
 import com.dpfht.tmdbcleanmvi.framework.navigation.NavigationService
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class SplashViewModel @Inject constructor(
   private val navigationService: NavigationService
-): BaseViewModel<SplashIntent, SplashState>() {
-
-  override val _state = MutableStateFlow(SplashState())
+): BaseViewModel<SplashIntent, SplashState>(SplashState()) {
 
   init {
     handlerIntent()

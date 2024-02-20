@@ -11,11 +11,8 @@ import com.dpfht.tmdbcleanmvi.feature_movies_by_genre.MoviesByGenreIntent.Naviga
 import com.dpfht.tmdbcleanmvi.feature_movies_by_genre.adapter.MoviesByGenreAdapter
 import com.dpfht.tmdbcleanmvi.framework.base.BaseViewModel
 import com.dpfht.tmdbcleanmvi.framework.navigation.NavigationService
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class MoviesByGenreViewModel @Inject constructor(
@@ -23,9 +20,7 @@ class MoviesByGenreViewModel @Inject constructor(
   private val movies: ArrayList<MovieEntity>,
   val adapter: MoviesByGenreAdapter,
   private val navigationService: NavigationService
-): BaseViewModel<MoviesByGenreIntent, MoviesByGenreState>() {
-
-  override val _state = MutableStateFlow(MoviesByGenreState())
+): BaseViewModel<MoviesByGenreIntent, MoviesByGenreState>(MoviesByGenreState()) {
 
   init {
     handlerIntent()
@@ -50,9 +45,7 @@ class MoviesByGenreViewModel @Inject constructor(
   }
 
   fun setGenreId(genreId: Int) {
-    viewModelScope.launch {
-      updateState { it.copy(genreId = genreId) }
-    }
+    updateState { it.copy(genreId = genreId) }
   }
 
   override fun start() {
@@ -64,8 +57,8 @@ class MoviesByGenreViewModel @Inject constructor(
   private fun getMoviesByGenre() {
     if (state.value.isEmptyNextResponse) return
 
+    updateState { it.copy(isLoading = true) }
     viewModelScope.launch {
-      withContext(Dispatchers.Main) { updateState { it.copy(isLoading = true) } }
       mIsLoadingData = true
 
       when (val result = getMovieByGenreUseCase(state.value.genreId, state.value.page + 1)) {
@@ -80,31 +73,27 @@ class MoviesByGenreViewModel @Inject constructor(
   }
 
   private fun onSuccess(movies: List<MovieEntity>, page: Int) {
-    viewModelScope.launch(Dispatchers.Main) {
-      if (movies.isNotEmpty()) {
-        updateState { it.copy(page = page) }
+    if (movies.isNotEmpty()) {
+      updateState { it.copy(page = page) }
 
-        for (movie in movies) {
-          this@MoviesByGenreViewModel.movies.add(movie)
-          adapter.notifyItemInserted(this@MoviesByGenreViewModel.movies.size - 1)
-        }
-      } else {
-        updateState { it.copy(isEmptyNextResponse = true) }
+      for (movie in movies) {
+        this@MoviesByGenreViewModel.movies.add(movie)
+        adapter.notifyItemInserted(this@MoviesByGenreViewModel.movies.size - 1)
       }
-
-      updateState { it.copy(isLoading = false) }
-      mIsLoadingData = false
+    } else {
+      updateState { it.copy(isEmptyNextResponse = true) }
     }
+
+    updateState { it.copy(isLoading = false) }
+    mIsLoadingData = false
   }
 
   private fun onError(message: String) {
-    viewModelScope.launch(Dispatchers.Main) {
-      updateState { it.copy(isLoading = false) }
-      mIsLoadingData = false
+    updateState { it.copy(isLoading = false) }
+    mIsLoadingData = false
 
-      if (message.isNotEmpty()) {
-        navigationService.navigateToErrorMessage(message)
-      }
+    if (message.isNotEmpty()) {
+      navigationService.navigateToErrorMessage(message)
     }
   }
 

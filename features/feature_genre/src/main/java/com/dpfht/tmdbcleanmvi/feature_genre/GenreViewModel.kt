@@ -8,11 +8,8 @@ import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieGenreUseCase
 import com.dpfht.tmdbcleanmvi.feature_genre.adapter.GenreAdapter
 import com.dpfht.tmdbcleanmvi.framework.base.BaseViewModel
 import com.dpfht.tmdbcleanmvi.framework.navigation.NavigationService
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class GenreViewModel @Inject constructor(
@@ -20,9 +17,7 @@ class GenreViewModel @Inject constructor(
   private val genres: ArrayList<GenreEntity>,
   val adapter: GenreAdapter,
   private val navigationService: NavigationService
-): BaseViewModel<GenreIntent, GenreState>() {
-
-  override val _state = MutableStateFlow(GenreState())
+): BaseViewModel<GenreIntent, GenreState>(GenreState()) {
 
   init {
     handlerIntent()
@@ -50,9 +45,9 @@ class GenreViewModel @Inject constructor(
   }
 
   private fun getMovieGenre() {
-    viewModelScope.launch {
-      withContext(Dispatchers.Main) { updateState { it.copy(isLoading = true) } }
+    updateState { it.copy(isLoading = true) }
 
+    viewModelScope.launch {
       when (val result = getMovieGenreUseCase()) {
         is Success -> {
           onSuccess(result.value.genres)
@@ -65,23 +60,19 @@ class GenreViewModel @Inject constructor(
   }
 
   private fun onSuccess(genres: List<GenreEntity>) {
-    viewModelScope.launch(Dispatchers.Main) {
-      for (genre in genres) {
-        this@GenreViewModel.genres.add(genre)
-        adapter.notifyItemInserted(this@GenreViewModel.genres.size - 1)
-      }
-
-      updateState { it.copy(isLoading = false) }
+    for (genre in genres) {
+      this@GenreViewModel.genres.add(genre)
+      adapter.notifyItemInserted(this@GenreViewModel.genres.size - 1)
     }
+
+    updateState { it.copy(isLoading = false) }
   }
 
   private fun onError(message: String) {
-    viewModelScope.launch(Dispatchers.Main) {
-      updateState { it.copy(isLoading = false) }
+    updateState { it.copy(isLoading = false) }
 
-      if (message.isNotEmpty()) {
-        navigationService.navigateToErrorMessage(message)
-      }
+    if (message.isNotEmpty()) {
+      navigationService.navigateToErrorMessage(message)
     }
   }
 
