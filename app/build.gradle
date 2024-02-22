@@ -77,6 +77,7 @@ dependencies {
   implementation fileTree(dir: "libs", include: ["*.jar"])
   implementation project(':framework')
   implementation project(':navigation')
+  implementation project(":features:feature_movie_trailer")
 
   implementation Deps.coreKtx
   implementation Deps.appCompat
