@@ -2,7 +2,6 @@
   <!--<string name="app_name">TMDB Clean MVI</string>-->
 
   <string name="content_desc_author">Image for review author</string>
-  <string name="msg_loading_file">loading…</string>
   <string name="title_error">Error</string>
   <string name="canceled_message">api request is canceled</string>
 </resources>

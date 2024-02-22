@@ -9,4 +9,6 @@
   <string name="framework_text_error_connection">error in connection</string>
   <string name="framework_text_error_conversion">error in conversion</string>
   <string name="framework_text_error_http">http error</string>
+
+  <string name="msg_loading_file">loading…</string>
 </resources>
