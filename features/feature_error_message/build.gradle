@@ -1,6 +1,7 @@
 plugins {
   id 'com.android.library'
   id 'org.jetbrains.kotlin.android'
+  id 'kotlin-kapt'
 }
 
 android {
@@ -26,11 +27,11 @@ android {
     dataBinding true
   }
   compileOptions {
-    sourceCompatibility JavaVersion.VERSION_17
-    targetCompatibility JavaVersion.VERSION_17
+    sourceCompatibility ConfigData.sourceCompatibilityVersion
+    targetCompatibility ConfigData.targetCompatibilityVersion
   }
   kotlinOptions {
-    jvmTarget = '17'
+    jvmTarget = ConfigData.jvmTargetVersion
   }
 }
 
