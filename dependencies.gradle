@@ -22,6 +22,7 @@ ext {
       mockitoKotlin: '5.2.1',
       mockitoInline: '5.2.0',
       coreTesting: '2.2.0',
+      testCore: '1.5.0',
       javaxInjectVersion: '1@jar',
       toothpickKtpVersion: '3.1.0',
       toothpickCompilerVersion: '3.1.0',
@@ -39,7 +40,9 @@ ext {
       coroutinesCoreVersion: '1.6.4',
       youtubePlayerCore: '12.1.0',
       robolectric: '4.11.1',
-      mockWebServer: '4.10.0'
+      mockWebServer: '4.10.0',
+      chuckerLibrary: "4.0.0",
+      chuckerLibraryNoOp: "4.0.0"
   ]
 
   Deps = [
@@ -55,6 +58,7 @@ ext {
       mockitoKotlin: "org.mockito.kotlin:mockito-kotlin:${Versions.mockitoKotlin}",
       mockitoInline: "org.mockito:mockito-inline:${Versions.mockitoInline}",
       coreTesting: "androidx.arch.core:core-testing:${Versions.coreTesting}",
+      testCore: "androidx.test:core:${Versions.testCore}",
       toothpickKtp: "com.github.stephanenicolas.toothpick:ktp:${Versions.toothpickKtpVersion}",
       toothpickCompiler: "com.github.stephanenicolas.toothpick:toothpick-compiler:${Versions.toothpickCompilerVersion}",
       gson: "com.google.code.gson:gson:${Versions.gsonVersion}",
@@ -71,6 +75,8 @@ ext {
       coroutinesCore: "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutinesCoreVersion}",
       youtubePlayerCore: "com.pierfrancescosoffritti.androidyoutubeplayer:core:${Versions.youtubePlayerCore}",
       robolectric: "org.robolectric:robolectric:${Versions.robolectric}",
-      mockWebServer: "com.squareup.okhttp3:mockwebserver:${Versions.mockWebServer}"
+      mockWebServer: "com.squareup.okhttp3:mockwebserver:${Versions.mockWebServer}",
+      chuckerLibrary: "com.github.chuckerteam.chucker:library:${Versions.chuckerLibrary}",
+      chuckerLibraryNoOp: "com.github.chuckerteam.chucker:library-no-op:${Versions.chuckerLibraryNoOp}"
   ]
 }

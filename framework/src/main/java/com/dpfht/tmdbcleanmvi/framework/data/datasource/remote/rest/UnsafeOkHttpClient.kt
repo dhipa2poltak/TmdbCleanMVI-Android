@@ -1,5 +1,8 @@
 package com.dpfht.tmdbcleanmvi.framework.data.datasource.remote.rest
 
+import android.content.Context
+import com.chuckerteam.chucker.api.ChuckerCollector
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import java.security.SecureRandom
@@ -11,7 +14,7 @@ import javax.net.ssl.X509TrustManager
 
 object UnsafeOkHttpClient {
 
-  fun getUnsafeOkHttpClient(): OkHttpClient {
+  fun getUnsafeOkHttpClient(context: Context): OkHttpClient {
     return try {
       // Create a trust manager that does not validate certificate chains
       val trustAllCerts =
@@ -54,8 +57,17 @@ object UnsafeOkHttpClient {
       val httpLoggingInterceptor = HttpLoggingInterceptor()
       httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
-      builder.addInterceptor(httpLoggingInterceptor)
+      val chuckerInterceptor = ChuckerInterceptor.Builder(context)
+        .collector(ChuckerCollector(context))
+        .maxContentLength(250000L)
+        .redactHeaders("Authorization"/*, "Bearer"*/) // Optional
+        .alwaysReadResponseBody(true)
+        .build()
+
       builder.addInterceptor(AuthInterceptor())
+      builder.addInterceptor(chuckerInterceptor)
+      builder.addInterceptor(httpLoggingInterceptor)
+
       builder.build()
     } catch (e: Exception) {
       throw RuntimeException(e)

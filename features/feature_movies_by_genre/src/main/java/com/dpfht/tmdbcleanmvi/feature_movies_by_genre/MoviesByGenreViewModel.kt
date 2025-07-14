@@ -1,9 +1,9 @@
 package com.dpfht.tmdbcleanmvi.feature_movies_by_genre
 
 import androidx.lifecycle.viewModelScope
-import com.dpfht.tmdbcleanmvi.domain.entity.MovieEntity
-import com.dpfht.tmdbcleanmvi.domain.entity.Result.Error
-import com.dpfht.tmdbcleanmvi.domain.entity.Result.Success
+import com.dpfht.tmdbcleanmvi.domain.model.Movie
+import com.dpfht.tmdbcleanmvi.domain.model.Result.Error
+import com.dpfht.tmdbcleanmvi.domain.model.Result.Success
 import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieByGenreUseCase
 import com.dpfht.tmdbcleanmvi.feature_movies_by_genre.MoviesByGenreIntent.FetchMovie
 import com.dpfht.tmdbcleanmvi.feature_movies_by_genre.MoviesByGenreIntent.FetchNextMovie
@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 class MoviesByGenreViewModel @Inject constructor(
   private val getMovieByGenreUseCase: GetMovieByGenreUseCase,
-  private val movies: ArrayList<MovieEntity>,
+  private val movies: ArrayList<Movie>,
   val adapter: MoviesByGenreAdapter,
   private val navigationService: NavigationService
 ): BaseViewModel<MoviesByGenreIntent, MoviesByGenreState>(MoviesByGenreState()) {
@@ -72,7 +72,7 @@ class MoviesByGenreViewModel @Inject constructor(
     }
   }
 
-  private fun onSuccess(movies: List<MovieEntity>, page: Int) {
+  private fun onSuccess(movies: List<Movie>, page: Int) {
     if (movies.isNotEmpty()) {
       updateState { it.copy(page = page) }
 

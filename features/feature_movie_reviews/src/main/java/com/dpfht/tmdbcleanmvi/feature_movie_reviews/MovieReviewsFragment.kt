@@ -65,6 +65,11 @@ class MovieReviewsFragment: BaseFragment<FragmentMovieReviewsBinding, MovieRevie
 
   override fun render(state: MovieReviewsState) {
     with(state) {
+      binding.tvNoReview.visibility = if (isNoReviews) {
+        View.VISIBLE
+      } else {
+        View.GONE
+      }
       showLoading(isLoading)
     }
   }

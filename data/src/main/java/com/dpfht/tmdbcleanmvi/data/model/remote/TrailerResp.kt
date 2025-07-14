@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 
 @Keep
 @Suppress("unused")
-data class Trailer(
+data class TrailerResp(
     val id: String? = "",
 
     @SerializedName("iso_639_1")

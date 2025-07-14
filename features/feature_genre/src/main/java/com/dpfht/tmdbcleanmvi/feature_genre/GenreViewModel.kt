@@ -1,9 +1,9 @@
 package com.dpfht.tmdbcleanmvi.feature_genre
 
 import androidx.lifecycle.viewModelScope
-import com.dpfht.tmdbcleanmvi.domain.entity.GenreEntity
-import com.dpfht.tmdbcleanmvi.domain.entity.Result.Error
-import com.dpfht.tmdbcleanmvi.domain.entity.Result.Success
+import com.dpfht.tmdbcleanmvi.domain.model.Genre
+import com.dpfht.tmdbcleanmvi.domain.model.Result.Error
+import com.dpfht.tmdbcleanmvi.domain.model.Result.Success
 import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieGenreUseCase
 import com.dpfht.tmdbcleanmvi.feature_genre.adapter.GenreAdapter
 import com.dpfht.tmdbcleanmvi.framework.base.BaseViewModel
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 class GenreViewModel @Inject constructor(
   private val getMovieGenreUseCase: GetMovieGenreUseCase,
-  private val genres: ArrayList<GenreEntity>,
+  private val genres: ArrayList<Genre>,
   val adapter: GenreAdapter,
   private val navigationService: NavigationService
 ): BaseViewModel<GenreIntent, GenreState>(GenreState()) {
@@ -59,7 +59,7 @@ class GenreViewModel @Inject constructor(
     }
   }
 
-  private fun onSuccess(genres: List<GenreEntity>) {
+  private fun onSuccess(genres: List<Genre>) {
     for (genre in genres) {
       this@GenreViewModel.genres.add(genre)
       adapter.notifyItemInserted(this@GenreViewModel.genres.size - 1)

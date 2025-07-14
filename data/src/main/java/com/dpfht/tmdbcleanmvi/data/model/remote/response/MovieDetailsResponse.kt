@@ -2,12 +2,12 @@ package com.dpfht.tmdbcleanmvi.data.model.remote.response
 
 import androidx.annotation.Keep
 import com.dpfht.tmdbcleanmvi.data.Constants
-import com.dpfht.tmdbcleanmvi.data.model.remote.Genre
-import com.dpfht.tmdbcleanmvi.data.model.remote.ProductionCompany
-import com.dpfht.tmdbcleanmvi.data.model.remote.ProductionCountry
-import com.dpfht.tmdbcleanmvi.data.model.remote.SpokenLanguage
+import com.dpfht.tmdbcleanmvi.data.model.remote.GenreResp
+import com.dpfht.tmdbcleanmvi.data.model.remote.ProductionCompanyResp
+import com.dpfht.tmdbcleanmvi.data.model.remote.ProductionCountryResp
+import com.dpfht.tmdbcleanmvi.data.model.remote.SpokenLanguageResp
 import com.dpfht.tmdbcleanmvi.data.model.remote.toDomain
-import com.dpfht.tmdbcleanmvi.domain.entity.MovieDetailsDomain
+import com.dpfht.tmdbcleanmvi.domain.model.MovieDetailsModel
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
@@ -26,7 +26,7 @@ data class MovieDetailsResponse(
     val belongsToCollection: Any? = null,
 
     val budget: Int? = -1,
-    val genres: List<Genre>? = listOf(),
+    val genres: List<GenreResp>? = listOf(),
     val homepage: String? = "",
     val id: Int? = -1,
 
@@ -51,11 +51,11 @@ data class MovieDetailsResponse(
 
     @SerializedName("production_companies")
     @Expose
-    val productionCompanies: List<ProductionCompany>? = listOf(),
+    val productionCompanies: List<ProductionCompanyResp>? = listOf(),
 
     @SerializedName("production_countries")
     @Expose
-    val productionCountries: List<ProductionCountry>? = listOf(),
+    val productionCountries: List<ProductionCountryResp>? = listOf(),
 
     @SerializedName("release_date")
     @Expose
@@ -66,7 +66,7 @@ data class MovieDetailsResponse(
 
     @SerializedName("spoken_languages")
     @Expose
-    val spokenLanguages: List<SpokenLanguage>? = listOf(),
+    val spokenLanguages: List<SpokenLanguageResp>? = listOf(),
 
     val status: String? = "",
     val tagline: String? = "",
@@ -82,8 +82,8 @@ data class MovieDetailsResponse(
     val voteCount: Int? = 0
 )
 
-fun MovieDetailsResponse.toDomain(): MovieDetailsDomain {
-    return MovieDetailsDomain(
+fun MovieDetailsResponse.toDomain(): MovieDetailsModel {
+    return MovieDetailsModel(
         id ?: -1,
         title ?: "",
         overview ?: "",

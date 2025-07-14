@@ -1,9 +1,9 @@
 package com.dpfht.tmdbcleanmvi.feature_movie_reviews
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.dpfht.tmdbcleanmvi.domain.entity.ReviewDomain
-import com.dpfht.tmdbcleanmvi.domain.entity.ReviewEntity
-import com.dpfht.tmdbcleanmvi.domain.entity.Result
+import com.dpfht.tmdbcleanmvi.domain.model.ReviewModel
+import com.dpfht.tmdbcleanmvi.domain.model.Review
+import com.dpfht.tmdbcleanmvi.domain.model.Result
 import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieReviewUseCase
 import com.dpfht.tmdbcleanmvi.feature_movie_reviews.adapter.MovieReviewsAdapter
 import com.dpfht.tmdbcleanmvi.framework.navigation.NavigationService
@@ -44,8 +44,8 @@ class MovieReviewsViewModelTest {
   @Mock
   private lateinit var navigationService: NavigationService
 
-  private val review1 = ReviewEntity(author = "author1", content = "content1")
-  private val review2 = ReviewEntity(author = "author2", content = "content2")
+  private val review1 = Review(author = "author1", content = "content1")
+  private val review2 = Review(author = "author2", content = "content2")
   private val reviews = listOf(review1, review2)
 
   private val movieId = 1
@@ -59,7 +59,7 @@ class MovieReviewsViewModelTest {
 
   @Test
   fun `fetch movie review successfully`() = runTest {
-    val getMovieReviewResult = ReviewDomain(reviews)
+    val getMovieReviewResult = ReviewModel(reviews)
     val result = Result.Success(getMovieReviewResult)
 
     whenever(getMovieReviewUseCase.invoke(movieId, page)).thenReturn(result)
@@ -73,7 +73,7 @@ class MovieReviewsViewModelTest {
 
   @Test
   fun `fetch next movie review successfully`() = runTest {
-    val getMovieReviewResult = ReviewDomain(reviews)
+    val getMovieReviewResult = ReviewModel(reviews)
     val result = Result.Success(getMovieReviewResult)
 
     whenever(getMovieReviewUseCase.invoke(movieId, page)).thenReturn(result)
@@ -87,8 +87,8 @@ class MovieReviewsViewModelTest {
 
   @Test
   fun `fetch next movie review successfully but empty`() = runTest {
-    val reviews = arrayListOf<ReviewEntity>()
-    val getMovieReviewResult = ReviewDomain(reviews)
+    val reviews = arrayListOf<Review>()
+    val getMovieReviewResult = ReviewModel(reviews)
     val result = Result.Success(getMovieReviewResult)
 
     whenever(getMovieReviewUseCase.invoke(movieId, page)).thenReturn(result)

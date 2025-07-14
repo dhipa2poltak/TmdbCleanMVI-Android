@@ -1,9 +1,9 @@
 package com.dpfht.tmdbcleanmvi.feature_movie_details
 
 import androidx.lifecycle.viewModelScope
-import com.dpfht.tmdbcleanmvi.domain.entity.MovieDetailsDomain
-import com.dpfht.tmdbcleanmvi.domain.entity.Result.Error
-import com.dpfht.tmdbcleanmvi.domain.entity.Result.Success
+import com.dpfht.tmdbcleanmvi.domain.model.MovieDetailsModel
+import com.dpfht.tmdbcleanmvi.domain.model.Result.Error
+import com.dpfht.tmdbcleanmvi.domain.model.Result.Success
 import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieDetailsUseCase
 import com.dpfht.tmdbcleanmvi.feature_movie_details.MovieDetailsIntent.FetchDetails
 import com.dpfht.tmdbcleanmvi.feature_movie_details.MovieDetailsIntent.NavigateToReviewScreen
@@ -66,7 +66,7 @@ class MovieDetailsViewModel @Inject constructor(
     }
   }
 
-  private fun onSuccess(result: MovieDetailsDomain) {
+  private fun onSuccess(result: MovieDetailsModel) {
     val imageUrl = result.imageUrl
     val movieId = result.id
     val title = result.title

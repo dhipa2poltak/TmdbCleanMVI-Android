@@ -1,9 +1,9 @@
 package com.dpfht.tmdbcleanmvi.domain.usecase
 
-import com.dpfht.tmdbcleanmvi.domain.entity.AppException
-import com.dpfht.tmdbcleanmvi.domain.entity.DiscoverMovieByGenreDomain
-import com.dpfht.tmdbcleanmvi.domain.entity.MovieEntity
-import com.dpfht.tmdbcleanmvi.domain.entity.Result
+import com.dpfht.tmdbcleanmvi.domain.model.AppException
+import com.dpfht.tmdbcleanmvi.domain.model.DiscoverMovieByGenreModel
+import com.dpfht.tmdbcleanmvi.domain.model.Movie
+import com.dpfht.tmdbcleanmvi.domain.model.Result
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertTrue
@@ -37,15 +37,15 @@ class GetMovieByGenreUseCaseTest: BaseUseCaseTest() {
 
   @Test
   fun `fetch movie successfully`() = runTest {
-    val movie1 = MovieEntity(id = 1, title = "title1", overview = "overview1")
-    val movie2 = MovieEntity(id = 2, title = "title2", overview = "overview2")
-    val movie3 = MovieEntity(id = 3, title = "title3", overview = "overview3")
+    val movie1 = Movie(id = 1, title = "title1", overview = "overview1")
+    val movie2 = Movie(id = 2, title = "title2", overview = "overview2")
+    val movie3 = Movie(id = 3, title = "title3", overview = "overview3")
 
     val genreId = 1
     val page = 1
 
     val movies = listOf(movie1, movie2, movie3)
-    val getMovieByGenreData = DiscoverMovieByGenreDomain(page, movies)
+    val getMovieByGenreData = DiscoverMovieByGenreModel(page, movies)
 
     whenever(appRepository.getMoviesByGenre("$genreId", page)).thenReturn(getMovieByGenreData)
 

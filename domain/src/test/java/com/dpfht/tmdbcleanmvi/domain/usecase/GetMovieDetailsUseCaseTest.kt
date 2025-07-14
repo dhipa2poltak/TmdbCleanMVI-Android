@@ -1,9 +1,9 @@
 package com.dpfht.tmdbcleanmvi.domain.usecase
 
-import com.dpfht.tmdbcleanmvi.domain.entity.AppException
-import com.dpfht.tmdbcleanmvi.domain.entity.GenreEntity
-import com.dpfht.tmdbcleanmvi.domain.entity.MovieDetailsDomain
-import com.dpfht.tmdbcleanmvi.domain.entity.Result
+import com.dpfht.tmdbcleanmvi.domain.model.AppException
+import com.dpfht.tmdbcleanmvi.domain.model.Genre
+import com.dpfht.tmdbcleanmvi.domain.model.MovieDetailsModel
+import com.dpfht.tmdbcleanmvi.domain.model.Result
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertTrue
@@ -40,9 +40,9 @@ class GetMovieDetailsUseCaseTest: BaseUseCaseTest() {
     val posterPath = "poster_path1"
     val genreName1 = "Action"
     val genreName2 = "Drama"
-    val genres = listOf(GenreEntity(10, genreName1), GenreEntity(11, genreName2))
+    val genres = listOf(Genre(10, genreName1), Genre(11, genreName2))
 
-    val movieDetailsData = MovieDetailsDomain(
+    val movieDetailsData = MovieDetailsModel(
       id = movieId,
       title = title,
       overview = overview,

@@ -1,11 +1,11 @@
 package com.dpfht.tmdbcleanmvi.domain.usecase
 
-import com.dpfht.tmdbcleanmvi.domain.entity.Result
-import com.dpfht.tmdbcleanmvi.domain.entity.MovieDetailsDomain
+import com.dpfht.tmdbcleanmvi.domain.model.Result
+import com.dpfht.tmdbcleanmvi.domain.model.MovieDetailsModel
 
 interface GetMovieDetailsUseCase {
 
   suspend operator fun invoke(
     movieId: Int
-  ): Result<MovieDetailsDomain>
+  ): Result<MovieDetailsModel>
 }

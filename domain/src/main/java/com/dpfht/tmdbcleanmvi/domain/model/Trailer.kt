@@ -1,6 +1,6 @@
-package com.dpfht.tmdbcleanmvi.domain.entity
+package com.dpfht.tmdbcleanmvi.domain.model
 
-data class TrailerEntity(
+data class Trailer(
   val id: String = "",
   val key: String = "",
   val name: String = "",

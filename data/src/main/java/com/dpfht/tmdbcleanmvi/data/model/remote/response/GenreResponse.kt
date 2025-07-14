@@ -1,17 +1,17 @@
 package com.dpfht.tmdbcleanmvi.data.model.remote.response
 
 import androidx.annotation.Keep
-import com.dpfht.tmdbcleanmvi.data.model.remote.Genre
-import com.dpfht.tmdbcleanmvi.domain.entity.GenreDomain
-import com.dpfht.tmdbcleanmvi.domain.entity.GenreEntity
+import com.dpfht.tmdbcleanmvi.data.model.remote.GenreResp
+import com.dpfht.tmdbcleanmvi.domain.model.GenreModel
+import com.dpfht.tmdbcleanmvi.domain.model.Genre
 
 @Keep
 data class GenreResponse(
-    val genres: List<Genre>? = listOf()
+    val genres: List<GenreResp>? = listOf()
 )
 
-fun GenreResponse.toDomain(): GenreDomain {
-    val genreEntities = genres?.map { GenreEntity(it.id ?: -1, it.name ?: "") }
+fun GenreResponse.toDomain(): GenreModel {
+    val genreEntities = genres?.map { Genre(it.id ?: -1, it.name ?: "") }
 
-    return GenreDomain(genreEntities?.toList() ?: listOf())
+    return GenreModel(genreEntities?.toList() ?: listOf())
 }

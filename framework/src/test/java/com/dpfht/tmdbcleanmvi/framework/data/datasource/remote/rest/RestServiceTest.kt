@@ -1,6 +1,8 @@
 package com.dpfht.tmdbcleanmvi.framework.data.datasource.remote.rest
 
+import android.content.Context
 import android.net.Uri
+import androidx.test.core.app.ApplicationProvider
 import com.dpfht.tmdbcleanmvi.data.Constants
 import com.google.gson.Gson
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -27,13 +29,15 @@ class RestServiceTest {
 
     @Before
     fun setup() {
+        val context = ApplicationProvider.getApplicationContext<Context>()
+
         gson = Gson()
         mockWebServer = MockWebServer()
 
         restService = Retrofit.Builder()
             .baseUrl(mockWebServer.url("/"))
             .addConverterFactory(GsonConverterFactory.create(gson))
-            .client(UnsafeOkHttpClient.getUnsafeOkHttpClient())
+            .client(UnsafeOkHttpClient.getUnsafeOkHttpClient(context))
             .build().create(RestService::class.java)
 
         val mockResponse = MockResponse()

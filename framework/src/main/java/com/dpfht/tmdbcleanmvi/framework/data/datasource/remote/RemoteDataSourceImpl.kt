@@ -4,12 +4,12 @@ import android.content.Context
 import com.dpfht.tmdbcleanmvi.data.datasource.AppDataSource
 import com.dpfht.tmdbcleanmvi.data.model.remote.response.ApiErrorResponse
 import com.dpfht.tmdbcleanmvi.data.model.remote.response.toDomain
-import com.dpfht.tmdbcleanmvi.domain.entity.AppException
-import com.dpfht.tmdbcleanmvi.domain.entity.DiscoverMovieByGenreDomain
-import com.dpfht.tmdbcleanmvi.domain.entity.GenreDomain
-import com.dpfht.tmdbcleanmvi.domain.entity.MovieDetailsDomain
-import com.dpfht.tmdbcleanmvi.domain.entity.ReviewDomain
-import com.dpfht.tmdbcleanmvi.domain.entity.TrailerDomain
+import com.dpfht.tmdbcleanmvi.domain.model.AppException
+import com.dpfht.tmdbcleanmvi.domain.model.DiscoverMovieByGenreModel
+import com.dpfht.tmdbcleanmvi.domain.model.GenreModel
+import com.dpfht.tmdbcleanmvi.domain.model.MovieDetailsModel
+import com.dpfht.tmdbcleanmvi.domain.model.ReviewModel
+import com.dpfht.tmdbcleanmvi.domain.model.TrailerModel
 import com.dpfht.tmdbcleanmvi.framework.R
 import com.dpfht.tmdbcleanmvi.framework.data.datasource.remote.rest.RestService
 import com.google.gson.Gson
@@ -27,23 +27,23 @@ class RemoteDataSourceImpl @Inject constructor(
   private val restService: RestService
 ): AppDataSource {
 
-  override suspend fun getMovieGenre(): GenreDomain {
+  override suspend fun getMovieGenre(): GenreModel {
     return safeApiCall(Dispatchers.IO) { restService.getMovieGenre().toDomain() }
   }
 
-  override suspend fun getMoviesByGenre(genreId: String, page: Int): DiscoverMovieByGenreDomain {
+  override suspend fun getMoviesByGenre(genreId: String, page: Int): DiscoverMovieByGenreModel {
     return safeApiCall(Dispatchers.IO) { restService.getMoviesByGenre(genreId, page).toDomain() }
   }
 
-  override suspend fun getMovieDetail(movieId: Int): MovieDetailsDomain {
+  override suspend fun getMovieDetail(movieId: Int): MovieDetailsModel {
     return safeApiCall(Dispatchers.IO) { restService.getMovieDetail(movieId).toDomain() }
   }
 
-  override suspend fun getMovieReviews(movieId: Int, page: Int): ReviewDomain {
+  override suspend fun getMovieReviews(movieId: Int, page: Int): ReviewModel {
     return safeApiCall(Dispatchers.IO) { restService.getMovieReviews(movieId, page).toDomain() }
   }
 
-  override suspend fun getMovieTrailer(movieId: Int): TrailerDomain {
+  override suspend fun getMovieTrailer(movieId: Int): TrailerModel {
     return safeApiCall(Dispatchers.IO) { restService.getMovieTrailers(movieId).toDomain() }
   }
 

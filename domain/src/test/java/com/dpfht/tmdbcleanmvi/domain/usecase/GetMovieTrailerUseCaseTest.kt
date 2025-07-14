@@ -1,9 +1,9 @@
 package com.dpfht.tmdbcleanmvi.domain.usecase
 
-import com.dpfht.tmdbcleanmvi.domain.entity.AppException
-import com.dpfht.tmdbcleanmvi.domain.entity.TrailerDomain
-import com.dpfht.tmdbcleanmvi.domain.entity.TrailerEntity
-import com.dpfht.tmdbcleanmvi.domain.entity.Result
+import com.dpfht.tmdbcleanmvi.domain.model.AppException
+import com.dpfht.tmdbcleanmvi.domain.model.TrailerModel
+import com.dpfht.tmdbcleanmvi.domain.model.Trailer
+import com.dpfht.tmdbcleanmvi.domain.model.Result
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertTrue
@@ -35,12 +35,12 @@ class GetMovieTrailerUseCaseTest: BaseUseCaseTest() {
   @Test
   fun `fetch movie trailer successfully`() = runTest {
     val keyVideo1 = "11111"
-    val trailer1 = TrailerEntity(id = "1", key = keyVideo1, name = "name1", site = "youtube")
-    val trailer2 = TrailerEntity(id = "2", key = "22222", name = "name2", site = "youtube")
-    val trailer3 = TrailerEntity(id = "3", key = "33333", name = "name3", site = "youtube")
+    val trailer1 = Trailer(id = "1", key = keyVideo1, name = "name1", site = "youtube")
+    val trailer2 = Trailer(id = "2", key = "22222", name = "name2", site = "youtube")
+    val trailer3 = Trailer(id = "3", key = "33333", name = "name3", site = "youtube")
 
     val trailers = listOf(trailer1, trailer2, trailer3)
-    val getMovieTrailerData = TrailerDomain(results = trailers)
+    val getMovieTrailerData = TrailerModel(results = trailers)
 
     val movieId = 1
 

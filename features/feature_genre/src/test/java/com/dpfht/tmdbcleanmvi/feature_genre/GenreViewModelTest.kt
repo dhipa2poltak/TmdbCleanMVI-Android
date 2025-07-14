@@ -1,9 +1,9 @@
 package com.dpfht.tmdbcleanmvi.feature_genre
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.dpfht.tmdbcleanmvi.domain.entity.GenreDomain
-import com.dpfht.tmdbcleanmvi.domain.entity.GenreEntity
-import com.dpfht.tmdbcleanmvi.domain.entity.Result
+import com.dpfht.tmdbcleanmvi.domain.model.GenreModel
+import com.dpfht.tmdbcleanmvi.domain.model.Genre
+import com.dpfht.tmdbcleanmvi.domain.model.Result
 import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieGenreUseCase
 import com.dpfht.tmdbcleanmvi.feature_genre.adapter.GenreAdapter
 import com.dpfht.tmdbcleanmvi.framework.navigation.NavigationService
@@ -45,9 +45,9 @@ class GenreViewModelTest {
   @Mock
   private lateinit var navigationService: NavigationService
 
-  private val genre1 = GenreEntity(1, "Cartoon")
-  private val genre2 = GenreEntity(2, "Drama")
-  private val genre3 = GenreEntity(3, "Horror")
+  private val genre1 = Genre(1, "Cartoon")
+  private val genre2 = Genre(2, "Drama")
+  private val genre3 = Genre(3, "Horror")
 
   private val genres = listOf(genre1, genre2, genre3)
 
@@ -59,7 +59,7 @@ class GenreViewModelTest {
 
   @Test
   fun `fetch movie genre successfully`() = runTest {
-    val getMovieGenreResult = GenreDomain(genres)
+    val getMovieGenreResult = GenreModel(genres)
     val result = Result.Success(getMovieGenreResult)
     whenever(getMovieGenreUseCase.invoke()).thenReturn(result)
 
@@ -87,7 +87,7 @@ class GenreViewModelTest {
 
   @Test
   fun `navigate to next screen`() = runTest {
-    val getMovieGenreResult = GenreDomain(genres)
+    val getMovieGenreResult = GenreModel(genres)
     val result = Result.Success(getMovieGenreResult)
     whenever(getMovieGenreUseCase.invoke()).thenReturn(result)
 

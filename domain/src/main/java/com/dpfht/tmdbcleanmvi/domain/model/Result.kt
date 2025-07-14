@@ -1,4 +1,4 @@
-package com.dpfht.tmdbcleanmvi.domain.entity
+package com.dpfht.tmdbcleanmvi.domain.model
 
 sealed class Result<out T> {
   data class Success<out T>(val value: T): Result<T>()

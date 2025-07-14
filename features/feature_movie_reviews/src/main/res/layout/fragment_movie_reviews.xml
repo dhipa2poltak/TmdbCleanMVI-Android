@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
   <androidx.constraintlayout.widget.ConstraintLayout
       android:layout_width="match_parent"
@@ -51,6 +51,20 @@
         app:layout_constraintTop_toBottomOf="@+id/vw_line"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_no_review"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/no_reviews"
+        android:textStyle="italic"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@+id/rv_review"
+        app:layout_constraintTop_toTopOf="@+id/rv_review"
+        app:layout_constraintEnd_toEndOf="@+id/rv_review"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_review"
+        tools:visibility="visible"/>
 
     <ProgressBar
         android:id="@+id/pb_loading"

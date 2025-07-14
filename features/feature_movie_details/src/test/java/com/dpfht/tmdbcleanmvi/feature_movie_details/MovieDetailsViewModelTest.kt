@@ -1,9 +1,9 @@
 package com.dpfht.tmdbcleanmvi.feature_movie_details
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.dpfht.tmdbcleanmvi.domain.entity.GenreEntity
-import com.dpfht.tmdbcleanmvi.domain.entity.MovieDetailsDomain
-import com.dpfht.tmdbcleanmvi.domain.entity.Result
+import com.dpfht.tmdbcleanmvi.domain.model.Genre
+import com.dpfht.tmdbcleanmvi.domain.model.MovieDetailsModel
+import com.dpfht.tmdbcleanmvi.domain.model.Result
 import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieDetailsUseCase
 import com.dpfht.tmdbcleanmvi.framework.navigation.NavigationService
 import kotlinx.coroutines.Dispatchers
@@ -54,9 +54,9 @@ class MovieDetailsViewModelTest {
     val posterPath = "poster_path1"
     val genreName1 = "Action"
     val genreName2 = "Drama"
-    val genres = listOf(GenreEntity(10, genreName1), GenreEntity(11, genreName2))
+    val genres = listOf(Genre(10, genreName1), Genre(11, genreName2))
 
-    val getMovieDetailsResult = MovieDetailsDomain(
+    val getMovieDetailsResult = MovieDetailsModel(
       id = movieId,
       title = title,
       overview = overview,

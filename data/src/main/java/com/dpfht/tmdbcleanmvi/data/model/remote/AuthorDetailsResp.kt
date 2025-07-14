@@ -6,12 +6,13 @@ import com.google.gson.annotations.SerializedName
 
 @Keep
 @Suppress("unused")
-data class ProductionCountry(
-    @SerializedName("iso_3166_1")
-    @Expose
-    val iso31661: String? = "",
+data class AuthorDetailsResp(
+    val name: String? = "",
+    val username: String? = "",
 
-    @SerializedName("name")
+    @SerializedName("avatar_path")
     @Expose
-    val name: String? = ""
+    val avatarPath: String? = "",
+
+    val rating: Float? = 0.0f
 )

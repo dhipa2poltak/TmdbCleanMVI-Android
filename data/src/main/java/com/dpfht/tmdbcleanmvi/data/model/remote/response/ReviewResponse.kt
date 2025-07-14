@@ -1,10 +1,10 @@
 package com.dpfht.tmdbcleanmvi.data.model.remote.response
 
 import androidx.annotation.Keep
-import com.dpfht.tmdbcleanmvi.data.model.remote.Review
-import com.dpfht.tmdbcleanmvi.domain.entity.AuthorDetailsEntity
-import com.dpfht.tmdbcleanmvi.domain.entity.ReviewDomain
-import com.dpfht.tmdbcleanmvi.domain.entity.ReviewEntity
+import com.dpfht.tmdbcleanmvi.data.model.remote.ReviewResp
+import com.dpfht.tmdbcleanmvi.domain.model.AuthorDetails
+import com.dpfht.tmdbcleanmvi.domain.model.ReviewModel
+import com.dpfht.tmdbcleanmvi.domain.model.Review
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
@@ -13,7 +13,7 @@ import com.google.gson.annotations.SerializedName
 data class ReviewResponse(
     val id: Int? = -1,
     val page: Int? = -1,
-    val results: List<Review>? = listOf(),
+    val results: List<ReviewResp>? = listOf(),
 
     @SerializedName("total_pages")
     @Expose
@@ -24,7 +24,7 @@ data class ReviewResponse(
     val totalResults: Int? = -1
 )
 
-fun ReviewResponse.toDomain(): ReviewDomain {
+fun ReviewResponse.toDomain(): ReviewModel {
     val reviewEntities = results?.map {
         var imageUrl = it.authorDetails?.avatarPath ?: ""
         if (imageUrl.startsWith("/")) {
@@ -35,11 +35,11 @@ fun ReviewResponse.toDomain(): ReviewDomain {
             imageUrl = ""
         }
 
-        val authorDetailsEntity = AuthorDetailsEntity(imageUrl)
-        val reviewEntity = ReviewEntity(it.author ?: "", authorDetailsEntity, it.content ?: "")
+        val authorDetailsEntity = AuthorDetails(imageUrl)
+        val reviewEntity = Review(it.author ?: "", authorDetailsEntity, it.content ?: "")
 
         reviewEntity
     }
 
-    return ReviewDomain(reviewEntities?.toList() ?: listOf(), this.page ?: -1)
+    return ReviewModel(reviewEntities?.toList() ?: listOf(), this.page ?: -1)
 }

@@ -50,6 +50,7 @@ dependencies {
   testImplementation Deps.coroutinesTest
   testImplementation Deps.mockWebServer
   testImplementation Deps.robolectric
+  testImplementation Deps.testCore
   androidTestImplementation Deps.jUnitExt
   androidTestImplementation Deps.espresso
 
@@ -60,4 +61,7 @@ dependencies {
   implementation Deps.retrofitConverterGson
   implementation Deps.okhttpLoggingInterceptor
   implementation Deps.okhttp
+
+  debugImplementation Deps.chuckerLibrary
+  releaseImplementation Deps.chuckerLibraryNoOp
 }

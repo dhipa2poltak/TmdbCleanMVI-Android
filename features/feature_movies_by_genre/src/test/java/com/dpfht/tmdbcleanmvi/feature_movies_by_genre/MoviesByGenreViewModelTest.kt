@@ -1,9 +1,9 @@
 package com.dpfht.tmdbcleanmvi.feature_movies_by_genre
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.dpfht.tmdbcleanmvi.domain.entity.DiscoverMovieByGenreDomain
-import com.dpfht.tmdbcleanmvi.domain.entity.MovieEntity
-import com.dpfht.tmdbcleanmvi.domain.entity.Result
+import com.dpfht.tmdbcleanmvi.domain.model.DiscoverMovieByGenreModel
+import com.dpfht.tmdbcleanmvi.domain.model.Movie
+import com.dpfht.tmdbcleanmvi.domain.model.Result
 import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieByGenreUseCase
 import com.dpfht.tmdbcleanmvi.feature_movies_by_genre.adapter.MoviesByGenreAdapter
 import com.dpfht.tmdbcleanmvi.framework.navigation.NavigationService
@@ -44,9 +44,9 @@ class MoviesByGenreViewModelTest {
   @Mock
   private lateinit var navigationService: NavigationService
 
-  private val movie1 = MovieEntity(id = 1, title = "title1", overview = "overview1")
-  private val movie2 = MovieEntity(id = 2, title = "title2", overview = "overview2")
-  private val movie3 = MovieEntity(id = 3, title = "title3", overview = "overview3")
+  private val movie1 = Movie(id = 1, title = "title1", overview = "overview1")
+  private val movie2 = Movie(id = 2, title = "title2", overview = "overview2")
+  private val movie3 = Movie(id = 3, title = "title3", overview = "overview3")
 
   private val genreId = 1
   private val page = 1
@@ -61,7 +61,7 @@ class MoviesByGenreViewModelTest {
 
   @Test
   fun `fetch movie successfully`() = runTest {
-    val getMovieByGenreResult = DiscoverMovieByGenreDomain(page, movies)
+    val getMovieByGenreResult = DiscoverMovieByGenreModel(page, movies)
     val result = Result.Success(getMovieByGenreResult)
 
     whenever(getMovieByGenreUseCase.invoke(genreId, page)).thenReturn(result)
@@ -75,7 +75,7 @@ class MoviesByGenreViewModelTest {
 
   @Test
   fun `fetch next movie successfully`() = runTest {
-    val getMovieByGenreResult = DiscoverMovieByGenreDomain(page, movies)
+    val getMovieByGenreResult = DiscoverMovieByGenreModel(page, movies)
     val result = Result.Success(getMovieByGenreResult)
 
     whenever(getMovieByGenreUseCase.invoke(genreId, page)).thenReturn(result)
@@ -89,8 +89,8 @@ class MoviesByGenreViewModelTest {
 
   @Test
   fun `fetch next movie movie successfully but empty`() = runTest {
-    val movies = arrayListOf<MovieEntity>()
-    val getMovieByGenreResult = DiscoverMovieByGenreDomain(page, movies)
+    val movies = arrayListOf<Movie>()
+    val getMovieByGenreResult = DiscoverMovieByGenreModel(page, movies)
     val result = Result.Success(getMovieByGenreResult)
 
     whenever(getMovieByGenreUseCase.invoke(genreId, page)).thenReturn(result)

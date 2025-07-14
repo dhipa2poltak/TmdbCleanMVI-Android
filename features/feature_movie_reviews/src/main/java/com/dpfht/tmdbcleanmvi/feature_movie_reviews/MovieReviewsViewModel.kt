@@ -1,9 +1,9 @@
 package com.dpfht.tmdbcleanmvi.feature_movie_reviews
 
 import androidx.lifecycle.viewModelScope
-import com.dpfht.tmdbcleanmvi.domain.entity.Result.Error
-import com.dpfht.tmdbcleanmvi.domain.entity.Result.Success
-import com.dpfht.tmdbcleanmvi.domain.entity.ReviewEntity
+import com.dpfht.tmdbcleanmvi.domain.model.Result.Error
+import com.dpfht.tmdbcleanmvi.domain.model.Result.Success
+import com.dpfht.tmdbcleanmvi.domain.model.Review
 import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieReviewUseCase
 import com.dpfht.tmdbcleanmvi.feature_movie_reviews.MovieReviewsIntent.FetchNextReview
 import com.dpfht.tmdbcleanmvi.feature_movie_reviews.MovieReviewsIntent.FetchReview
@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 class MovieReviewsViewModel @Inject constructor(
   private val getMovieReviewUseCase: GetMovieReviewUseCase,
-  private val reviews: ArrayList<ReviewEntity>,
+  private val reviews: ArrayList<Review>,
   val adapter: MovieReviewsAdapter,
   private val navigationService: NavigationService
 ): BaseViewModel<MovieReviewsIntent, MovieReviewsState>(MovieReviewsState()) {
@@ -68,7 +68,7 @@ class MovieReviewsViewModel @Inject constructor(
     }
   }
 
-  private fun onSuccess(reviews: List<ReviewEntity>, page: Int) {
+  private fun onSuccess(reviews: List<Review>, page: Int) {
     if (reviews.isNotEmpty()) {
       updateState { it.copy(page = page) }
 
@@ -77,6 +77,10 @@ class MovieReviewsViewModel @Inject constructor(
         adapter.notifyItemInserted(this@MovieReviewsViewModel.reviews.size - 1)
       }
     } else {
+      if (this@MovieReviewsViewModel.reviews.isEmpty()) {
+        updateState { it.copy(isNoReviews = true) }
+      }
+
       updateState { it.copy(isEmptyNextResponse = true) }
     }
 

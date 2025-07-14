@@ -7,12 +7,12 @@ import java.util.Date
 
 @Keep
 @Suppress("unused")
-data class Review(
+data class ReviewResp(
     val author: String? = "",
 
     @SerializedName("author_details")
     @Expose
-    val authorDetails: AuthorDetails? = null,
+    val authorDetails: AuthorDetailsResp? = null,
 
     val content: String? = "",
 

@@ -1,9 +1,9 @@
 package com.dpfht.tmdbcleanmvi.feature_movie_trailer
 
 import androidx.lifecycle.viewModelScope
-import com.dpfht.tmdbcleanmvi.domain.entity.Result.Error
-import com.dpfht.tmdbcleanmvi.domain.entity.Result.Success
-import com.dpfht.tmdbcleanmvi.domain.entity.TrailerEntity
+import com.dpfht.tmdbcleanmvi.domain.model.Result.Error
+import com.dpfht.tmdbcleanmvi.domain.model.Result.Success
+import com.dpfht.tmdbcleanmvi.domain.model.Trailer
 import com.dpfht.tmdbcleanmvi.domain.usecase.GetMovieTrailerUseCase
 import com.dpfht.tmdbcleanmvi.feature_movie_trailer.MovieTrailerIntent.FetchTrailer
 import com.dpfht.tmdbcleanmvi.framework.base.BaseViewModel
@@ -55,7 +55,7 @@ class MovieTrailerViewModel @Inject constructor(
     }
   }
 
-  private fun onSuccess(trailers: List<TrailerEntity>) {
+  private fun onSuccess(trailers: List<Trailer>) {
     var keyVideo = ""
     for (trailer in trailers) {
       if (trailer.site.lowercase(Locale.ROOT).trim() == "youtube"

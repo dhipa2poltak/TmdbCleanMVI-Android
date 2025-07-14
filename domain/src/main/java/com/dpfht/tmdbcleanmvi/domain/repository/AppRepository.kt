@@ -1,20 +1,20 @@
 package com.dpfht.tmdbcleanmvi.domain.repository
 
-import com.dpfht.tmdbcleanmvi.domain.entity.DiscoverMovieByGenreDomain
-import com.dpfht.tmdbcleanmvi.domain.entity.GenreDomain
-import com.dpfht.tmdbcleanmvi.domain.entity.MovieDetailsDomain
-import com.dpfht.tmdbcleanmvi.domain.entity.ReviewDomain
-import com.dpfht.tmdbcleanmvi.domain.entity.TrailerDomain
+import com.dpfht.tmdbcleanmvi.domain.model.DiscoverMovieByGenreModel
+import com.dpfht.tmdbcleanmvi.domain.model.GenreModel
+import com.dpfht.tmdbcleanmvi.domain.model.MovieDetailsModel
+import com.dpfht.tmdbcleanmvi.domain.model.ReviewModel
+import com.dpfht.tmdbcleanmvi.domain.model.TrailerModel
 
 interface AppRepository {
 
-  suspend fun getMovieGenre(): GenreDomain
+  suspend fun getMovieGenre(): GenreModel
 
-  suspend fun getMoviesByGenre(genreId: String, page: Int): DiscoverMovieByGenreDomain
+  suspend fun getMoviesByGenre(genreId: String, page: Int): DiscoverMovieByGenreModel
 
-  suspend fun getMovieDetail(movieId: Int): MovieDetailsDomain
+  suspend fun getMovieDetail(movieId: Int): MovieDetailsModel
 
-  suspend fun getMovieReviews(movieId: Int, page: Int): ReviewDomain
+  suspend fun getMovieReviews(movieId: Int, page: Int): ReviewModel
 
-  suspend fun getMovieTrailer(movieId: Int): TrailerDomain
+  suspend fun getMovieTrailer(movieId: Int): TrailerModel
 }

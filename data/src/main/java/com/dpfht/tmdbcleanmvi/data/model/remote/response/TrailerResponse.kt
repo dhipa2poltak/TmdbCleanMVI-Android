@@ -1,18 +1,18 @@
 package com.dpfht.tmdbcleanmvi.data.model.remote.response
 
 import androidx.annotation.Keep
-import com.dpfht.tmdbcleanmvi.data.model.remote.Trailer
-import com.dpfht.tmdbcleanmvi.domain.entity.TrailerDomain
-import com.dpfht.tmdbcleanmvi.domain.entity.TrailerEntity
+import com.dpfht.tmdbcleanmvi.data.model.remote.TrailerResp
+import com.dpfht.tmdbcleanmvi.domain.model.TrailerModel
+import com.dpfht.tmdbcleanmvi.domain.model.Trailer
 
 @Keep
 data class TrailerResponse(
     val id: Int? = -1,
-    val results: List<Trailer>? = listOf()
+    val results: List<TrailerResp>? = listOf()
 )
 
-fun TrailerResponse.toDomain(): TrailerDomain {
-    val trailerEntities = results?.map { TrailerEntity(it.id ?: "", it.key ?: "", it.name ?: "", it.site ?: "") }
+fun TrailerResponse.toDomain(): TrailerModel {
+    val trailerEntities = results?.map { Trailer(it.id ?: "", it.key ?: "", it.name ?: "", it.site ?: "") }
 
-    return TrailerDomain(this.id ?: -1, trailerEntities?.toList() ?: listOf())
+    return TrailerModel(this.id ?: -1, trailerEntities?.toList() ?: listOf())
 }

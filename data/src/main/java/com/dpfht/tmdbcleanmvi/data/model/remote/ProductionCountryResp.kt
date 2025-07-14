@@ -6,16 +6,12 @@ import com.google.gson.annotations.SerializedName
 
 @Keep
 @Suppress("unused")
-data class SpokenLanguage(
-    @SerializedName("iso_639_1")
+data class ProductionCountryResp(
+    @SerializedName("iso_3166_1")
     @Expose
-    val iso6391: String? = "",
+    val iso31661: String? = "",
 
     @SerializedName("name")
     @Expose
-    val name: String? = "",
-
-    @SerializedName("english_name")
-    @Expose
-    val englishName: String? = ""
+    val name: String? = ""
 )
