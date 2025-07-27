@@ -1,7 +1,7 @@
 package com.dpfht.tmdbcleanmvi.data.model.remote.response
 
 import androidx.annotation.Keep
-import com.dpfht.tmdbcleanmvi.data.model.remote.ReviewResp
+import com.dpfht.tmdbcleanmvi.data.model.remote.ReviewDTO
 import com.dpfht.tmdbcleanmvi.domain.model.AuthorDetails
 import com.dpfht.tmdbcleanmvi.domain.model.ReviewModel
 import com.dpfht.tmdbcleanmvi.domain.model.Review
@@ -13,7 +13,7 @@ import com.google.gson.annotations.SerializedName
 data class ReviewResponse(
     val id: Int? = -1,
     val page: Int? = -1,
-    val results: List<ReviewResp>? = listOf(),
+    val results: List<ReviewDTO>? = listOf(),
 
     @SerializedName("total_pages")
     @Expose

@@ -2,7 +2,7 @@ package com.dpfht.tmdbcleanmvi.data.model.remote.response
 
 import androidx.annotation.Keep
 import com.dpfht.tmdbcleanmvi.data.Constants
-import com.dpfht.tmdbcleanmvi.data.model.remote.MovieResp
+import com.dpfht.tmdbcleanmvi.data.model.remote.MovieDTO
 import com.dpfht.tmdbcleanmvi.domain.model.DiscoverMovieByGenreModel
 import com.dpfht.tmdbcleanmvi.domain.model.Movie
 import com.google.gson.annotations.Expose
@@ -12,7 +12,7 @@ import com.google.gson.annotations.SerializedName
 @Suppress("unused")
 data class DiscoverMovieByGenreResponse(
     val page: Int? = -1,
-    val results: List<MovieResp>? = listOf(),
+    val results: List<MovieDTO>? = listOf(),
 
     @SerializedName("total_pages")
     @Expose

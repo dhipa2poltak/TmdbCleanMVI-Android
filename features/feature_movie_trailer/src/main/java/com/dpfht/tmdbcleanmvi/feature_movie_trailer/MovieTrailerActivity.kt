@@ -32,6 +32,9 @@ class MovieTrailerActivity: AppCompatActivity() {
     binding = ActivityMovieTrailerBinding.inflate(layoutInflater)
     setContentView(binding.root)
 
+    binding.youtubePlayerView.enableAutomaticInitialization = false
+    lifecycle.addObserver(binding.youtubePlayerView)
+
     lifecycleScope.launch {
       viewModel.state.collect {
         render(it)
@@ -63,7 +66,6 @@ class MovieTrailerActivity: AppCompatActivity() {
       .controls(1)
       .build()
 
-    binding.youtubePlayerView.enableAutomaticInitialization = false
     binding.youtubePlayerView.initialize(object : AbstractYouTubePlayerListener() {
       override fun onReady(youTubePlayer: YouTubePlayer) {
         super.onReady(youTubePlayer)

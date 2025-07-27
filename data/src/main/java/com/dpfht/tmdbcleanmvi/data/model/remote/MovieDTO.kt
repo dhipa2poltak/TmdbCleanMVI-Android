@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 
 @Keep
 @Suppress("unused")
-data class MovieResp(
+data class MovieDTO(
     val adult: Boolean? = false,
 
     @SerializedName("backdrop_path")

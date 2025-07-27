@@ -6,20 +6,12 @@ import com.google.gson.annotations.SerializedName
 
 @Keep
 @Suppress("unused")
-data class TrailerResp(
-    val id: String? = "",
-
-    @SerializedName("iso_639_1")
-    @Expose
-    val iso6391: String? = "",
-
+data class ProductionCountryDTO(
     @SerializedName("iso_3166_1")
     @Expose
     val iso31661: String? = "",
 
-    val key: String? = "",
-    val name: String? = "",
-    val site: String? = "",
-    val size: Int? = -1,
-    val type: String? = ""
+    @SerializedName("name")
+    @Expose
+    val name: String? = ""
 )

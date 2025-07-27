@@ -1,14 +1,14 @@
 package com.dpfht.tmdbcleanmvi.data.model.remote.response
 
 import androidx.annotation.Keep
-import com.dpfht.tmdbcleanmvi.data.model.remote.TrailerResp
+import com.dpfht.tmdbcleanmvi.data.model.remote.TrailerDTO
 import com.dpfht.tmdbcleanmvi.domain.model.TrailerModel
 import com.dpfht.tmdbcleanmvi.domain.model.Trailer
 
 @Keep
 data class TrailerResponse(
     val id: Int? = -1,
-    val results: List<TrailerResp>? = listOf()
+    val results: List<TrailerDTO>? = listOf()
 )
 
 fun TrailerResponse.toDomain(): TrailerModel {
